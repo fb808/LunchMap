@@ -93,7 +93,6 @@ function makeMarker() {
 function list() {
     let restaurantInfoDiv = document.getElementById('list');
     for (var i = 1; i < markerPosition.length; i++) {
-        console.log(markerPosition[i].distance);
         var mDistance = markerPosition[i].distance;
         mDistance >= 1000 ? mDistance = mDistance / 1000 + 'km' : mDistance += 'm';
         // 주변 식당 정보
@@ -137,4 +136,11 @@ function computeDistance(destCoords) {
 function degreesToRadians(degrees) {
     radians = (degrees * Math.PI)/180;
     return radians;
+}
+
+function goHome (){
+    // 이동할 위도 경도 위치를 생성합니다
+    var moveLatLon = new kakao.maps.LatLng(company.latitude, company.longitude);
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
 }

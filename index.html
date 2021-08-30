@@ -12,6 +12,14 @@
     <div id="map"></div>
     <script type="text/javascript" src="map.js"></script>
     <!-- 식당 정보를 표시할 div -->
+    <div class="button">
+        <button id="home" onclick="goHome()">회사로</button>
+        <br>
+        <button id="within_200m" onclick="makeMarker(this.id)">200m 이내</button>
+        <button id="within_500m" onclick="makeMarker(this.id)">500m 이내</button>
+        <button id="within_1000m" onclick="makeMarker(this.id)">1Km 이내</button>
+        <button id="all">전체보기</button>
+    </div>
     <div id="list"></div>
 </body>
 </html>

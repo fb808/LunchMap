@@ -4,10 +4,23 @@
   height: 100vh;
 }
 
+button {
+  margin-bottom: 10px;
+}
+.button {
+  position: relative;
+  padding: 20px;
+}
+
+#home,
+#within_200m {
+  margin-left: 20px;
+}
+
 #list {
   float: right;
   width: auto;
-  height: 100vh;
+  height: 90vh;
   overflow: scroll;
   overflow-x: hidden;
   padding: 5px;
