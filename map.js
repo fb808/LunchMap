@@ -35,12 +35,12 @@ var imageSize = new kakao.maps.Size(30, 45);
     
 // 마커 이미지 생합니다    
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: markerPosition[0].latlng, // 마커를 표시할 위치
-        title: markerPosition[0].title, // 마커의 타이틀
-        image: markerImage // 마커 이미지
-    });
+var marker = new kakao.maps.Marker({
+    map: map, // 마커를 표시할 지도
+    position: markerPosition[0].latlng, // 마커를 표시할 위치
+    title: markerPosition[0].title, // 마커의 타이틀
+    image: markerImage // 마커 이미지
+});
 
 marker.setMap(map);
 
@@ -58,19 +58,28 @@ function NearbyRestaurant(restaurantInfo) {
     }
 
     // 마커 생성
-    setTimeout(function () {
-        for (var i = 1; i < markerPosition.length; i++) {
-            var restaurantMarker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: markerPosition[i].latlng, // 마커를 표시할 위치
-                title: markerPosition[i].title // 마커의 타이틀
-            });
-            // 지도 위에 마커 표시
-            restaurantMarker.setMap(map);
-        }
-    }, 800);
+    setTimeout(makeMarker(), 800);
 
+    // 리스트 생성
     list();
+}
+
+function makeMarker() {
+    for (var i = 1; i < markerPosition.length; i++) {
+        var restaurantMarker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: markerPosition[i].latlng, // 마커를 표시할 위치
+            title: markerPosition[i].title // 마커의 타이틀
+        });
+        restaurantMarker.id = markerPosition[i].title;
+        // 지도 위에 마커 표시
+        restaurantMarker.setMap(map);
+
+        kakao.maps.event.addListener(restaurantMarker, 'click', function() {
+            alert(this.id);
+            document.getElementById(this.id).scrollIntoView();
+        });
+    }
 }
 
 function list() {
@@ -94,7 +103,6 @@ function list() {
             // document.getElementById(markerPosition[index].title).scrollIntoView();
         };
     }
-    
 }
 
 
