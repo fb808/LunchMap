@@ -9,9 +9,10 @@ function handleRefresh() {
     $.getJSON(requestURL);
 }
 
+var company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = { 
-        center: new kakao.maps.LatLng(37.50764693316519, 127.05776158879458), // 지도의 중심좌표 (회사)
+        center: new kakao.maps.LatLng(company.latitude, company.longitude), // 지도의 중심좌표 (회사)
         level: 1 // 지도의 확대 레벨
     };
 
@@ -22,7 +23,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 let markerPosition = [
     {
         title: '식스티헤르츠',
-        latlng: new kakao.maps.LatLng(37.50755819521287, 127.05783050995228),
+        latlng: new kakao.maps.LatLng(company.latitude, company.longitude),
+        distance: '0',
         address: '서울특별시 삼성1동 테헤란로 507​',
         classification: ''
     }
@@ -30,6 +32,7 @@ let markerPosition = [
 
 // 마커 이미지 주소
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
 // 마커 이미지 크기
 var imageSize = new kakao.maps.Size(30, 45); 
     
@@ -46,19 +49,24 @@ marker.setMap(map);
 
 function NearbyRestaurant(restaurantInfo) {
     let info = restaurantInfo;
+
     for (var i = 0; i < info.length; i++){
         // 주변 식당 위치값 markerPosition에 저장하기
         var obj = {
             title: info[i].상호명,
             latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
-            address: info[i].도로명,
+            distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}),
+            address: info[i].도로명주소,
             classification: info[i].상권업종소분류명
         };
         markerPosition.push(obj);
+        markerPosition = markerPosition.sort(function (a, b) {
+            return a.distance - b.distance;
+        });
     }
 
     // 마커 생성
-    setTimeout(makeMarker(), 800);
+    setTimeout(makeMarker(), 300);
 
     // 리스트 생성
     list();
@@ -85,11 +93,15 @@ function makeMarker() {
 function list() {
     let restaurantInfoDiv = document.getElementById('list');
     for (var i = 1; i < markerPosition.length; i++) {
+        console.log(markerPosition[i].distance);
+        var mDistance = markerPosition[i].distance;
+        mDistance >= 1000 ? mDistance = mDistance / 1000 + 'km' : mDistance += 'm';
         // 주변 식당 정보
         var div = document.createElement('div');
         div.setAttribute('class', 'restaurantInfoItem');
         div.setAttribute('id', markerPosition[i].title);
-        div.innerHTML = `<b>${markerPosition[i].title}</b><br><br>
+        div.innerHTML = `<b>${markerPosition[i].title}</b><br>
+                        ${mDistance}<br>
                         ${markerPosition[i].classification}<br>
                         ${markerPosition[i].address}`;
         restaurantInfoDiv.appendChild(div);
@@ -105,4 +117,24 @@ function list() {
     }
 }
 
+// 구면 코사인 법칙(Spherical Law of Cosine) 으로 두 위도/경도 지점의 거리를 구함
+// 반환 거리 단위 (m)
+function computeDistance(destCoords) {
+    var startCoords = company;
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var destLatRads = degreesToRadians(destCoords.latitude);
+    var destLongRads = degreesToRadians(destCoords.longitude);
 
+    var Radius = 6371; //지구의 반경(km)
+    var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) + 
+                    Math.cos(startLatRads) * Math.cos(destLatRads) *
+                    Math.cos(startLongRads - destLongRads)) * Radius;
+
+    return Math.round(distance * 1000);
+}
+
+function degreesToRadians(degrees) {
+    radians = (degrees * Math.PI)/180;
+    return radians;
+}
