@@ -22,47 +22,11 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 let markerPosition = [
     {
         title: '식스티헤르츠',
-        latlng: new kakao.maps.LatLng(37.50755819521287, 127.05783050995228)
+        latlng: new kakao.maps.LatLng(37.50755819521287, 127.05783050995228),
+        address: '서울특별시 삼성1동 테헤란로 507​',
+        classification: ''
     }
 ];
-
-function NearbyRestaurant(restaurantInfo) {
-    let restaurantInfoDiv = document.getElementById('list');
-    let info = restaurantInfo;
-    for (var i = 0; i < info.length; i++){
-        // 주변 식당 위치값 markerPosition에 저장하기
-        var obj = {
-            title: info[i].상호명,
-            latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도)
-        };
-        markerPosition.push(obj);
-
-        // 주변 식당 정보
-        var div = document.createElement('div');
-        div.setAttribute('class', 'restaurantInfoItem');
-        div.setAttribute('id', info[i].상호명);
-        div.innerHTML = `<b>${info[i].상호명}</b><br><br>
-                            ${info[i].상권업종소분류명}<br>
-                            ${info[i].도로명}`;
-        restaurantInfoDiv.appendChild(div);
-    }
-
-    // 마커 생성
-    setTimeout(function () {
-        for (var i = 1; i < markerPosition.length; i++) {
-            var restaurantMarker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: markerPosition[i].latlng, // 마커를 표시할 위치
-                title: markerPosition[i].title // 마커의 타이틀
-            });
-            // 지도 위에 마커 표시
-            restaurantMarker.setMap(map);
-
-        }
-
-    }, 1000);
-
-}
 
 // 마커 이미지 주소
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -79,3 +43,58 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
     });
 
 marker.setMap(map);
+
+function NearbyRestaurant(restaurantInfo) {
+    let info = restaurantInfo;
+    for (var i = 0; i < info.length; i++){
+        // 주변 식당 위치값 markerPosition에 저장하기
+        var obj = {
+            title: info[i].상호명,
+            latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
+            address: info[i].도로명,
+            classification: info[i].상권업종소분류명
+        };
+        markerPosition.push(obj);
+    }
+
+    // 마커 생성
+    setTimeout(function () {
+        for (var i = 1; i < markerPosition.length; i++) {
+            var restaurantMarker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: markerPosition[i].latlng, // 마커를 표시할 위치
+                title: markerPosition[i].title // 마커의 타이틀
+            });
+            // 지도 위에 마커 표시
+            restaurantMarker.setMap(map);
+        }
+    }, 800);
+
+    list();
+}
+
+function list() {
+    let restaurantInfoDiv = document.getElementById('list');
+    for (var i = 1; i < markerPosition.length; i++) {
+        // 주변 식당 정보
+        var div = document.createElement('div');
+        div.setAttribute('class', 'restaurantInfoItem');
+        div.setAttribute('id', markerPosition[i].title);
+        div.innerHTML = `<b>${markerPosition[i].title}</b><br><br>
+                        ${markerPosition[i].classification}<br>
+                        ${markerPosition[i].address}`;
+        restaurantInfoDiv.appendChild(div);
+
+        document.getElementById(markerPosition[i].title).onclick = function () {
+            var index = markerPosition.findIndex(p => p.title == this.id);
+            // 이동할 위도 경도 위치를 생성합니다
+            var moveLatLon = markerPosition[index].latlng;
+            // 지도 중심을 이동 시킵니다
+            map.setCenter(moveLatLon);
+            // document.getElementById(markerPosition[index].title).scrollIntoView();
+        };
+    }
+    
+}
+
+

@@ -16,3 +16,7 @@
 .restaurantInfoItem {
   padding: 20px;
 }
+
+.restaurantInfoItem:hover {
+  background: silver;
+}
