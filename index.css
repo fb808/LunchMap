@@ -17,8 +17,11 @@ button {
   margin-left: 20px;
 }
 
+#listArea {
+  position: relative;
+}
+
 #list {
-  float: right;
   width: auto;
   height: 90vh;
   overflow: scroll;

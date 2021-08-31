@@ -139,34 +139,37 @@ function hideMarker(i) {
 
 // 필터
 function itemFilter(id) {
+    $('#list').empty();
     switch (id) {
         case 'within_200m':
             for (let i = 0; i < markerPosition.length - 1; i++){
                 if (markerPosition[i + 1].distance > 200) hideMarker(i);
+                if (markerPosition[i + 1].distance <= 200) list(i + 1);
             }
-            console.log(';');
             break;
         case 'within_500m':
             for (let i = 0; i < markerPosition.length - 1; i++) {
                 if (markerPosition[i + 1].distance > 500) hideMarker(i);
-                if (markerPosition[i + 1].distance <= 500) setMarker(i);
+                if (markerPosition[i + 1].distance <= 500) {
+                    setMarker(i);
+                    list(i + 1);
+                }
             }
-            console.log(';;');
             break;
         case 'within_1000m':
             for (let i = 0; i < markerPosition.length - 1; i++){
                 if (markerPosition[i + 1].distance > 1000) hideMarker(i);
-                if (markerPosition[i + 1].distance <= 1000) setMarker(i);
+                if (markerPosition[i + 1].distance <= 1000) {
+                    setMarker(i);
+                    list(i + 1);
+                }
             }
-            console.log(';;;');
             break;
         default:
             for (let i = 0; i < markerPosition.length - 1; i++) {
                 setMarker(i);
                 list(i + 1);
             }
-            console.log(';;;;');
-            
     }
 }
 
