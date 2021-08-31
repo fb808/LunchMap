@@ -7,13 +7,16 @@
 button {
   margin-bottom: 10px;
 }
+
 .button {
   position: relative;
   padding: 20px;
 }
 
 #home,
-#within_200m {
+#within_200m,
+#korean,
+#bakery {
   margin-left: 20px;
 }
 

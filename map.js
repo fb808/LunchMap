@@ -23,6 +23,7 @@ let markerPosition = [
         latlng: new kakao.maps.LatLng(company.latitude, company.longitude),
         distance: '0',
         address: '서울특별시 삼성1동 테헤란로 507​',
+        kindCode: '',
         classification: ''
     }
 ];
@@ -74,6 +75,7 @@ function NearbyRestaurant(restaurantInfo) {
             latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도), // 위경도로 카카오맵 api 마커 생성에 필요한 객체 생성
             distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
             address: info[i].도로명주소,
+            kindCode: info[i].상권업종중분류코드,
             classification: info[i].상권업종소분류명
         };
         
@@ -136,7 +138,6 @@ function setMarker(i) {
 function hideMarker(i) {
     markers[i].setMap(null);
 }
-
 
 // 필터
 let within_200m;
