@@ -132,40 +132,75 @@ function setMarker(i) {
     markers[i].setMap(map);
 }
 
-// 맵 위에 마커 안보이게... 라는데 해본 적 X
+// 맵 위에 마커 안보이게
 function hideMarker(i) {
     markers[i].setMap(null);
 }
 
+
 // 필터
+let within_200m;
+let within_500m;
+let within_1000m;
+
 function itemFilter(id) {
     $('#list').empty();
     switch (id) {
         case 'within_200m':
-            for (let i = 0; i < markerPosition.length - 1; i++){
-                if (markerPosition[i + 1].distance > 200) hideMarker(i);
-                if (markerPosition[i + 1].distance <= 200) list(i + 1);
+            if (within_200m) {
+                within_200m = false;
+                itemFilter('');
+                break;
+            } else {
+                for (let i = 0; i < markerPosition.length - 1; i++){
+                    if (markerPosition[i + 1].distance > 200) hideMarker(i);
+                    if (markerPosition[i + 1].distance <= 200) list(i + 1);
+                }
+                within_200m = true;
+                within_500m = false;
+                within_1000m = false;
             }
             break;
         case 'within_500m':
-            for (let i = 0; i < markerPosition.length - 1; i++) {
-                if (markerPosition[i + 1].distance > 500) hideMarker(i);
-                if (markerPosition[i + 1].distance <= 500) {
-                    setMarker(i);
-                    list(i + 1);
+            if (within_500m) {
+                within_500m = false;
+                itemFilter('');
+                break;
+            } else {
+                for (let i = 0; i < markerPosition.length - 1; i++) {
+                    if (markerPosition[i + 1].distance > 500) hideMarker(i);
+                    if (markerPosition[i + 1].distance <= 500) {
+                        setMarker(i);
+                        list(i + 1);
+                    }
                 }
+                within_200m = false;
+                within_500m = true;
+                within_1000m = false;
             }
             break;
         case 'within_1000m':
-            for (let i = 0; i < markerPosition.length - 1; i++){
-                if (markerPosition[i + 1].distance > 1000) hideMarker(i);
-                if (markerPosition[i + 1].distance <= 1000) {
-                    setMarker(i);
-                    list(i + 1);
+            if (within_1000m) {
+                within_1000m = false;
+                itemFilter('');
+                break;
+            } else {
+                for (let i = 0; i < markerPosition.length - 1; i++) {
+                    if (markerPosition[i + 1].distance > 1000) hideMarker(i);
+                    if (markerPosition[i + 1].distance <= 1000) {
+                        setMarker(i);
+                        list(i + 1);
+                    }
                 }
+                within_200m = false;
+                within_500m = false;
+                within_1000m = true;
             }
             break;
         default:
+            within_200m = false;
+            within_500m = false;
+            within_1000m = false;
             for (let i = 0; i < markerPosition.length - 1; i++) {
                 setMarker(i);
                 list(i + 1);
