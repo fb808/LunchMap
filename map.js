@@ -88,6 +88,7 @@ function NearbyRestaurant(restaurantInfo) {
 
     // 마커 생성
     setTimeout(makeMarker(), 300);
+    itemFilter('');
 }
 
 // 마커 생성
@@ -95,10 +96,11 @@ function makeMarker() {
     for (var i = 1; i < markerPosition.length; i++) {
         // 마커 초기화
         showMarker(i);
-        // 리스트 생성
-        list(i);
+        
     }
 }
+
+let markers = [];
 
 // 마커 정보 저장용
 let restaurantMarker;
@@ -115,24 +117,57 @@ function showMarker(i) {
     // 마커 아이디값 지정
     restaurantMarker.id = markerPosition[i].title;
 
-    // 맵 위에 마커 보이게
-    setMarker(map);
+    markers.push(restaurantMarker);
 
     // 마커 클릭 이벤트
     kakao.maps.event.addListener(restaurantMarker, 'click', function() {
         alert(this.id);
         document.getElementById(this.id).scrollIntoView();
     });
+
 }
 
 // 맵 위에 마커 보이게
-function setMarker(map) {
-    restaurantMarker.setMap(map);
+function setMarker(i) {
+    markers[i].setMap(map);
 }
 
 // 맵 위에 마커 안보이게... 라는데 해본 적 X
-function hideMarker(condition) {
-    setMarker(null);
+function hideMarker(i) {
+    markers[i].setMap(null);
+}
+
+// 필터
+function itemFilter(id) {
+    switch (id) {
+        case 'within_200m':
+            for (let i = 0; i < markerPosition.length - 1; i++){
+                if (markerPosition[i + 1].distance > 200) hideMarker(i);
+            }
+            console.log(';');
+            break;
+        case 'within_500m':
+            for (let i = 0; i < markerPosition.length - 1; i++) {
+                if (markerPosition[i + 1].distance > 500) hideMarker(i);
+                if (markerPosition[i + 1].distance <= 500) setMarker(i);
+            }
+            console.log(';;');
+            break;
+        case 'within_1000m':
+            for (let i = 0; i < markerPosition.length - 1; i++){
+                if (markerPosition[i + 1].distance > 1000) hideMarker(i);
+                if (markerPosition[i + 1].distance <= 1000) setMarker(i);
+            }
+            console.log(';;;');
+            break;
+        default:
+            for (let i = 0; i < markerPosition.length - 1; i++) {
+                setMarker(i);
+                list(i + 1);
+            }
+            console.log(';;;;');
+            
+    }
 }
 
 // 리스트 생성할 위치
