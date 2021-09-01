@@ -13,13 +13,6 @@ button {
   padding: 20px;
 }
 
-#home,
-#within_200m,
-#korean,
-#bakery {
-  margin-left: 20px;
-}
-
 #listArea {
   position: relative;
 }

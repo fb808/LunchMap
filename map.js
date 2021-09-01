@@ -136,7 +136,95 @@ let within_200m;
 let within_500m;
 let within_1000m;
 
+let kindId = [];
+
+function kindBtnOnclick(id) {
+    let index = kindId.indexOf(id);
+    index < 0 ? kindId.push(id) : kindId.splice(index, 1);
+    
+    itemFilter(forFilter());
+}
+
+function forFilter() {
+    if (within_200m) {
+        within_200m = false;
+        return 'within_200m';
+    } else if (within_500m) {
+        within_500m = false;
+        return 'within_500m'
+    } else if (within_1000m) {
+        within_1000m = false;
+        return 'within_1000m';
+    } else return '';
+}
+
+function kindFilter(i) {
+    let j = 0;
+    do {
+        switch (kindId[j]) {
+            case 'korean':
+                if (markerPosition[i + 1].kindCode === 'Q01' ||
+                    markerPosition[i + 1].kindCode === 'Q05') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'chinese':
+                if (markerPosition[i + 1].kindCode === 'Q02') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'japanese':
+                if (markerPosition[i + 1].kindCode === 'Q03') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'western':
+                if (markerPosition[i + 1].kindCode === 'Q06' ||
+                    markerPosition[i + 1].kindCode === 'Q07') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'snack':
+                if (markerPosition[i + 1].kindCode === 'Q04') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'cafe':
+                if (markerPosition[i + 1].kindCode === 'Q12') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'bakery':
+                if (markerPosition[i + 1].kindCode === 'Q08') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            case 'etc':
+                if (markerPosition[i + 1].kindCode === 'Q10' ||
+                    markerPosition[i + 1].kindCode === 'Q15') {
+                    setMarker(i);
+                    list(i + 1);
+                }
+                break;
+            default:
+                setMarker(i);
+                list(i + 1);
+        }
+        j++;
+    } while (j < kindId.length);
+}
+
 function itemFilter(id) {
+    for (let i = 0; i < markers.length; i++){
+        hideMarker(i);
+    }
     $('#list').empty();
     switch (id) {
         case 'within_200m':
@@ -145,9 +233,10 @@ function itemFilter(id) {
                 itemFilter('');
                 break;
             } else {
-                for (let i = 0; i < markerPosition.length - 1; i++){
-                    if (markerPosition[i + 1].distance > 200) hideMarker(i);
-                    if (markerPosition[i + 1].distance <= 200) list(i + 1);
+                for (let i = 0; i < markers.length; i++){
+                    if (markerPosition[i + 1].distance <= 200) {
+                        kindFilter(i);
+                    }
                 }
                 within_200m = true;
                 within_500m = false;
@@ -160,11 +249,9 @@ function itemFilter(id) {
                 itemFilter('');
                 break;
             } else {
-                for (let i = 0; i < markerPosition.length - 1; i++) {
-                    if (markerPosition[i + 1].distance > 500) hideMarker(i);
+                for (let i = 0; i < markers.length; i++) {
                     if (markerPosition[i + 1].distance <= 500) {
-                        setMarker(i);
-                        list(i + 1);
+                        kindFilter(i);
                     }
                 }
                 within_200m = false;
@@ -178,11 +265,9 @@ function itemFilter(id) {
                 itemFilter('');
                 break;
             } else {
-                for (let i = 0; i < markerPosition.length - 1; i++) {
-                    if (markerPosition[i + 1].distance > 1000) hideMarker(i);
+                for (let i = 0; i < markers.length; i++) {
                     if (markerPosition[i + 1].distance <= 1000) {
-                        setMarker(i);
-                        list(i + 1);
+                        kindFilter(i);
                     }
                 }
                 within_200m = false;
@@ -192,8 +277,7 @@ function itemFilter(id) {
             break;
         default:
             for (let i = 0; i < markerPosition.length - 1; i++) {
-                setMarker(i);
-                list(i + 1);
+                kindFilter(i);
             }
             within_200m = false;
             within_500m = false;
