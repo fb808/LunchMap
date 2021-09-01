@@ -140,7 +140,13 @@ let kindId = [];
 
 function kindBtnOnclick(id) {
     let index = kindId.indexOf(id);
-    index < 0 ? kindId.push(id) : kindId.splice(index, 1);
+    if (index < 0) {
+        kindId.push(id)
+        $(`#${id}`).css('background', 'silver');
+    } else {
+        kindId.splice(index, 1);
+        $(`#${id}`).css('background', 'white');
+    }
     
     itemFilter(forFilter());
 }
@@ -229,6 +235,7 @@ function itemFilter(id) {
     switch (id) {
         case 'within_200m':
             if (within_200m) {
+                $(`#${id}`).css('background', 'white');
                 within_200m = false;
                 itemFilter('');
                 break;
@@ -238,6 +245,9 @@ function itemFilter(id) {
                         kindFilter(i);
                     }
                 }
+                $(`#${id}`).css('background', 'silver');
+                $(`#within_500m`).css('background', 'white');
+                $(`#within_1000m`).css('background', 'white');
                 within_200m = true;
                 within_500m = false;
                 within_1000m = false;
@@ -245,6 +255,7 @@ function itemFilter(id) {
             break;
         case 'within_500m':
             if (within_500m) {
+                $(`#${id}`).css('background', 'white');
                 within_500m = false;
                 itemFilter('');
                 break;
@@ -254,6 +265,9 @@ function itemFilter(id) {
                         kindFilter(i);
                     }
                 }
+                $(`#within_200m`).css('background', 'white');
+                $(`#${id}`).css('background', 'silver');
+                $(`#within_1000m`).css('background', 'white');
                 within_200m = false;
                 within_500m = true;
                 within_1000m = false;
@@ -261,6 +275,7 @@ function itemFilter(id) {
             break;
         case 'within_1000m':
             if (within_1000m) {
+                $(`#${id}`).css('background', 'white');
                 within_1000m = false;
                 itemFilter('');
                 break;
@@ -270,6 +285,9 @@ function itemFilter(id) {
                         kindFilter(i);
                     }
                 }
+                $(`#within_200m`).css('background', 'white');
+                $(`#${id}`).css('background', 'silver');
+                $(`#within_500m`).css('background', 'white');
                 within_200m = false;
                 within_500m = false;
                 within_1000m = true;
@@ -279,6 +297,9 @@ function itemFilter(id) {
             for (let i = 0; i < markerPosition.length - 1; i++) {
                 kindFilter(i);
             }
+            $(`#within_200m`).css('background', 'white');
+            $(`#within_500m`).css('background', 'white');
+            $(`#within_1000m`).css('background', 'white');
             within_200m = false;
             within_500m = false;
             within_1000m = false;
@@ -317,8 +338,6 @@ function list(i) {
         map.setCenter(moveLatLon);
     };
 }
-
-
 
 // 구면 코사인 법칙(Spherical Law of Cosine) 으로 두 위도/경도 지점의 거리를 구함, 반환 거리 단위 (m)
 function computeDistance(destCoords) {
