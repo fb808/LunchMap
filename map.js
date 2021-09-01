@@ -1,4 +1,3 @@
-// 서비스 실행 시...
 window.onload = function () {
   handleRefresh();
 }
@@ -50,9 +49,7 @@ marker.setMap(map);
 
 // 회사 바로가기
 function goHome (){
-    // 이동할 위치
     let moveLatLon = new kakao.maps.LatLng(company.latitude, company.longitude);
-    // 중심 이동
     map.setCenter(moveLatLon);
 }
 
@@ -65,24 +62,21 @@ function handleRefresh() {
 // JSON 파일에서 필요한 부분만 골라내기
 function NearbyRestaurant(restaurantInfo) {
 
-    // JSON 파일 받기
     let info = restaurantInfo;
 
     for (var i = 0; i < info.length; i++){
-        // 필요한 정보만
         var obj = {
             title: info[i].상호명,
-            latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도), // 위경도로 카카오맵 api 마커 생성에 필요한 객체 생성
+            latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
             distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
             address: info[i].도로명주소,
             kindCode: info[i].상권업종중분류코드,
             classification: info[i].상권업종소분류명
         };
         
-        // 주변 식당 정보 markerPosition에 저장하기
         markerPosition.push(obj);
 
-        // 데이터 거리순으로 정렬
+        // 거리순으로 정렬
         markerPosition = markerPosition.sort(function (a, b) {
             return a.distance - b.distance;
         });
@@ -98,13 +92,11 @@ function makeMarker() {
     for (var i = 1; i < markerPosition.length; i++) {
         // 마커 초기화
         showMarker(i);
-        
     }
 }
 
-let markers = [];
-
 // 마커 정보 저장용
+let markers = [];
 let restaurantMarker;
 
 // 마커 초기화
@@ -199,13 +191,13 @@ function itemFilter(id) {
             }
             break;
         default:
-            within_200m = false;
-            within_500m = false;
-            within_1000m = false;
             for (let i = 0; i < markerPosition.length - 1; i++) {
                 setMarker(i);
                 list(i + 1);
             }
+            within_200m = false;
+            within_500m = false;
+            within_1000m = false;
     }
 }
 
@@ -235,11 +227,8 @@ function list(i) {
 
     // 리스트 클릭 이벤트
     document.getElementById(markerPosition[i].title).onclick = function () {
-
         // id 값이 같은 마커 찾기
         var index = markerPosition.findIndex(p => p.title == this.id);
-
-        // 이동
         var moveLatLon = markerPosition[index].latlng;
         map.setCenter(moveLatLon);
     };
