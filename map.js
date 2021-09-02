@@ -1,3 +1,8 @@
+// import { axios } from "axios";
+// import cheerio from "cheerio";
+
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
+
 window.onload = function () {
   handleRefresh();
 }
@@ -130,6 +135,8 @@ function setMarker(i) {
 function hideMarker(i) {
     markers[i].setMap(null);
 }
+
+
 
 // 필터
 let within_200m;
@@ -356,6 +363,6 @@ function computeDistance(destCoords) {
 }
 
 function degreesToRadians(degrees) {
-    radians = (degrees * Math.PI)/180;
+    var radians = (degrees * Math.PI)/180;
     return radians;
 }
