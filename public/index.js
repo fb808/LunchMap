@@ -1,8 +1,3 @@
-// import { axios } from "axios";
-// import cheerio from "cheerio";
-
-document.cookie = "crossCookie=bar; SameSite=None; Secure";
-
 window.onload = function () {
   handleRefresh();
 }
@@ -60,7 +55,7 @@ function goHome (){
 
 // JSON 파일 로드
 function handleRefresh() {
-    let requestURL = 'http://127.0.0.1:5500/tradingArea.json';
+    let requestURL = 'http://localhost:3000/tradingArea.json';
     $.getJSON(requestURL, NearbyRestaurant);
 }
 

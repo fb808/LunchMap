@@ -1,11 +1,12 @@
 import express from 'express';
-import path from 'path';
 
 const app = express();
 let port = process.env.port || 3000;
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-    res.sendFile('/home/ryujimin/develop/LunchMap/index.html')
+    res.sendFile('/home/ryujimin/develop/LunchMap/public/index.html');
 });
 
 const server = app.listen(port, () => {
