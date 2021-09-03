@@ -20,7 +20,7 @@ button {
 
 #list {
   width: auto;
-  height: 90vh;
+  height: 80vh;
   overflow: scroll;
   overflow-x: hidden;
   padding: 5px;
