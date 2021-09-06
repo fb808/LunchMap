@@ -16,6 +16,7 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "require": "^2.4.20",
