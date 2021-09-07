@@ -1,11 +1,11 @@
-import { computeDistance } from './js/compute_distance.js';
+import { computeDistance } from './compute_distance.js';
 
 window.onload = function () {
   handleRefresh();
 }
 
 // 회사 위치
-let company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
+const company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
 
 // 지도 설정
 let mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -70,7 +70,7 @@ function NearbyRestaurant(restaurantInfo) {
         var obj = {
             title: info[i].상호명,
             latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
-            distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
+            distance: computeDistance(company, {latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
             address: info[i].도로명주소,
             kindCode: info[i].상권업종중분류코드,
             classification: info[i].상권업종소분류명

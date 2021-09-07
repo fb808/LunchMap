@@ -1,7 +1,5 @@
-const company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
-
 // 구면 코사인 법칙(Spherical Law of Cosine) 으로 두 위도/경도 지점의 거리를 구함, 반환 거리 단위 (m)
-function computeDistance(destCoords) {
+function computeDistance(company, destCoords) {
     var startCoords = company;
     var startLatRads = degreesToRadians(startCoords.latitude);
     var startLongRads = degreesToRadians(startCoords.longitude);
