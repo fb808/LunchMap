@@ -1,33 +1,31 @@
-import pandas as pd
 from selenium import webdriver
-
 import time
+import json
 
-df = pd.read_csv('sb_restaurant.csv', sep=',', encoding='CP949')
+with open('./public/tradingArea.json') as f:
+    json_object = json.load(f)
 
-df = df[['업소명', '소재지도로명', '업태명', '주된음식', '행정동명', '소재지전화번호']]
-df.columns = ['name', 'address', 'cate1', 'cate2', 'dong', 'phone']
-df = df.drop_duplicates(['name'], keep='first')
+driver = webdriver.Chrome("chromedriver")
 
-df['cate_mix'] = df['cate1'] + df['cate2']
+for obj in [json_object[0], json_object[1], json_object[2], json_object[3], json_object[4], json_object[5]]:
+    title = obj['상호명']
+    if obj['법정동코드'] == '1168010500':
+        title = '삼성동 ' + obj['상호명']
+    elif obj['법정동코드'] == '1168010600':
+        title = '대치동 ' + obj['상호명']
+    print(title)
 
-print(df)
-
-driver = webdriver.Chrome('chromedriver.exe')
-df['kakao_keyword'] = df['dong'] + " " + df['name']
-
-for i, keyword in enumerate(df['kakao_keyword'].tolist()):
-    print(keyword, end=" ")
     try:
-        kakao_map_search_url = f"https://map.kakao.com/?q={keyword}"
+        kakao_map_search_url = f"https://map.kakao.com/?q={title}"
         driver.get(kakao_map_search_url)
         time.sleep(1)
 
-        rate = driver.find_element_by_css_selector("#info\.search\.place\.list > li.PlaceItem.clickArea.PlaceItem-ACTIVE > div.rating.clickArea > span.score > em").text
-        rateNum = driver.find_element_by_css_selector("#info\.search\.place\.list > li.PlaceItem.clickArea.PlaceItem-ACTIVE > div.rating.clickArea > span.score > a").text
+        rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
 
-        print("리뷰 " + rateNum + ", 평점 " + rate)
+        print("평점 " + str(rate))
 
     except Exception as e1:
+        print(e1)
         print("정보 없음")
         pass
+    
