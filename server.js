@@ -4,7 +4,6 @@ const app = express();
 let port = process.env.port || 3000;
 
 app.use(express.static('public'));
-app.use('/js', express.static('public/js'));
 
 app.get('/', (req, res) => {
     res.sendFile('/home/ryujimin/develop/LunchMap/public/index.html');

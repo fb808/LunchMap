@@ -42,15 +42,12 @@ for obj in json_object:
         time.sleep(1)
 
         rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
-
-        print("평점 " + str(rate))
         
         sql = f'''INSERT INTO `Restaurant` VALUES ({no}, '{title}', '{kindCode}', '{classification}', '{address}', {latitude}, {longitude}, {rate})'''
         curs.execute(sql)
         lunchMap_db.commit()
 
     except Exception as e1:
-        print(e1)
         pass
 
 lunchMap_db.close()

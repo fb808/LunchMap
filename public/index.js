@@ -1,5 +1,3 @@
-import { computeDistance } from './compute_distance.js';
-
 window.onload = function () {
   handleRefresh();
 }
@@ -70,7 +68,7 @@ function NearbyRestaurant(restaurantInfo) {
         var obj = {
             title: info[i].상호명,
             latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
-            distance: computeDistance(company, {latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
+            distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
             address: info[i].도로명주소,
             kindCode: info[i].상권업종중분류코드,
             classification: info[i].상권업종소분류명
@@ -341,4 +339,25 @@ function list(i) {
         var moveLatLon = markerPosition[index].latlng;
         map.setCenter(moveLatLon);
     };
+}
+
+// 구면 코사인 법칙(Spherical Law of Cosine) 으로 두 위도/경도 지점의 거리를 구함, 반환 거리 단위 (m)
+function computeDistance(destCoords) {
+    var startCoords = company;
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var destLatRads = degreesToRadians(destCoords.latitude);
+    var destLongRads = degreesToRadians(destCoords.longitude);
+
+    var Radius = 6371; //지구의 반경(km)
+    var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) + 
+                    Math.cos(startLatRads) * Math.cos(destLatRads) *
+                    Math.cos(startLongRads - destLongRads)) * Radius;
+
+    return Math.round(distance * 1000);
+}
+
+function degreesToRadians(degrees) {
+    var radians = (degrees * Math.PI)/180;
+    return radians;
 }
