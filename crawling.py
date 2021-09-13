@@ -1,53 +1,66 @@
 from selenium import webdriver
+import pandas as pd
+import numpy as np
 import time
+import csv
 import json
-import pymysql
 
-lunchMap_db = pymysql.connect(
-    user='ryu',
-    passwd='aqswde123',
-    host='localhost',
-    db='LunchMap',
-    charset='utf8'
-)
+df = pd.read_csv('소상공인시장진흥공단_상가(상권)정보_서울_202106.csv', sep=',')
+df = df.replace('"', '')
 
-curs = lunchMap_db.cursor()
-
-with open('./public/tradingArea.json') as f:
-    json_object = json.load(f)
+df = df.loc[df['상권업종대분류명'] == '음식']  
+df = df[['상호명', '상권업종중분류명', '상권업종소분류명', '표준산업분류명', '법정동명', '도로명주소', '위도', '경도']]
+df = df.loc[(df['법정동명'] == '삼성동') | (df['법정동명'] == '대치동')]
+df = df.loc[(df['상권업종중분류명'] != '유흥주점') & (df['상권업종중분류명'] != '음식배달서비스') & (df['상권업종중분류명'] != '기타음식업') & (df['상권업종중분류명'] != '커피점/카페') & (df['상권업종중분류명'] != '제과제빵떡케익')]
+df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'lat']
 
 driver = webdriver.Chrome("chromedriver")
 
-for obj in json_object:
+i = 0
+for idx, obj in df.iterrows():
 
-    no = obj['상가업소번호']
-    title = obj['상호명']
-    kindCode = obj['상권업종중분류코드']
-    classification = obj['상권업종소분류명']
-    address = obj['도로명주소']
-    latitude = float(obj['위도'])
-    longitude = float(obj['경도'])
+    name = obj['name']
+    cate_1 = obj['cate_1']
+    cate_2 = obj['cate_2']
+    cate_3 = obj['cate_3']
+    area = obj['area']
+    address = obj['address']
+    latitude = obj['lon']
+    longitude = obj['lat']
 
-    print(title)
+    print(name)
+    print(idx)
+    print (df.index[i])
 
     try:
-        searchTitle = title
-        if obj['법정동코드'] == '1168010500':
-            searchTitle = '삼성동 ' + obj['상호명']
-        elif obj['법정동코드'] == '1168010600':
-            searchTitle = '대치동 ' + obj['상호명']
+        searchName = name
+        if area == '삼성동':
+            searchName = '삼성동 ' + name
+        elif area == '대치동':
+            searchName = '대치동 ' + name
         
-        kakao_map_search_url = f"https://map.kakao.com/?q={searchTitle}"
+        kakao_map_search_url = f"https://map.kakao.com/?q={searchName}"
         driver.get(kakao_map_search_url)
         time.sleep(1)
 
         rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
-        
-        sql = f'''INSERT INTO `Restaurant` VALUES ({no}, '{title}', '{kindCode}', '{classification}', '{address}', {latitude}, {longitude}, {rate})'''
-        curs.execute(sql)
-        lunchMap_db.commit()
+
+        print(rate)
+
+        d = {idx: float(rate)}
+        add_rate = pd.Series(d, index=[idx])
+        df['rate'] = add_rate
 
     except Exception as e1:
+        print(e1)
+        df = df.drop(df.index[i])
+        i = i-1
         pass
 
-lunchMap_db.close()
+    i = i+1
+    print(i)
+
+    if(i > 4):
+        break
+
+print(df)
