@@ -1,14 +1,13 @@
-import express from 'express';
-
+const express = require('express');
+const path = require('path');
 const app = express();
-let port = process.env.port || 3000;
-
-app.use(express.static('public'));
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
-    res.sendFile('/home/ryujimin/develop/LunchMap/public/index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-const server = app.listen(port, () => {
-    console.log(`server on ${port}`);
+// app.get('/about', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'html', 'about.html'));
+// });
+app.listen(8000, () => {
+  console.log('Express App on port 8000!');
 });

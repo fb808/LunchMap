@@ -55,7 +55,7 @@ function goHome (){
 
 // JSON 파일 로드
 function handleRefresh() {
-    let requestURL = 'http://localhost:3000/tradingArea.json';
+    let requestURL = 'http://localhost:8000/tradingArea.json';
     $.getJSON(requestURL, NearbyRestaurant);
 }
 
