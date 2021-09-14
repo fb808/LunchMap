@@ -1,11 +1,10 @@
 from selenium import webdriver
+from haversine import haversine
 import pandas as pd
 import numpy as np
 import time
-import csv
-import json
 
-df = pd.read_csv('소상공인시장진흥공단_상가(상권)정보_서울_202106.csv', sep=',')
+df = pd.read_csv('소상공인시장진흥공단_상가(상권)정보_서울_202106.csv', encoding='utf-8', sep=',')
 df = df.replace('"', '')
 
 df = df.loc[df['상권업종대분류명'] == '음식']  
@@ -14,9 +13,13 @@ df = df.loc[(df['법정동명'] == '삼성동') | (df['법정동명'] == '대치
 df = df.loc[(df['상권업종중분류명'] != '유흥주점') & (df['상권업종중분류명'] != '음식배달서비스') & (df['상권업종중분류명'] != '기타음식업') & (df['상권업종중분류명'] != '커피점/카페') & (df['상권업종중분류명'] != '제과제빵떡케익')]
 df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'lat']
 
+i = 0
+rank_d = []
+dist_d = []
+company = (37.50764693316519, 127.05776158879458)  #Latitude, Longitude
+
 driver = webdriver.Chrome("chromedriver")
 
-i = 0
 for idx, obj in df.iterrows():
 
     name = obj['name']
@@ -29,8 +32,7 @@ for idx, obj in df.iterrows():
     longitude = obj['lat']
 
     print(name)
-    print(idx)
-    print (df.index[i])
+    place = (latitude, longitude)
 
     try:
         searchName = name
@@ -43,16 +45,15 @@ for idx, obj in df.iterrows():
         driver.get(kakao_map_search_url)
         time.sleep(1)
 
+        dist = haversine(company, place, unit = 'm')
         rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
 
         print(rate)
-
-        d = {idx: float(rate)}
-        add_rate = pd.Series(d, index=[idx])
-        df['rate'] = add_rate
+        print(round(dist))
+        dist_d.append(round(dist))
+        rank_d.append(rate)
 
     except Exception as e1:
-        print(e1)
         df = df.drop(df.index[i])
         i = i-1
         pass
@@ -60,7 +61,19 @@ for idx, obj in df.iterrows():
     i = i+1
     print(i)
 
-    if(i > 4):
-        break
+df['rate'] = rank_d
+df['distance'] = dist_d
 
-print(df)
+i = 0
+for idx, obj in df.iterrows():
+    distance = obj['distance']
+
+    if distance > 1200:
+        df = df.drop(df.index[i])
+        i = i-1
+
+    i = i+1
+
+# df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
+
+df.to_csv(r'/home/ryujimin/develop/LunchMap/data.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")
