@@ -9,16 +9,47 @@ df = df.replace('"', '')
 
 df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'lat', 'rank', 'distance']
 
-i = 1
+# i = 0
 
-for idx, obj in df.iterrows():
+# for idx, obj in df.iterrows():
+#     dist = obj['distance']
 
-    distance = obj['distance']
+#     if dist > 1200:
+#         df = df.drop(df.index[i])
+#         i = i-1
 
-    if distance > 1200:
-        df = df.drop(df.index[i])
-        i = i-1
+#     i = i+1
 
-    i = i+1
+# driver = webdriver.Chrome("chromedriver")
 
-df.to_csv(r'/home/ryujimin/develop/LunchMap/public/data2.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")
+# for idx, obj in df.iterrows():
+
+#     name = obj['name']
+#     area = obj['area']
+#     cate_2 = obj['cate_2']
+
+#     print(name)
+
+#     try:
+#         searchName = name
+#         if area == '삼성동':
+#             searchName = '삼성동 ' + name
+#         elif area == '대치동':
+#             searchName = '대치동 ' + name
+        
+#         kakao_map_search_url = f"https://map.kakao.com/?q={searchName}"
+#         driver.get(kakao_map_search_url)
+#         time.sleep(2)
+
+#         rate = driver.find_element_by_css_selector("#info\.search\.place\.list > li:nth-child(1) > div.head_item.clickArea > span").text
+
+#         print(rate + ' ')
+#         print(cate_2)
+#         print(' ')
+
+#     except Exception as e1:
+#         print(e1)
+#         pass
+
+df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
+# df.to_csv(r'/home/ryujimin/develop/LunchMap/public/data2.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")

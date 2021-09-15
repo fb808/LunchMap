@@ -55,7 +55,7 @@ function goHome (){
 
 // JSON 파일 로드
 function handleRefresh() {
-    let requestURL = 'http://localhost:8000/tradingArea.json';
+    let requestURL = 'http://localhost:8000/data.json';
     $.getJSON(requestURL, NearbyRestaurant);
 }
 
@@ -66,12 +66,12 @@ function NearbyRestaurant(restaurantInfo) {
 
     for (var i = 0; i < info.length; i++){
         var obj = {
-            title: info[i].상호명,
-            latlng: new kakao.maps.LatLng(info[i].위도, info[i].경도),
-            distance: computeDistance({latitude: info[i].위도, longitude: info[i].경도}), // 거리 구하기
-            address: info[i].도로명주소,
-            kindCode: info[i].상권업종중분류코드,
-            classification: info[i].상권업종소분류명
+            title: info[i].name,
+            latlng: new kakao.maps.LatLng(info[i].lon, info[i].lat),
+            distance: info[i].distance, // 거리 구하기
+            address: info[i].address,
+            kindCode: info[i].cate_1,
+            classification: info[i].cate_2
         };
         
         markerPosition.push(obj);
