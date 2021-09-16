@@ -58,14 +58,6 @@ for idx, obj in df.iterrows():
         i = i-1
         pass
 
-    i = i+1
-    print(i)
-
-df['rate'] = rank_d
-df['distance'] = dist_d
-
-i = 0
-for idx, obj in df.iterrows():
     distance = obj['distance']
 
     if distance > 1200:
@@ -73,7 +65,10 @@ for idx, obj in df.iterrows():
         i = i-1
 
     i = i+1
+    print(i)
+
+df['rate'] = rank_d
+df['distance'] = dist_d
 
 # df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
-
 df.to_csv(r'/home/ryujimin/develop/LunchMap/data.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")
