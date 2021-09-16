@@ -1,35 +1,43 @@
-#map {
-  float: left;
-  width: 80%;
-  height: 100vh;
-}
-
-button {
-  margin-bottom: 10px;
-  background-color: white;
-}
-
-.button {
-  padding: 20px;
-  margin-left: 80%;
-}
-
-#listArea {
-  position: relative;
-}
-
-#list {
-  width: auto;
+#first {
+  position: absolute;
+  width: 70%;
   height: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.recommend_area,
+.search_area {
+  display: flex;
+  flex-wrap: wrap;
+  width: 45%;
+  height: auto;
+}
+
+.recommend_area {
+  float: left;
+  margin-right: 10%;
+}
+
+.refresh_button,
+.search_button {
+  float: right;
+}
+
+.title_area {
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.keyword {
+  position: relative;
   overflow: scroll;
-  overflow-x: hidden;
   padding: 5px;
 }
 
-.restaurantInfoItem {
-  padding: 20px;
-}
-
-.restaurantInfoItem:hover {
-  background: silver;
+button {
+  padding: 5%;
+  margin: 1%;
+  border-radius: 10%;
 }
