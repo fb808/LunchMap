@@ -3,7 +3,7 @@ function refreshButton() {
 }
 
 function searchButton() {
-    location.href = 'index22.html';
+    location.href = 'B.html';
 }
 
 function backButton() {
