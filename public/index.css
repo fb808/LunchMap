@@ -1,4 +1,4 @@
-#first {
+#A {
   position: absolute;
   width: 70%;
   height: 70vh;
@@ -41,10 +41,12 @@
   overflow-x: hidden;
   height: 60vh;
   padding: 4px;
+  text-align: center;
+  background-color: #f0f0f0;
 }
 
 #tagButton {
-  width: 28%;
+  width: 30%;
   height: 5vh;
   padding: 5px;
   margin: 0.8%;
