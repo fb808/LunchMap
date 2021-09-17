@@ -1,25 +1,25 @@
 import { refreshButton, searchButton } from "./click.js";
 import { keyword } from "./keyword.js";
 
-export function firstScreen() {
+export function AScreen() {
     // 루트
     const rootDiv = document.getElementById('root');
 
     // A
-    const firstScreenDiv = document.createElement('div');
-    firstScreenDiv.setAttribute('id', 'first');
-    rootDiv.appendChild(firstScreenDiv);
+    const AScreenDiv = document.createElement('div');
+    AScreenDiv.setAttribute('id', 'A');
+    rootDiv.appendChild(AScreenDiv);
 
-    recommendArea(firstScreenDiv);
-    searchArea(firstScreenDiv);
+    recommendArea(AScreenDiv);
+    searchArea(AScreenDiv);
 }
 
-function recommendArea(firstScreenDiv) {
+function recommendArea(AScreenDiv) {
     // 추천 영역
     const recommendDiv = document.createElement('div');
     recommendDiv.setAttribute('class', 'recommend_area');
     recommendDiv.setAttribute('id', 'recommend');
-    firstScreenDiv.appendChild(recommendDiv);
+    AScreenDiv.appendChild(recommendDiv);
     
     // 추천 타이틀 영역
     const titleDiv = document.createElement('div');
@@ -49,7 +49,7 @@ function recommendArea(firstScreenDiv) {
     recommendDiv.appendChild(listDiv);
 }
 
-function searchArea(firstScreenDiv) {
+function searchArea(AScreenDiv) {
     // 루트
     const rootDiv = document.getElementById('root');
 
@@ -57,7 +57,7 @@ function searchArea(firstScreenDiv) {
     const searchDiv = document.createElement('div');
     searchDiv.setAttribute('class', 'search_area');
     searchDiv.setAttribute('id', 'search');
-    firstScreenDiv.appendChild(searchDiv);
+    AScreenDiv.appendChild(searchDiv);
     
     // 검색 타이틀 영역
     const titleDiv = document.createElement('div');

@@ -3,7 +3,11 @@ function refreshButton() {
 }
 
 function searchButton() {
-    alert('검색');
+    location.href = 'index22.html';
 }
 
-export { refreshButton, searchButton };
+function backButton() {
+    location.href = 'index.html';
+}
+
+export { refreshButton, searchButton, backButton };

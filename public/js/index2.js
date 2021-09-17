@@ -1,3 +1,3 @@
-import { firstScreen } from './firstScreen.js';
+import { AScreen } from './AScreen.js';
 
-firstScreen();
+AScreen();
