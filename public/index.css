@@ -1,7 +1,7 @@
 #first {
   position: absolute;
   width: 70%;
-  height: 80vh;
+  height: 70vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -23,6 +23,7 @@
 .refresh_button,
 .search_button {
   float: right;
+  float: bottom;
 }
 
 .title_area {
@@ -30,14 +31,22 @@
   margin-bottom: 10%;
 }
 
+.title {
+  font-size: 1.2rem;
+}
+
 .keyword {
   position: relative;
   overflow: scroll;
-  padding: 5px;
+  overflow-x: hidden;
+  height: 60vh;
+  padding: 4px;
 }
 
-button {
-  padding: 5%;
-  margin: 1%;
-  border-radius: 10%;
+#tagButton {
+  width: 28%;
+  height: 5vh;
+  padding: 5px;
+  margin: 0.8%;
+  background-color: white;
 }
