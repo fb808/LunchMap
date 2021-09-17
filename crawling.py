@@ -16,6 +16,7 @@ df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'l
 i = 0
 rank_d = []
 dist_d = []
+tag_d = []
 company = (37.50764693316519, 127.05776158879458)  #Latitude, Longitude
 
 driver = webdriver.Chrome("chromedriver")
@@ -47,11 +48,11 @@ for idx, obj in df.iterrows():
 
         dist = haversine(company, place, unit = 'm')
         rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
+        tag = driver.find_element_by_css_selector("#info\.search\.place\.list > li:nth-child(1) > div.head_item.clickArea > span").text
 
-        print(rate)
-        print(round(dist))
         dist_d.append(round(dist))
         rank_d.append(rate)
+        tag_d.append(tag)
 
     except Exception as e1:
         df = df.drop(df.index[i])
@@ -69,6 +70,7 @@ for idx, obj in df.iterrows():
 
 df['rate'] = rank_d
 df['distance'] = dist_d
+df['tag'] = tag_d
 
 # df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
 df.to_csv(r'/home/ryujimin/develop/LunchMap/data.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")

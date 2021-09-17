@@ -8,43 +8,42 @@ df = df.replace('"', '')
 
 df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'lat', 'rate', 'distance', 'tag']
 
-# # i = 0
-# tag_d = []
+# i = 0
+cate4_d = []
 # driver = webdriver.Chrome("chromedriver")
 
-# for idx, obj in df.iterrows():
+for idx, obj in df.iterrows():
 
-#     name = obj['name']
-#     area = obj['area']
-#     cate_2 = obj['cate_2']
-#     rate = obj['rate']
+    tag = obj['tag']
     
-#     print(name)
-#     try:
-#         searchName = name
-#         if area == '삼성동':
-#             searchName = '삼성동 ' + name
-#         elif area == '대치동':
-#             searchName = '대치동 ' + name
-        
-#         kakao_map_search_url = f"https://map.kakao.com/?q={searchName}"
-#         # naver_map_search_url = f"https://m.map.naver.com/search2/search.naver?query={searchName}&sm=hty&style=v5"
-#         driver.get(kakao_map_search_url)
-#         time.sleep(2)
+    try:
+        if tag == '한식' or tag == '한정식' or tag == '한식뷔페' or tag == '수제비' or tag == '죽' or tag == '샤브샤브' or tag == '두부':
+            cate4_d.append('한식')
+        elif tag == '찌개,전골' or tag == '설렁탕' or tag == '곰탕' or tag == '국밥' or tag == '감자탕' or tag == '추어탕' or tag == '해장국' or tag == '삼계탕':
+            cate4_d.append('국/탕')
+        elif tag == '국수' or tag == '냉면':
+            cate4_d.append('국수')
+        elif tag == '육류,고기' or tag == '불고기,두루치기' or tag == '삽겹살' or tag == '갈비':
+            cate4_d.append('육류,고기')
+        elif tag == '곱창,막창' or tag == '순대':
+            cate4_d.append('곱창,막창,순대')
+        elif tag == '치킨' or tag == '닭강정':
+            cate4_d.append('치킨')
+        elif tag == '닭요리' or tag == '오리':
+            cate4_d.append('닭/오리')
+        elif tag == '해물,생선' or tag == '회' or tag == '장어' or tag == '게,대게' or tag == '복어' or tag == '참치회' or tag == '아구' or tag == '조개':
+            cate4_d.append('해물,생선')
+        elif tag == '일식' or tag == '일식집' or tag == '퓨전일식' or tag == '일본식라면' or tag == '초밥,롤':
+            cate4_d.append('일식')
+        elif tag == '분식' or tag == '떡볶이' or tag == '주먹밥':
+            cate4_d.append('분식')
+        elif tag == '패스트푸드' or tag == '도시락' or tag == '샌드위치' or tag == '햄버거' or tag == '피자' or tag == '토스트':
+            cate4_d.append('패스트푸드')
+    except Exception as e1:
+        print(e1)
+        pass
 
-#         tag = driver.find_element_by_css_selector("#info\.search\.place\.list > li:nth-child(1) > div.head_item.clickArea > span").text
-#         # kind = driver.find_element_by_css_selector("#ct > div.search_listview._content._ctList > ul > li > div.item_info > a > div > em").text
-#         print(tag)
-#         print(' ')
-
-#         tag_d.append(tag)
-
-#     except Exception as e1:
-#         tag_d.append('오류')
-#         print(e1)
-#         pass
-
-# df['tag'] = tag_d
+df['cate_4'] = cate4_d
 
 df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
 # df.to_csv(r'/home/ryujimin/develop/LunchMap/public/data2.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")
