@@ -1,0 +1,43 @@
+#B {
+  position: absolute;
+  width: 80%;
+  height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#back_area,
+#keyword_area {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+#left_screen {
+  display: flex;
+  flex-wrap: wrap;
+  float: left;
+  width: 49%;
+}
+
+#recommend_area {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+#title_area {
+  margin-bottom: 2%;
+}
+
+#refresh_button {
+  float: right;
+  float: bottom;
+}
+
+#map {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  width: 49%;
+  height: 78vh;
+}
