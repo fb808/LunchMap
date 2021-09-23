@@ -1,14 +1,11 @@
 import { refreshButton, searchButton } from "./click.js";
 
 export function AScreen() {
-    // A
-    const AScreenDiv = document.getElementById('A')
-
     recommendArea(AScreenDiv);
     searchArea(AScreenDiv);
 }
 
-function recommendArea(AScreenDiv) {
+function recommendArea() {
     // 추천 영역
     const recommendDiv = document.getElementById('recommend_area');
     
@@ -40,7 +37,7 @@ function recommendArea(AScreenDiv) {
     recommendDiv.appendChild(listDiv);
 }
 
-function searchArea(AScreenDiv) {
+function searchArea() {
     const list = ['한식', '국/탕', '찌개', '국수', '육류,고기', '곱창,막창,순대', '치킨', '해물,생선', '분식', '패스트푸드', '일식,돈까스', '중식', '양식', '아시아', '기타'];
     let keyword_list = [];
 
