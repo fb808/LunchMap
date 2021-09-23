@@ -1,5 +1,15 @@
 import { refreshButton, backButton, plusButton } from "./click.js";
 
+function get_query(){
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for(var i = 0, result = {}; i < qs.length; i++){
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
+
 export function BScreen() {
     // 뒤로가기
     const backDiv = document.getElementById('back_area');
@@ -12,32 +22,30 @@ export function BScreen() {
     backDiv.appendChild(back);
 
     // 키워드
-    keyword();
+    const url_keyword = get_query();
+    const kw = url_keyword['list'].split(',');
+    console.log(kw);
+    keyword(kw);
 
-    // 왼쪽
-    const leftScreen = document.getElementById('left_screen');
-
-    //  추천
-    recommendArea(leftScreen);
+    // 추천
+    recommendArea();
     // 리스트
-    list(leftScreen);
-
+    list();
     // 맵
     mMap();
 }
 
-function keyword() {
+function keyword(kw) {
     // 키워드 영역
     const keywordDiv = document.getElementById('keyword_area')
 
-    // 키워드 표시 영역
-    const keywordWordDiv = document.createElement('span');
-    keywordWordDiv.setAttribute('id', 'keyword_word_area');
-    keywordWordDiv.setAttribute('class', 'keyword');
-    keywordDiv.appendChild(keywordWordDiv);
-
     // 키워드
-    keywordWordDiv.innerHTML = '키워드가 없습니다. '
+    const keywordWordDiv = document.getElementById('keyword_word_area');
+    if (kw[0] === '') {
+        keywordWordDiv.innerHTML = '키워드가 없습니다. ';
+    } else {
+        keywordWordDiv.innerHTML = kw;
+    }
 
     // 키워드 추가 버튼
     const plusKeywordButton = document.createElement('button');
@@ -48,12 +56,9 @@ function keyword() {
     keywordDiv.appendChild(plusKeywordButton);
 }
 
-function recommendArea(BScreenDiv) {
+function recommendArea() {
     // 추천 영역
-    const recommendDiv = document.createElement('div');
-    recommendDiv.setAttribute('class', 'recommend');
-    recommendDiv.setAttribute('id', 'recommend_area');
-    BScreenDiv.appendChild(recommendDiv);
+    const recommendDiv = document.getElementById('recommend_area');
     
     // 추천 타이틀 영역
     const titleDiv = document.createElement('div');
@@ -83,12 +88,9 @@ function recommendArea(BScreenDiv) {
     recommendDiv.appendChild(listDiv);
 }
 
-function list(BScreenDiv){
+function list(){
     // 리스트 영역
-    const listDiv = document.createElement('div');
-    listDiv.setAttribute('class', 'list');
-    listDiv.setAttribute('id', 'list');
-    BScreenDiv.appendChild(listDiv);
+    const listDiv = document.getElementById('list');
 }
 
 function mMap() {
