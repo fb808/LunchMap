@@ -7,8 +7,7 @@ function clickKeyword(className) {
 }
 
 function searchButton(keyword_list) {
-    console.log(keyword_list);
-    location.href = 'B.html';
+    location.href = `B.html?list=${keyword_list}`;
 }
 
 function backButton() {

@@ -1,11 +1,6 @@
 import { refreshButton, backButton, plusButton } from "./click.js";
 
 export function BScreen() {
-    // 루트
-    const rootDiv = document.getElementById('root');
-    // B
-    const BScreenDiv = document.getElementById('B');
-
     // 뒤로가기
     const backDiv = document.getElementById('back_area');
 
@@ -17,7 +12,7 @@ export function BScreen() {
     backDiv.appendChild(back);
 
     // 키워드
-    keyword(BScreenDiv);
+    keyword();
 
     // 왼쪽
     const leftScreen = document.getElementById('left_screen');
@@ -31,7 +26,7 @@ export function BScreen() {
     mMap();
 }
 
-function keyword(BScreenDiv) {
+function keyword() {
     // 키워드 영역
     const keywordDiv = document.getElementById('keyword_area')
 
@@ -41,7 +36,7 @@ function keyword(BScreenDiv) {
     keywordWordDiv.setAttribute('class', 'keyword');
     keywordDiv.appendChild(keywordWordDiv);
 
-    // // 키워드
+    // 키워드
     keywordWordDiv.innerHTML = '키워드가 없습니다. '
 
     // 키워드 추가 버튼

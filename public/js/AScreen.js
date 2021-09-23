@@ -1,14 +1,8 @@
 import { refreshButton, searchButton } from "./click.js";
-import { keyword } from "./keyword.js";
 
 export function AScreen() {
-    // 루트
-    const rootDiv = document.getElementById('root');
-
     // A
-    const AScreenDiv = document.createElement('div');
-    AScreenDiv.setAttribute('id', 'A');
-    rootDiv.appendChild(AScreenDiv);
+    const AScreenDiv = document.getElementById('A')
 
     recommendArea(AScreenDiv);
     searchArea(AScreenDiv);
@@ -16,10 +10,7 @@ export function AScreen() {
 
 function recommendArea(AScreenDiv) {
     // 추천 영역
-    const recommendDiv = document.createElement('div');
-    recommendDiv.setAttribute('class', 'recommend');
-    recommendDiv.setAttribute('id', 'recommend_area');
-    AScreenDiv.appendChild(recommendDiv);
+    const recommendDiv = document.getElementById('recommend_area');
     
     // 추천 타이틀 영역
     const titleDiv = document.createElement('div');
@@ -50,15 +41,11 @@ function recommendArea(AScreenDiv) {
 }
 
 function searchArea(AScreenDiv) {
-    // 루트
-    const rootDiv = document.getElementById('root');
-    let keyword_list = ['default'];
+    const list = ['한식', '국/탕', '찌개', '국수', '육류,고기', '곱창,막창,순대', '치킨', '해물,생선', '분식', '패스트푸드', '일식,돈까스', '중식', '양식', '아시아', '기타'];
+    let keyword_list = [];
 
     // 검색 영역
-    const searchDiv = document.createElement('div');
-    searchDiv.setAttribute('class', 'search');
-    searchDiv.setAttribute('id', 'search_area');
-    AScreenDiv.appendChild(searchDiv);
+    const searchDiv = document.getElementById('search_area');
     
     // 검색 타이틀 영역
     const titleDiv = document.createElement('div');
@@ -88,5 +75,20 @@ function searchArea(AScreenDiv) {
     searchDiv.appendChild(keywordDiv);
 
     // 키워드 버튼
-    keyword();
+    for (let i = 0; i < list.length; i++){
+        const tagButton = document.createElement('button');
+        tagButton.setAttribute('class', 'tagButton');
+        tagButton.setAttribute('id', `${list[i]}`);
+        tagButton.onclick = function () {
+            let index = keyword_list.indexOf(this.id);
+                if (index < 0) {
+                    keyword_list.push(this.id)
+                } else {
+                    keyword_list.splice(index, 1);
+                }
+            console.log(keyword_list);
+        };
+        tagButton.innerHTML = `${list[i]}`;
+        keywordDiv.appendChild(tagButton);
+    }
 }
