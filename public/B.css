@@ -10,7 +10,25 @@
 #back_area,
 #keyword_area {
   width: 100%;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
+}
+
+.keyword > button {
+  margin-right: 0.6%;
+  margin-bottom: 0.6%;
+  padding-left: 1%;
+  padding-right: 1%;
+  width: max-content;
+  height: 5vh;
+  background-color: white;
+}
+
+#plus_button:hover {
+  background-color: lightgreen;
+}
+
+#keyword_word_area > button:hover {
+  background-color: lightcoral;
 }
 
 #left_screen {
@@ -26,7 +44,7 @@
 }
 
 #title_area {
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 
 #refresh_button {
@@ -39,5 +57,5 @@
   flex-wrap: wrap;
   float: right;
   width: 49%;
-  height: 78vh;
+  height: 76vh;
 }

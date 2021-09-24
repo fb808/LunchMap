@@ -46,9 +46,14 @@
 }
 
 .tagButton {
-  width: 46%;
-  height: 6vh;
+  width: 30%;
+  height: 10vh;
+  min-height: 40px;
   padding: 5px;
   margin: 1%;
   background-color: white;
+}
+
+.tagButton:hover {
+  background-color: lightgreen;
 }

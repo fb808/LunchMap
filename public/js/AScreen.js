@@ -75,17 +75,19 @@ function searchArea() {
     for (let i = 0; i < list.length; i++){
         const tagButton = document.createElement('button');
         tagButton.setAttribute('class', 'tagButton');
-        tagButton.setAttribute('id', `${list[i]}`);
+        tagButton.setAttribute('id', list[i]);
         tagButton.onclick = function () {
             let index = keyword_list.indexOf(this.id);
                 if (index < 0) {
                     keyword_list.push(this.id)
+                    document.getElementById(list[i]).style.backgroundColor = 'lightgreen';
                 } else {
                     keyword_list.splice(index, 1);
+                    document.getElementById(list[i]).style.backgroundColor = 'white';
                 }
             console.log(keyword_list);
         };
-        tagButton.innerHTML = `${list[i]}`;
+        tagButton.innerHTML = list[i];
         keywordDiv.appendChild(tagButton);
     }
 }
