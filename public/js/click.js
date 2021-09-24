@@ -1,5 +1,8 @@
+import { recommendList } from './recommend.js'
+
 function refreshButton() {
     alert('새로고침');
+    recommendList();
 }
 
 function clickKeyword(className) {
