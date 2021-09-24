@@ -70,13 +70,13 @@ function createListItem(root, item) {
     const title = document.createElement('span');
     title.setAttribute('id', `${item.title}_title`);
     title.setAttribute('class', 'recommend');
-    title.innerHTML = item.title;
+    title.innerHTML = `${item.title}  `;
     title_area.appendChild(title);
 
     const rate = document.createElement('span');
     rate.setAttribute('id', `${item.title}_rate`);
     rate.setAttribute('class', 'recommend');
-    rate.innerHTML = item.rate;
+    rate.innerHTML = `&#11088 ${item.rate}`;
     title_area.appendChild(rate);    
 }
 

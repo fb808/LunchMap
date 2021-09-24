@@ -35,6 +35,24 @@
   font-size: 1.2rem;
 }
 
+#recommend_area > #list {
+  width: 100%;
+  background-color: #f0f0f0;
+}
+
+#list_item {
+  padding: 3%;
+}
+
+#list_item:hover {
+  background-color: lightgreen;
+}
+
+#list_item_title_area > span:nth-child(2) {
+  float: right;
+  color: firebrick;
+}
+
 #keyword {
   position: relative;
   overflow: scroll;
