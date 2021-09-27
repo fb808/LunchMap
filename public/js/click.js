@@ -1,8 +1,11 @@
 import { recommendList } from './recommend.js'
 
 function refreshButton() {
-    alert('새로고침');
     recommendList();
+}
+
+function clickRecommend(title) {
+    console.log(title);
 }
 
 function clickKeyword(className) {
@@ -31,4 +34,4 @@ function plusButton() {
     alert('추가');
 }
 
-export { refreshButton, clickKeyword, searchButton, backButton, keywordButton, plusButton };
+export { refreshButton, clickRecommend, clickKeyword, searchButton, backButton, keywordButton, plusButton };

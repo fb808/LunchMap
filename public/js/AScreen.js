@@ -20,7 +20,7 @@ function recommendArea() {
     const title = document.createElement('span');
     title.setAttribute('class', 'recommend');
     title.setAttribute('id', 'title');
-    title.innerHTML = `오늘의 추천`
+    title.innerHTML = `식당 추천`
     titleDiv.appendChild(title);
 
     // 새로고침 버튼

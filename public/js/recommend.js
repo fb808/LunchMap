@@ -1,3 +1,5 @@
+import { clickRecommend } from "./click.js";
+
 function recommendList() {
     handleRefresh();
 }
@@ -10,12 +12,9 @@ function handleRefresh() {
 let list = [];
 
 // JSON 파일에서 필요한 부분만 골라내기
-function setInfo(restaurantInfo) {
-
-    let info = restaurantInfo;
-
+function setInfo(info) {
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 4.0 & info[i].distance <= 500) {
+        if (info[i].rate >= 3.8 & info[i].distance <= 500) {
             var obj = {
                 title: info[i].name,
                 cate_1: info[i].cate_1,
@@ -32,13 +31,7 @@ function setInfo(restaurantInfo) {
         
             list.push(obj);
         }
-        
-        // 거리순으로 정렬
-        list = list.sort(function (a, b) {
-            return a.distance - b.distance;
-        });
     }
-    
     recommend();
 }
 
@@ -60,6 +53,7 @@ function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', 'list_item');
     listItem.setAttribute('class', 'recommend');
+    listItem.onclick = function() { clickRecommend(item.title) };
     root.appendChild(listItem);
 
     const title_area = document.createElement('div');
@@ -70,14 +64,37 @@ function createListItem(root, item) {
     const title = document.createElement('span');
     title.setAttribute('id', `${item.title}_title`);
     title.setAttribute('class', 'recommend');
-    title.innerHTML = `${item.title}  `;
+    title.innerHTML = `${item.title}`;
     title_area.appendChild(title);
 
     const rate = document.createElement('span');
     rate.setAttribute('id', `${item.title}_rate`);
     rate.setAttribute('class', 'recommend');
-    rate.innerHTML = `&#11088 ${item.rate}`;
-    title_area.appendChild(rate);    
+    rate.innerHTML = `&#11088 ${item.rate.toFixed(1)}`;
+    title_area.appendChild(rate);
+
+    const body_area = document.createElement('div');
+    body_area.setAttribute('id', 'list_item_body_area');
+    body_area.setAttribute('class', 'recommend');
+    listItem.appendChild(body_area);
+
+    const cate = document.createElement('span');
+    cate.setAttribute('id', `${item.cate_4}_cate`);
+    cate.setAttribute('class', 'recommend');
+    cate.innerHTML = `#${item.cate_4}`;
+    body_area.appendChild(cate);
+    
+    const tag = document.createElement('span');
+    tag.setAttribute('id', `${item.tag}_tag`);
+    tag.setAttribute('class', 'recommend');
+    tag.innerHTML = `${item.tag}  `;
+    body_area.appendChild(tag);
+
+    const address = document.createElement('div');
+    address.setAttribute('id', `${item.address}_address`);
+    address.setAttribute('class', 'recommend');
+    address.innerHTML = `${item.address}  `;
+    body_area.appendChild(address);
 }
 
 export { recommendList };

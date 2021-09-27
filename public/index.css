@@ -1,7 +1,7 @@
 #A {
   position: absolute;
   width: 70%;
-  height: 70vh;
+  height: 65vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -42,22 +42,52 @@
 
 #list_item {
   padding: 3%;
+  background-color: white;
+  margin: 2px;
 }
 
 #list_item:hover {
   background-color: lightgreen;
 }
 
+#list_item_title_area {
+  margin-bottom: 2%;
+}
+
+#list_item_title_area > span:nth-child(1) {
+  font-size: 1rem;
+  /* color: firebrick; */
+}
+
 #list_item_title_area > span:nth-child(2) {
   float: right;
-  color: firebrick;
+  /* color: firebrick; */
+}
+
+#list_item_body_area {
+  display: grid;
+}
+
+#list_item_body_area > span:nth-child(1) {
+  color: rgb(88, 141, 255);
+}
+
+#list_item_body_area > div:nth-child(3) {
+  margin-top: 2%;
+  color: gray;
+}
+
+#list_item_body_area > span:nth-child(1),
+#list_item_body_area > span:nth-child(2),
+#list_item_body_area > div:nth-child(3) {
+  font-size: 0.9rem;
 }
 
 #keyword {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 60vh;
+  height: 55vh;
   padding: 4px;
   text-align: center;
   background-color: #f0f0f0;
@@ -65,7 +95,7 @@
 
 .tagButton {
   width: 30%;
-  height: 10vh;
+  height: 8vh;
   min-height: 40px;
   padding: 5px;
   margin: 1%;
