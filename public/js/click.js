@@ -1,11 +1,20 @@
-import { recommendList } from './recommend.js'
+import { recommendList as A } from './recommend.js'
+import { recommendList as B } from './recommendB.js';
 
-function refreshButton() {
-    recommendList();
+function refreshButton(x) {
+    if (x === 'a') {
+        A();
+    } else if (x === 'b') {
+        B('');
+    }
 }
 
-function clickRecommend(title) {
-    console.log(title);
+function clickARecommend(index) {
+    location.href = `B.html?list=''&recommend=${index}`
+}
+
+function clickBRecommend(lating) {
+    console.log(lating);
 }
 
 function clickKeyword(className) {
@@ -13,7 +22,7 @@ function clickKeyword(className) {
 }
 
 function searchButton(keyword_list) {
-    location.href = `B.html?list=${keyword_list}`;
+    location.href = `B.html?list=${keyword_list}&recommend=`;
 }
 
 function backButton() {
@@ -26,7 +35,7 @@ function keywordButton(kw, kwi) {
     document.getElementById(kwi).remove();
     console.log(kw);
     const stateObj = kw;
-    history.replaceState(stateObj, '', `B.html?list=${stateObj}`);
+    history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
     location.reload();
 }
 
@@ -34,4 +43,4 @@ function plusButton() {
     alert('추가');
 }
 
-export { refreshButton, clickRecommend, clickKeyword, searchButton, backButton, keywordButton, plusButton };
+export { refreshButton, clickARecommend, clickBRecommend, clickKeyword, searchButton, backButton, keywordButton, plusButton };

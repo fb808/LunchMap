@@ -1,4 +1,6 @@
-import { refreshButton, backButton, keywordButton as keywordButtonEvent, plusButton } from "./click.js";
+import { refreshButton, backButton, 
+    keywordButton as keywordButtonEvent, plusButton } from "./click.js";
+import { recommendList } from "./recommendB.js";
 
 function get_query(){
     var url = document.location.href;
@@ -24,6 +26,7 @@ export function BScreen() {
     // 키워드
     const url_keyword = get_query();
     const urlkw = url_keyword['list'].split(',');
+    const urlrc = url_keyword['recommend'].split(',');
     const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
         '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
     const kw = [];
@@ -32,11 +35,10 @@ export function BScreen() {
             kw.push(urlkw[i]);
         }
     }
-    console.log(kw);
     keyword(kw);
 
     // 추천
-    recommendArea();
+    recommendArea(urlrc);
     // 리스트
     list();
     // 맵
@@ -81,12 +83,12 @@ function keyword(kw) {
     keywordDiv.appendChild(plusKeywordButton);
 }
 
-function recommendArea() {
+function recommendArea(urlrc) {
     // 추천 영역
     const recommendDiv = document.getElementById('recommend_area');
     
     // 추천 타이틀 영역
-    const titleDiv = document.createElement('div');
+    const titleDiv = document.createElement('summary');
     titleDiv.setAttribute('class', 'recommend');
     titleDiv.setAttribute('id', 'title_area');
     recommendDiv.appendChild(titleDiv);
@@ -95,14 +97,14 @@ function recommendArea() {
     const title = document.createElement('span');
     title.setAttribute('class', 'recommend');
     title.setAttribute('id', 'title');
-    title.innerHTML = `오늘의 추천`
+    title.innerHTML = `추천`
     titleDiv.appendChild(title);
 
     // 새로고침 버튼
     const refresh = document.createElement('button');
     refresh.setAttribute('class', 'recommend');
     refresh.setAttribute('id', 'refresh_button');
-    refresh.onclick = function() { refreshButton() };
+    refresh.onclick = function() { refreshButton('b') };
     refresh.innerHTML = `새로고침`
     titleDiv.appendChild(refresh);
 
@@ -111,6 +113,8 @@ function recommendArea() {
     listDiv.setAttribute('class', 'recommend');
     listDiv.setAttribute('id', 'list');
     recommendDiv.appendChild(listDiv);
+
+    recommendList(urlrc);
 }
 
 function list(){
@@ -130,5 +134,17 @@ function mMap() {
         };
     // 지도 생성
     let map = new kakao.maps.Map(mapContainer, mapOption);
+
+    const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+    const imageSize = new kakao.maps.Size(30, 45); 
+    const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+    const markerPosition = new kakao.maps.LatLng(company.latitude, company.longitude);
+    
+    const marker = new kakao.maps.Marker({
+        position: markerPosition, 
+        image: markerImage
+    });
+
+    marker.setMap(map);
 
 }

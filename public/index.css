@@ -69,17 +69,23 @@
 }
 
 #list_item_body_area > span:nth-child(1) {
+  color: rgb(255, 88, 88);
+  margin-bottom: 1%;
+}
+
+#list_item_body_area > span:nth-child(2) {
   color: rgb(88, 141, 255);
 }
 
-#list_item_body_area > div:nth-child(3) {
-  margin-top: 2%;
+#list_item_body_area > div:nth-child(4) {
+  margin-top: 1%;
   color: gray;
 }
 
 #list_item_body_area > span:nth-child(1),
 #list_item_body_area > span:nth-child(2),
-#list_item_body_area > div:nth-child(3) {
+#list_item_body_area > span:nth-child(3),
+#list_item_body_area > div:nth-child(4) {
   font-size: 0.9rem;
 }
 

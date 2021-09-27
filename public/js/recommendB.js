@@ -1,6 +1,8 @@
-import { clickARecommend as clickRecommend } from "./click.js";
+import { clickBRecommend as clickRecommend } from "./click.js";
 
-function recommendList() {
+let index = 0;
+function recommendList(rc) {
+    index = rc;
     handleRefresh();
 }
 
@@ -20,6 +22,7 @@ function setInfo(info) {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
                 address: info[i].address,
+                lating: new kakao.maps.LatLng(info[i].lon, info[i].lat),
                 rate: info[i].rate,
                 distance: info[i].distance,
                 tag: info[i].tag
@@ -31,27 +34,26 @@ function setInfo(info) {
     recommend();
 }
 
-let indexList = [];
-
 function recommend() {
-    const max = Math.floor(list.length);
+    const max = Math.floor(list.length-1);
     const min = Math.ceil(0);
     const root = document.getElementById('list');
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
-    for (let i = 0; i < 2; i++){
+    if (index === '') {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
-        indexList.push(randomIndex)
-        createListItem(root, list[randomIndex], randomIndex);
+        createListItem(root, list[randomIndex]);
+    } else {
+        createListItem(root, list[index]);
     }
 }
 
-function createListItem(root, item, index) {
+function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', 'list_item');
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function() { clickRecommend(index) };
+    listItem.onclick = function() { clickRecommend(item) };
     root.appendChild(listItem);
 
     const title_area = document.createElement('div');

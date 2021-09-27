@@ -27,7 +27,7 @@ function recommendArea() {
     const refresh = document.createElement('button');
     refresh.setAttribute('class', 'recommend');
     refresh.setAttribute('id', 'refresh_button');
-    refresh.onclick = function() { refreshButton() };
+    refresh.onclick = function() { refreshButton('a') };
     refresh.innerHTML = `새로고침`
     titleDiv.appendChild(refresh);
 
