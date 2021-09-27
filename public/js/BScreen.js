@@ -38,7 +38,7 @@ export function BScreen() {
     keyword(kw);
 
     // 추천
-    recommendArea(urlrc);
+    recommendArea(urlrc, kw);
     // 리스트
     list();
     // 맵
@@ -83,7 +83,7 @@ function keyword(kw) {
     keywordDiv.appendChild(plusKeywordButton);
 }
 
-function recommendArea(urlrc) {
+function recommendArea(urlrc, kw) {
     // 추천 영역
     const recommendDiv = document.getElementById('recommend_area');
     
@@ -114,7 +114,7 @@ function recommendArea(urlrc) {
     listDiv.setAttribute('id', 'list');
     recommendDiv.appendChild(listDiv);
 
-    recommendList(urlrc);
+    recommendList(urlrc, kw);
 }
 
 function list(){

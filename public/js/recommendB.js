@@ -1,8 +1,12 @@
 import { clickBRecommend as clickRecommend } from "./click.js";
 
 let index = 0;
-function recommendList(rc) {
+let keyword = [];
+
+function recommendList(rc, kw) {
     index = rc;
+    keyword = kw;
+    console.log(rc);
     handleRefresh();
 }
 
@@ -41,7 +45,7 @@ function recommend() {
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
-    if (index === '') {
+    if (index == '') {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
         createListItem(root, list[randomIndex]);
     } else {
