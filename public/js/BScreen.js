@@ -2,6 +2,7 @@ import { refreshButton, backButton,
     keywordButton as keywordButtonEvent, plusButton } from "./click.js";
 import { recommendList } from "./recommendB.js";
 import { get_query } from "./getQuery.js";
+import { mainList } from "./list.js";
 
 export function BScreen() {
     // 뒤로가기
@@ -14,29 +15,16 @@ export function BScreen() {
     back.innerHTML = '이전';
     backDiv.appendChild(back);
 
-    // 키워드
-    const url_keyword = get_query();
-    const urlkw = url_keyword['list'].split(',');
-    const urlrc = url_keyword['recommend'].split(',');
-    const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
-        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
-    const kw = [];
-    for (let i = 0; i < urlkw.length; i++){
-        if (keyword_list.includes(urlkw[i])) {
-            kw.push(urlkw[i]);
-        }
-    }
-    keyword(kw);
-
+    keyword();
     // 추천
-    recommendArea(urlrc, kw);
+    recommendArea();
     // 리스트
     list();
     // 맵
     mMap();
 }
 
-function keyword(kw) {
+function keyword() {
     // 키워드 영역
     const keywordDiv = document.getElementById('keyword_area');
 
@@ -49,6 +37,18 @@ function keyword(kw) {
     title.setAttribute('id', 'title');
     title.innerHTML = `키워드`
     titleDiv.appendChild(title);
+
+    // 키워드
+    const url_keyword = get_query();
+    const urlkw = url_keyword['list'].split(',');
+    const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
+        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
+    let kw = [];
+    for (let i = 0; i < urlkw.length; i++){
+        if (keyword_list.includes(urlkw[i])) {
+            kw.push(urlkw[i]);
+        }
+    }
 
     // 키워드
     const keywordWordDiv = document.getElementById('keyword_word_area');
@@ -74,7 +74,7 @@ function keyword(kw) {
     keywordDiv.appendChild(plusKeywordButton);
 }
 
-function recommendArea(urlrc, kw) {
+function recommendArea() {
     // 추천 영역
     const recommendDiv = document.getElementById('recommend_area');
     
@@ -105,12 +105,12 @@ function recommendArea(urlrc, kw) {
     listDiv.setAttribute('id', 'list');
     recommendDiv.appendChild(listDiv);
 
-    recommendList(urlrc, kw);
+    recommendList();
 }
 
 function list(){
     // 리스트 영역
-    const listDiv = document.getElementById('list');
+    mainList();
 }
 
 function mMap() {

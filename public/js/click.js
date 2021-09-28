@@ -5,7 +5,7 @@ function refreshButton(x) {
     if (x === 'a') {
         A();
     } else if (x === 'b') {
-        B('');
+        B();
     }
 }
 

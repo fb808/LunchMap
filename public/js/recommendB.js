@@ -4,12 +4,10 @@ import { get_query } from './getQuery.js';
 let index = [];
 let keyword = [];
 
-function recommendList(rc) {
+function recommendList() {
     index.length = 0;
     keyword.length = 0;
-    if (rc != '') {
-        index.push(rc);
-    }
+
     // 키워드
     const url_keyword = get_query();
     const urlkw = url_keyword['list'].split(',');
@@ -20,8 +18,14 @@ function recommendList(rc) {
             keyword.push(urlkw[i]);
         }
     }
+    
+    const urlrc = url_keyword['recommend'].split(',');
+    if (urlrc != '') {
+        index.push(urlrc);
+    }
+
     console.log(`키워드 : ${keyword}`)
-    console.log(`추천 : ${rc}`);
+    console.log(`추천 : ${index}`);
     handleRefresh();
 }
 
