@@ -12,7 +12,7 @@ export function BScreen() {
     back.setAttribute('id', 'back_button');
     back.setAttribute('class', 'back');
     back.onclick = function() { backButton() };
-    back.innerHTML = '이전';
+    back.innerHTML = '&#11013';
     backDiv.appendChild(back);
 
     keyword();
@@ -108,9 +108,27 @@ function recommendArea() {
     recommendList();
 }
 
-function list(){
+function list() {
+    const root = document.getElementsByClassName('list')[0];
+
+    const titleDiv = document.createElement('div');
+    titleDiv.setAttribute('class', 'list');
+    titleDiv.setAttribute('id', 'title_area');
+    root.appendChild(titleDiv);
+
+    const title = document.createElement('div');
+    title.setAttribute('class', 'list');
+    title.setAttribute('id', 'title');
+    title.innerHTML = '검색 결과'
+    titleDiv.appendChild(title);
+
+    const listDiv = document.createElement('div');
+    listDiv.setAttribute('class', 'list');
+    listDiv.setAttribute('id', 'list_area');
+    root.appendChild(listDiv);
+
     // 리스트 영역
-    mainList();
+    mainList(listDiv);
 }
 
 function mMap() {

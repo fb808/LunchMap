@@ -1,13 +1,16 @@
 #B {
   position: absolute;
   width: 80%;
-  height: 90vh;
+  height: 95vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-#back_area,
+#back_area {
+  margin-bottom: 1%;
+}
+
 #keyword_area {
   width: 100%;
   margin-bottom: 2%;
@@ -35,16 +38,18 @@
   display: flex;
   flex-wrap: wrap;
   float: left;
-  width: 49%;
+  width: 39%;
 }
 
-#recommend_area {
+#recommend_area,
+#list.list {
   width: 100%;
   margin-bottom: 2%;
 }
 
-#title_area {
-  margin-bottom: 1%;
+#title_area.recommend,
+#title_area.list {
+  margin-bottom: 2%;
 }
 
 #refresh_button {
@@ -57,59 +62,75 @@
   background-color: #f0f0f0;
 }
 
-#list_item {
+#list.recommend > div,
+#list_area.list > div {
   padding: 2%;
   background-color: white;
   margin: 2px;
 }
 
-#list_item:hover {
+#list.recommend > div:hover,
+#list_area.list > div:hover {
   background-color: lightgreen;
 }
 
-#list_item_title_area {
+#list_item_title_area.recommend {
   margin-bottom: 1%;
 }
 
-#list_item_title_area > span:nth-child(1) {
+#list_item_title_area.recommend > span:nth-child(1),
+#list_item_title_area.list > span:nth-child(1) {
   font-size: 1rem;
   /* color: firebrick; */
 }
 
-#list_item_title_area > span:nth-child(2) {
+#list_item_title_area.recommend > span:nth-child(2),
+#list_item_title_area.list > span:nth-child(2) {
   float: right;
   /* color: firebrick; */
 }
 
-#list_item_body_area {
-  display: grid;
-}
-
-#list_item_body_area > span:nth-child(1) {
+#list_item_body_area.recommend > div:nth-child(1),
+#list_item_body_area.list > div:nth-child(1) {
   color: rgb(255, 88, 88);
   margin-bottom: 1%;
 }
 
-#list_item_body_area > span:nth-child(2) {
+#list_item_body_area.recommend > span:nth-child(2),
+#list_item_body_area.list > span:nth-child(2) {
   color: rgb(88, 141, 255);
+  margin-bottom: 1%;
 }
 
-#list_item_body_area > div:nth-child(4) {
+#list_item_body_area.recommend > span:nth-child(3),
+#list_item_body_area.list > span:nth-child(3) {
+  float: right;
+  margin-bottom: 1%;
+}
+
+#list_item_body_area.recommend > div:nth-child(4),
+#list_item_body_area.list > div:nth-child(4) {
   margin-top: 1%;
   color: gray;
 }
 
-#list_item_body_area > span:nth-child(1),
-#list_item_body_area > span:nth-child(2),
-#list_item_body_area > span:nth-child(3),
-#list_item_body_area > div:nth-child(4) {
+#list_item_body_area.recommend > *,
+#list_item_body_area.list > * {
   font-size: 0.9rem;
+}
+
+#list_area.list {
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 58vh;
+  background-color: #f0f0f0;
 }
 
 #map {
   display: flex;
   flex-wrap: wrap;
   float: right;
-  width: 49%;
-  height: 76vh;
+  width: 59%;
+  height: 85%;
 }

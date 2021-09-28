@@ -97,7 +97,7 @@ function recommendKeyword() {
 
 function createListItem(root, item) {
     const listItem = document.createElement('div');
-    listItem.setAttribute('id', 'list_item');
+    listItem.setAttribute('id', `${item.title}`);
     listItem.setAttribute('class', 'recommend');
     listItem.onclick = function() { clickRecommend(item) };
     root.appendChild(listItem);
@@ -124,26 +124,26 @@ function createListItem(root, item) {
     body_area.setAttribute('class', 'recommend');
     listItem.appendChild(body_area);
 
-    const distance = document.createElement('span');
-    distance.setAttribute('id', `${item.cate_4}_cate`);
+    const distance = document.createElement('div');
+    distance.setAttribute('id', `${item.title}_distance`);
     distance.setAttribute('class', 'recommend');
     distance.innerHTML = `${item.distance}m`;
     body_area.appendChild(distance);
 
     const cate = document.createElement('span');
-    cate.setAttribute('id', `${item.cate_4}_cate`);
+    cate.setAttribute('id', `${item.title}_cate`);
     cate.setAttribute('class', 'recommend');
     cate.innerHTML = `#${item.cate_4}`;
     body_area.appendChild(cate);
     
     const tag = document.createElement('span');
-    tag.setAttribute('id', `${item.tag}_tag`);
+    tag.setAttribute('id', `${item.title}_tag`);
     tag.setAttribute('class', 'recommend');
     tag.innerHTML = `${item.tag}  `;
     body_area.appendChild(tag);
 
     const address = document.createElement('div');
-    address.setAttribute('id', `${item.address}_address`);
+    address.setAttribute('id', `${item.title}_address`);
     address.setAttribute('class', 'recommend');
     address.innerHTML = `${item.address}  `;
     body_area.appendChild(address);
