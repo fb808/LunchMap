@@ -1,12 +1,27 @@
 import { clickBRecommend as clickRecommend } from "./click.js";
+import { get_query } from './getQuery.js';
 
-let index = 0;
+let index = [];
 let keyword = [];
 
-function recommendList(rc, kw) {
-    index = rc;
-    keyword = kw;
-    console.log(rc);
+function recommendList(rc) {
+    index.length = 0;
+    keyword.length = 0;
+    if (rc != '') {
+        index.push(rc);
+    }
+    // 키워드
+    const url_keyword = get_query();
+    const urlkw = url_keyword['list'].split(',');
+    const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
+        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
+    for (let i = 0; i < urlkw.length; i++){
+        if (keyword_list.includes(urlkw[i])) {
+            keyword.push(urlkw[i]);
+        }
+    }
+    console.log(`키워드 : ${keyword}`)
+    console.log(`추천 : ${rc}`);
     handleRefresh();
 }
 
@@ -38,6 +53,8 @@ function setInfo(info) {
     recommend();
 }
 
+let list_match = [];
+
 function recommend() {
     const max = Math.floor(list.length-1);
     const min = Math.ceil(0);
@@ -45,11 +62,32 @@ function recommend() {
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
-    if (index == '') {
+    if (keyword.length > 0) {
+        recommendKeyword();
+        let remax = Math.floor(list_match.length-1);
+        let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
+        createListItem(root, list_match[randomIndex]);
+    } else if (keyword.length == 0 && index.length == 0) {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
         createListItem(root, list[randomIndex]);
     } else {
-        createListItem(root, list[index]);
+        createListItem(root, list[index[0]]);
+    }
+}
+
+function recommendKeyword() {
+    list_match.length = 0;
+    for (let i = 0; i < list.length; i++){
+        for (let j = 0; j < keyword.length; j++){
+            if (keyword[j] == list[i].cate_4) {
+                list_match.push(list[i]);
+                break;
+            }
+        }
+    }
+    if (list_match.length == 0) {
+        keyword.length = 0;
+        recommend();
     }
 }
 
