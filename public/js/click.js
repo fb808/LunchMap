@@ -39,8 +39,21 @@ function keywordButton(kw, kwi) {
     location.reload();
 }
 
-function plusButton() {
-    alert('추가');
+function plusKeyword() {
+    const modal = document.getElementsByClassName('modal')[0];
+    const close = document.getElementsByClassName('close')[0];
+
+    modal.style.display = "block";
+
+    close.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
 
-export { refreshButton, clickARecommend, clickBRecommend, clickKeyword, searchButton, backButton, keywordButton, plusButton };
+export { refreshButton, clickARecommend, clickBRecommend, clickKeyword, searchButton, backButton, keywordButton, plusKeyword };

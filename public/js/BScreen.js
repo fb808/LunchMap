@@ -1,9 +1,12 @@
 import { refreshButton, backButton, 
-    keywordButton as keywordButtonEvent, plusButton } from "./click.js";
+    keywordButton as keywordButtonEvent, plusKeyword } from "./click.js";
 import { recommendList } from "./recommendB.js";
 import { get_query } from "./getQuery.js";
 import { mainList } from "./list.js";
 
+const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
+    '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
+        
 export function BScreen() {
     // 뒤로가기
     const backDiv = document.getElementById('back_area');
@@ -15,10 +18,9 @@ export function BScreen() {
     back.innerHTML = '&#11013';
     backDiv.appendChild(back);
 
+    popupWindow();
     keyword();
-    // 추천
     recommendArea();
-    // 리스트
     list();
 }
 
@@ -39,8 +41,6 @@ function keyword() {
     // 키워드
     const url_keyword = get_query();
     const urlkw = url_keyword['list'].split(',');
-    const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
-        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
     let kw = [];
     for (let i = 0; i < urlkw.length; i++){
         if (keyword_list.includes(urlkw[i])) {
@@ -67,7 +67,7 @@ function keyword() {
     const plusKeywordButton = document.createElement('button');
     plusKeywordButton.setAttribute('id', 'plus_button');
     plusKeywordButton.setAttribute('class', 'keyword');
-    plusKeywordButton.onclick = function() { plusButton() };
+    plusKeywordButton.onclick = function() { plusKeyword() };
     plusKeywordButton.innerHTML = '+';
     keywordDiv.appendChild(plusKeywordButton);
 }
@@ -127,4 +127,35 @@ function list() {
 
     // 리스트 영역
     mainList(listDiv);
+}
+
+function popupWindow() {
+
+    const url_keyword = get_query();
+    const urlkw = url_keyword['list'].split(',');
+    let kw = [];
+    for (let i = 0; i < urlkw.length; i++){
+        if (keyword_list.includes(urlkw[i])) {
+            kw.push(urlkw[i]);
+        }
+    }
+
+    const contentArea = document.getElementsByClassName('modal-content')[0];
+
+    const closeButton = document.createElement('span');
+    closeButton.setAttribute('id', 'close_button');
+    closeButton.setAttribute('class', 'close');
+    closeButton.innerHTML = 'X';
+    contentArea.appendChild(closeButton);
+
+    for (let i = 0; i < keyword_list.length; i++){
+        if (!kw.includes(keyword_list[i])) {
+            const keywordButton = document.createElement('button');
+            keywordButton.setAttribute('id', keyword_list[i]);
+            keywordButton.setAttribute('class', 'keyword');
+            keywordButton.onclick = function () { console.log('select' + keyword_list[i])};
+            keywordButton.innerHTML = keyword_list[i];
+            contentArea.appendChild(keywordButton);
+        }
+    }
 }
