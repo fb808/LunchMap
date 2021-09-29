@@ -14,7 +14,6 @@ function mainList(listRoot) {
             keyword.push(urlkw[i]);
         }
     }
-    console.log(`키워드 : ${keyword}`);
 
     root = listRoot;
     handleRefresh();
@@ -70,7 +69,7 @@ function createListItem(item) {
         const listItem = document.createElement('div');
         listItem.setAttribute('id', `${item[i].title}`);
         listItem.setAttribute('class', 'list');
-        listItem.onclick = function() { clicListItem(item) };
+        listItem.onclick = function() { clicListItem(item[i].title, 'list') };
         root.appendChild(listItem);
 
         const title_area = document.createElement('div');
@@ -119,7 +118,6 @@ function createListItem(item) {
         address.innerHTML = `${item[i].address}`;
         body_area.appendChild(address);
     }
-    // console.log(item);
 }
 
 export { mainList };

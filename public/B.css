@@ -13,7 +13,11 @@
 
 #keyword_area {
   width: 100%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
+}
+
+#keyword_area > #title_area {
+  margin-bottom: 1%;
 }
 
 .keyword > button {
@@ -38,7 +42,7 @@
   display: flex;
   flex-wrap: wrap;
   float: left;
-  width: 39%;
+  width: 49%;
 }
 
 #recommend_area,
@@ -123,7 +127,7 @@
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 58vh;
+  height: 56vh;
   background-color: #f0f0f0;
 }
 
@@ -131,6 +135,6 @@
   display: flex;
   flex-wrap: wrap;
   float: right;
-  width: 59%;
+  width: 49%;
   height: 85%;
 }

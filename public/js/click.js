@@ -1,3 +1,4 @@
+import { mMap } from './map.js';
 import { recommendList as A } from './recommend.js'
 import { recommendList as B } from './recommendB.js';
 
@@ -5,7 +6,7 @@ function refreshButton(x) {
     if (x === 'a') {
         A();
     } else if (x === 'b') {
-        B();
+        B(0);
     }
 }
 
@@ -13,8 +14,8 @@ function clickARecommend(index) {
     location.href = `B.html?list=''&recommend=${index}`
 }
 
-function clickBRecommend(lating) {
-    console.log(lating);
+function clickBRecommend(id, c) {
+    mMap(id);
 }
 
 function clickKeyword(className) {
@@ -33,7 +34,6 @@ function keywordButton(kw, kwi) {
     let index = kw.indexOf(kwi);
     kw.splice(index, 1);
     document.getElementById(kwi).remove();
-    console.log(kw);
     const stateObj = kw;
     history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
     location.reload();

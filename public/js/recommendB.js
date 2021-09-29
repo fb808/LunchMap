@@ -3,10 +3,14 @@ import { get_query } from './getQuery.js';
 
 let index = [];
 let keyword = [];
+let refresh_set = 1;
 
-function recommendList() {
+function recommendList(set) {
     index.length = 0;
     keyword.length = 0;
+    if (set >= 0) {
+        refresh_set = set;
+    }
 
     // 키워드
     const url_keyword = get_query();
@@ -23,9 +27,6 @@ function recommendList() {
     if (urlrc != '') {
         index.push(urlrc);
     }
-
-    console.log(`키워드 : ${keyword}`)
-    console.log(`추천 : ${index}`);
     handleRefresh();
 }
 
@@ -45,7 +46,6 @@ function setInfo(info) {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
                 address: info[i].address,
-                lating: new kakao.maps.LatLng(info[i].lon, info[i].lat),
                 rate: info[i].rate,
                 distance: info[i].distance,
                 tag: info[i].tag
@@ -71,11 +71,14 @@ function recommend() {
         let remax = Math.floor(list_match.length-1);
         let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
         createListItem(root, list_match[randomIndex]);
-    } else if (keyword.length == 0 && index.length == 0) {
+    } else if (keyword.length == 0 && index.length == 0 ) {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
         createListItem(root, list[randomIndex]);
-    } else {
+    } else if (refresh_set == 1){
         createListItem(root, list[index[0]]);
+    } else {
+        let randomIndex = Math.floor(Math.random() * (max - min)) + min;
+        createListItem(root, list[randomIndex]);
     }
 }
 
@@ -99,7 +102,7 @@ function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', `${item.title}`);
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function() { clickRecommend(item) };
+    listItem.onclick = function() { clickRecommend(item.title, 'recommend') };
     root.appendChild(listItem);
 
     const title_area = document.createElement('div');
@@ -147,6 +150,8 @@ function createListItem(root, item) {
     address.setAttribute('class', 'recommend');
     address.innerHTML = `${item.address}  `;
     body_area.appendChild(address);
+
+    clickRecommend(item.title, 'recommend');
 }
 
 export { recommendList };
