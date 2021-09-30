@@ -68,11 +68,23 @@ function setInfo(info) {
 function createListItem(item) {
     for (let i = 0; i < item.length; i++){
         const listItem = document.createElement('div');
-        listItem.setAttribute('id', `${item[i].title}`);
+        listItem.setAttribute('id', 'list_item');
         listItem.setAttribute('class', 'list');
-        listItem.onclick = function() { mMap(item[i].title) };
         root.appendChild(listItem);
-        makingList(listItem, item[i]);
+        
+        const listArea = document.createElement('span');
+        listArea.setAttribute('id', `${item[i].title}`);
+        listArea.setAttribute('class', 'list');
+        listArea.onclick = function () { mMap(item[i].title) };
+        listItem.appendChild(listArea);
+
+        makingList(listItem, item[i], 'list');
+        
+        const shortcut = document.createElement('button');
+        shortcut.setAttribute('id', 'shortcut_button');
+        shortcut.setAttribute('class', 'shortcut');
+        shortcut.innerHTML = '&#10145';
+        listItem.appendChild(shortcut);
     }
 }
 

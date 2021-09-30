@@ -51,9 +51,21 @@ function createListItem(root, item, index) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', 'list_item');
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function () {
+    root.appendChild(listItem);
+
+    const listArea = document.createElement('span');
+    listArea.setAttribute('id', 'list_area');
+    listArea.setAttribute('class', 'recommend');
+    listArea.onclick = function () {
         location.href = `B.html?list=''&recommend=${index}`
     };
-    root.appendChild(listItem);
-    makingList(listItem, item);
+    listItem.appendChild(listArea);
+
+    const shortcut = document.createElement('button');
+    shortcut.setAttribute('id', 'shortcut_button');
+    shortcut.setAttribute('class', 'shortcut');
+    shortcut.innerHTML = '&#10145';
+    listItem.appendChild(shortcut);
+
+    makingList(listArea, item, 'recommend');
 }

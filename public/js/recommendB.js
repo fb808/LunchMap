@@ -101,11 +101,24 @@ function recommendKeyword() {
 
 function createListItem(root, item) {
     const listItem = document.createElement('div');
-    listItem.setAttribute('id', `${item.title}`);
+    listItem.setAttribute('id', `list_item`);
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function() { mMap(item.title) };
     root.appendChild(listItem);
-    makingList(listItem, item);
+
+    const listArea = document.createElement('span');
+    listArea.setAttribute('id', `${item.title}`);
+    listArea.setAttribute('class', 'recommend');
+    listArea.onclick = function() { mMap(item.title) };
+    listItem.appendChild(listArea);
+    
+    makingList(listItem, item, 'recommend');
+
+    const shortcut = document.createElement('button');
+    shortcut.setAttribute('id', 'shortcut_button');
+    shortcut.setAttribute('class', 'shortcut');
+    shortcut.innerHTML = '&#10145';
+    listItem.appendChild(shortcut);
+    
     mMap(item.title);
 }
 
