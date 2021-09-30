@@ -1,4 +1,5 @@
 import { get_query } from './getQuery.js';
+import { makingList } from './makingList.js';
 import { mMap } from './map.js';
 
 let keyword = [];
@@ -71,52 +72,7 @@ function createListItem(item) {
         listItem.setAttribute('class', 'list');
         listItem.onclick = function() { mMap(item[i].title) };
         root.appendChild(listItem);
-
-        const title_area = document.createElement('div');
-        title_area.setAttribute('id', 'list_item_title_area');
-        title_area.setAttribute('class', 'list');
-        listItem.appendChild(title_area);
-
-        const title = document.createElement('span');
-        title.setAttribute('id', `${item[i].title}_title`);
-        title.setAttribute('class', 'list');
-        title.innerHTML = `${item[i].title}`;
-        title_area.appendChild(title);
-
-        const rate = document.createElement('span');
-        rate.setAttribute('id', `${item[i].title}_rate`);
-        rate.setAttribute('class', 'list');
-        rate.innerHTML = `&#11088 ${item[i].rate.toFixed(1)}`;
-        title_area.appendChild(rate);
-
-        const body_area = document.createElement('div');
-        body_area.setAttribute('id', 'list_item_body_area');
-        body_area.setAttribute('class', 'list');
-        listItem.appendChild(body_area);
-
-        const distance = document.createElement('div');
-        distance.setAttribute('id', `${item[i].title}_distance`);
-        distance.setAttribute('class', 'recommend');
-        distance.innerHTML = `${item[i].distance}m`;
-        body_area.appendChild(distance);
-
-        const cate = document.createElement('span');
-        cate.setAttribute('id', `${item.title}_cate`);
-        cate.setAttribute('class', 'list');
-        cate.innerHTML = `#${item[i].cate_4}`;
-        body_area.appendChild(cate);
-        
-        const tag = document.createElement('span');
-        tag.setAttribute('id', `${item[i].title}_tag`);
-        tag.setAttribute('class', 'list');
-        tag.innerHTML = `${item[i].tag}  `;
-        body_area.appendChild(tag);
-
-        const address = document.createElement('div');
-        address.setAttribute('id', `${item[i].title}_address`);
-        address.setAttribute('class', 'list');
-        address.innerHTML = `${item[i].address}`;
-        body_area.appendChild(address);
+        makingList(listItem, item[i]);
     }
 }
 
