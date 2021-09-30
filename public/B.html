@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="./js/B.js"></script>
     <link rel="stylesheet" href="B.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=775ab3494a5b5001646084d974e20fed"></script>
@@ -12,20 +11,45 @@
 <body>
     <div id="root">
         <div id="B">
-            <div id="back_area" class="back"></div>
+            <div id="back_area" class="back">
+                <button id="back_button" class="back">&#11013</button>
+            </div>
             <div id="keyword_area" class="keyword">
-                <div id="title_area" class="keyword"></div>
+                <div id="title_area" class="keyword">
+                    <span id="title" class="recommend">키워드</span>
+                </div>
                 <span id="keyword_word_area" class="keyword"></span>
             </div>
             <div id="left_screen">
-                <div open id="recommend_area" class="recommend"></div>
-                <div id="list" class="list"></div>
+                <div open id="recommend_area" class="recommend">
+                    <div id="title_area" class="recommend">
+                        <span id="title" class="recommend">추천</span>
+                        <button id="refresh_button" class="recommend">새로고침</button>
+                    </div>
+                    <div id="list" class="recommend"></div>
+                </div>
+                <div id="list" class="list">
+                    <div id="title_area" class="list">
+                        <div id="title" class="list">검색 결과</div>
+                    </div>
+                    <div id="list_area" class="list"></div>
+                </div>
             </div>
             <div id="map"></div>
         </div>
         <div id="background" class="modal">
-            <div id="popup_area" class="modal-content"></div>
+            <div id="popup_area" class="modal-content">
+                <div id="title_area" class="modal-content">
+                    <span id="title" class="modal-content">키워드 추가</span>
+                    <span id="close_button" class="modal-content">X</span>
+                </div>
+                <div id="body_area" class="modal-content">
+                    <div id="button_area" class="modal-content"></div>
+                    <button id="ok_button" class="modal-content">확인</button>
+                </div>
+            </div>
         </div>
     </div>
+    <script type="module" src="./js/BScreen.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 import { get_query } from './getQuery.js';
-import { clickBRecommend as clicListItem } from './click.js';
+import { mMap } from './map.js';
 
 let keyword = [];
 let root = '';
@@ -69,7 +69,7 @@ function createListItem(item) {
         const listItem = document.createElement('div');
         listItem.setAttribute('id', `${item[i].title}`);
         listItem.setAttribute('class', 'list');
-        listItem.onclick = function() { clicListItem(item[i].title, 'list') };
+        listItem.onclick = function() { mMap(item[i].title) };
         root.appendChild(listItem);
 
         const title_area = document.createElement('div');

@@ -1,6 +1,4 @@
-import { clickARecommend as clickRecommend } from "./click.js";
-
-function recommendList() {
+export function recommendList() {
     handleRefresh();
 }
 
@@ -51,7 +49,9 @@ function createListItem(root, item, index) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', 'list_item');
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function() { clickRecommend(index) };
+    listItem.onclick = function () {
+        location.href = `B.html?list=''&recommend=${index}`
+    };
     root.appendChild(listItem);
 
     const title_area = document.createElement('div');
@@ -100,5 +100,3 @@ function createListItem(root, item, index) {
     address.innerHTML = `${item.address}  `;
     body_area.appendChild(address);
 }
-
-export { recommendList };

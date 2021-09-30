@@ -1,4 +1,4 @@
-import { clickBRecommend as clickRecommend } from "./click.js";
+import { mMap } from './map.js'
 import { get_query } from './getQuery.js';
 
 let index = [];
@@ -41,7 +41,7 @@ let list = [];
 function setInfo(info) {
     list.length = 0;
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 3.8 & info[i].distance <= 500) {
+        if (info[i].rate >= 3.8 & info[i].distance <= 600) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
@@ -62,7 +62,7 @@ let list_match = [];
 function recommend() {
     const max = Math.floor(list.length-1);
     const min = Math.ceil(0);
-    const root = document.getElementById('list');
+    const root = document.getElementsByClassName('recommend')[5];
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
@@ -102,7 +102,7 @@ function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', `${item.title}`);
     listItem.setAttribute('class', 'recommend');
-    listItem.onclick = function() { clickRecommend(item.title, 'recommend') };
+    listItem.onclick = function() { mMap(item.title) };
     root.appendChild(listItem);
 
     const title_area = document.createElement('div');
@@ -151,7 +151,7 @@ function createListItem(root, item) {
     address.innerHTML = `${item.address}  `;
     body_area.appendChild(address);
 
-    clickRecommend(item.title, 'recommend');
+    mMap(item.title);
 }
 
 export { recommendList };

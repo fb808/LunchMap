@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=775ab3494a5b5001646084d974e20fed"></script>
-    <script type="module" src="./js/A.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>맛집 지도</title>
 </head>
 <body>
     <div id="root">
         <div id="A">
-            <div class="recommend" id="recommend_area"></div>
-            <div class="search" id="search_area"></div>
+            <div class="recommend" id="recommend_area">
+                <div class="recommend" id="title_area">
+                    <span class="recommend" id="title">식당 추천</span>
+                    <button class="recommend" id="refresh_button">새로고침</button>
+                </div>
+                <div class="recommend" id="list"></div>
+            </div>
+            <div class="search" id="search_area">
+                <div class="search" id="title_area">
+                    <span class="search" id="title">키워드 검색</span>
+                    <button class="search" id="search_button">검색</button>
+                </div>
+                <div class="search" id="keyword"></div>
+            </div>
         </div>
     </div>
+    <script type="module" src="./js/AScreen.js"></script>
 </body>
 </html>
