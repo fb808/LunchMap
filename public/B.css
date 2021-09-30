@@ -30,7 +30,8 @@
   background-color: white;
 }
 
-#plus_button:hover {
+#plus_button:hover,
+#plus_button:focus {
   background-color: lightgreen;
 }
 
@@ -74,7 +75,9 @@
 }
 
 #list.recommend > div:hover,
-#list_area.list > div:hover {
+#list.recommend > div:focus,
+#list_area.list > div:hover,
+#list_area.list > div:focus {
   background-color: lightgreen;
 }
 
@@ -156,33 +159,52 @@
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
+  padding: 1%;
   width: 50%; /* Could be more or less, depending on screen size */
+  height: auto;
 }
 
-.modal-content > button {
+.modal-content > #title_area {
+  margin: 1%;
+  margin-bottom: 3%;
+}
+
+.modal-content > #body_area {
+  background-color: #fefefe;
+}
+
+.modal-content > #body_area > .keyword {
   margin: 1%;
   padding-left: 2%;
   padding-right: 2%;
   width: 20%;
-  height: 8vh;
+  height: 6vh;
   font-size: 1rem;
   background-color: white;
 }
 
 /* The Close Button */
-.close {
+#close_button {
   color: #aaa;
   float: right;
   float: top;
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+#close_button:hover,
+#close_button:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-content > #body_area > #ok_button {
+  width: 20%;
+  margin: 1%;
+  margin-top: 3%;
+  padding: 1%;
+  /* float: right;
+  float: bottom; */
+  background-color: lightgreen;
 }

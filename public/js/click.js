@@ -41,7 +41,7 @@ function keywordButton(kw, kwi) {
 
 function plusKeyword() {
     const modal = document.getElementsByClassName('modal')[0];
-    const close = document.getElementsByClassName('close')[0];
+    const close = document.getElementById('close_button');
 
     modal.style.display = "block";
 
@@ -56,4 +56,15 @@ function plusKeyword() {
     }
 }
 
-export { refreshButton, clickARecommend, clickBRecommend, clickKeyword, searchButton, backButton, keywordButton, plusKeyword };
+function okButton(list) {
+    const modal = document.getElementsByClassName('modal')[0];
+    modal.style.display = "none";
+    const stateObj = list;
+    history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
+    location.reload();
+}
+
+export {
+    refreshButton, clickARecommend, clickBRecommend, clickKeyword,
+    searchButton, backButton, keywordButton, plusKeyword, okButton
+};

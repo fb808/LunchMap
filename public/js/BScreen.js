@@ -1,5 +1,6 @@
-import { refreshButton, backButton, 
-    keywordButton as keywordButtonEvent, plusKeyword } from "./click.js";
+import {
+    refreshButton, backButton, keywordButton as keywordButtonEvent,
+    plusKeyword, okButton } from "./click.js";
 import { recommendList } from "./recommendB.js";
 import { get_query } from "./getQuery.js";
 import { mainList } from "./list.js";
@@ -142,20 +143,52 @@ function popupWindow() {
 
     const contentArea = document.getElementsByClassName('modal-content')[0];
 
+    const titleDiv = document.createElement('div');
+    titleDiv.setAttribute('id', 'title_area');
+    contentArea.appendChild(titleDiv);
+    
+    const title = document.createElement('span');
+    title.setAttribute('id', 'title');
+    title.innerHTML = '키워드 추가'
+    titleDiv.appendChild(title);
+
     const closeButton = document.createElement('span');
     closeButton.setAttribute('id', 'close_button');
-    closeButton.setAttribute('class', 'close');
+    closeButton.setAttribute('class', 'model-content');
     closeButton.innerHTML = 'X';
-    contentArea.appendChild(closeButton);
+    titleDiv.appendChild(closeButton);
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.setAttribute('id', 'body_area');
+    contentArea.appendChild(bodyDiv);
+
+    let list = kw;
 
     for (let i = 0; i < keyword_list.length; i++){
         if (!kw.includes(keyword_list[i])) {
             const keywordButton = document.createElement('button');
             keywordButton.setAttribute('id', keyword_list[i]);
             keywordButton.setAttribute('class', 'keyword');
-            keywordButton.onclick = function () { console.log('select' + keyword_list[i])};
+            keywordButton.onclick = function () {
+                let index = list.indexOf(this.id);
+                    if (index < 0) {
+                        list.push(this.id);
+                        document.getElementById(keyword_list[i]).style.backgroundColor = 'lightgreen';
+                    } else {
+                        list.splice(index, 1);
+                        document.getElementById(keyword_list[i]).style.backgroundColor = 'white';
+                    }
+                console.log(list);
+            };
             keywordButton.innerHTML = keyword_list[i];
-            contentArea.appendChild(keywordButton);
+            bodyDiv.appendChild(keywordButton);
         }
     }
+
+    const ok = document.createElement('button');
+    ok.setAttribute('id', 'ok_button');
+    ok.setAttribute('class', 'model-content');
+    ok.onclick = function () { okButton(list); };
+    ok.innerHTML = '확인';
+    bodyDiv.appendChild(ok);
 }
