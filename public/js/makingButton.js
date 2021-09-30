@@ -68,11 +68,8 @@ function bKeyword() {
     plusButton.setAttribute('id', 'plus_button');
     plusButton.setAttribute('class', 'keyword');
     plusButton.onclick = function () {
-        modal.style.display = "none";
-        const stateObj = list;
-        history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
-        location.reload();
-     };
+        modal.style.display = "block";
+    };
     plusButton.innerHTML = '+';
     root.appendChild(plusButton);
 
