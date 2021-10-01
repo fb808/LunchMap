@@ -86,6 +86,11 @@ function popupWindow() {
         }
     }
 
+    const close = document.getElementById('close_button');
+    close.onclick = function () {
+        modal.style.display = "none";
+    }
+
     const bodyDiv = document.getElementById('body_area');
 
     let list = kw;
@@ -111,13 +116,17 @@ function popupWindow() {
         }
     }
 
-    const ok = document.getElementById('ok_button');
+    const ok = document.createElement('button');
+    ok.setAttribute('id', 'ok_button');
+    ok.setAttribute('class', 'modal-content');
     ok.onclick = function () {
         modal.style.display = "none";
         const stateObj = list;
         history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
         location.reload();
     };
+    ok.innerHTML = '확인'
+    bodyDiv.appendChild(ok);
 }
 
 export { aKeyword, bKeyword, popupWindow };

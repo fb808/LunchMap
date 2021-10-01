@@ -139,7 +139,7 @@
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 56vh;
+  height: 55vh;
   background-color: #f0f0f0;
 }
 
@@ -165,17 +165,17 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+#popup_area.modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 1%;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 50%;
   height: auto;
 }
 
-.modal-content > #title_area {
-  margin: 1%;
-  margin-bottom: 3%;
+#title_area.modal-content {
+  margin-bottom: 2%;
+  padding: 1%;
 }
 
 .modal-content > #body_area {
@@ -184,8 +184,7 @@
 
 .modal-content > #body_area > .keyword {
   margin: 1%;
-  padding-left: 2%;
-  padding-right: 2%;
+  padding: 1%;
   width: 20%;
   height: 6vh;
   font-size: 1rem;
@@ -196,7 +195,6 @@
 #close_button {
   color: #aaa;
   float: right;
-  float: top;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -211,9 +209,8 @@
 .modal-content > #body_area > #ok_button {
   width: 20%;
   margin: 1%;
-  margin-top: 3%;
   padding: 1%;
-  /* float: right;
-  float: bottom; */
+  height: 6vh;
+  font-size: 1rem;
   background-color: lightgreen;
 }
