@@ -4,18 +4,15 @@ let id = ''
 
 // 회사 위치
 const company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
-let map;
-
-function mMap(listId) {
-
-    // 지도 설정
-    let mapContainer = document.getElementById('map'), // 지도를 표시할 div
+let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(company.latitude, company.longitude), // 지도의 중심좌표 (회사)
             level: 2 // 지도의 확대 레벨
         };
     // 지도 생성
-    map = new kakao.maps.Map(mapContainer, mapOption);
+let map = new kakao.maps.Map(mapContainer, mapOption);
+
+function mMap(listId) {
 
     const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
     const imageSize = new kakao.maps.Size(30, 45); 
@@ -27,11 +24,10 @@ function mMap(listId) {
         position: markerPosition,
         image: markerImage
     };
-
+    markers_p.push(c_p);
+    
     id = listId;
     
-    markers_p.push(c_p);
-
     handleRefresh();
 }
 

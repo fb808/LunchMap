@@ -19,6 +19,7 @@ function setInfo(info) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
+                area: info[i].area,
                 address: info[i].address,
                 rate: info[i].rate,
                 distance: info[i].distance,
@@ -60,12 +61,6 @@ function createListItem(root, item, index) {
         location.href = `B.html?list=''&recommend=${index}`
     };
     listItem.appendChild(listArea);
-
-    const shortcut = document.createElement('button');
-    shortcut.setAttribute('id', 'shortcut_button');
-    shortcut.setAttribute('class', 'shortcut');
-    shortcut.innerHTML = '&#10145';
-    listItem.appendChild(shortcut);
 
     makingList(listArea, item, 'recommend');
 }

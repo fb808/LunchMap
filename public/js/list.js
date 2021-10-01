@@ -35,6 +35,7 @@ function setInfo(info) {
         let obj = {
             title: info[i].name,
             cate_4: info[i].cate_4,
+            area: info[i].area,
             address: info[i].address,
             lating: new kakao.maps.LatLng(info[i].lon, info[i].lat),
             rate: info[i].rate,
@@ -78,13 +79,8 @@ function createListItem(item) {
         listArea.onclick = function () { mMap(item[i].title) };
         listItem.appendChild(listArea);
 
-        makingList(listItem, item[i], 'list');
+        makingList(listArea, item[i], 'list');
         
-        const shortcut = document.createElement('button');
-        shortcut.setAttribute('id', 'shortcut_button');
-        shortcut.setAttribute('class', 'shortcut');
-        shortcut.innerHTML = '&#10145';
-        listItem.appendChild(shortcut);
     }
 }
 

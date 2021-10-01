@@ -64,4 +64,16 @@ export function makingList(root, item, className) {
     address.setAttribute('class', className);
     address.innerHTML = `${item.address}  `;
     body_area.appendChild(address);
+
+    const shortcut = document.createElement('button');
+        shortcut.setAttribute('id', 'shortcut_button');
+        shortcut.setAttribute('class', 'shortcut');
+        shortcut.innerHTML = '&#10145';
+        shortcut.onclick = function () {
+            let searchName = item.area + ' ' +item.title;
+            console.log(searchName);
+            let win = window.open(`https://map.kakao.com/?q=${searchName}`);
+            win.focus();
+        }
+    root.appendChild(shortcut);
 }
