@@ -1,6 +1,5 @@
 let markers_p = [];
 let markers = [];
-let points = [];
 let id = '';
 let address = '';
 
@@ -9,7 +8,7 @@ const company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
 let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(company.latitude, company.longitude), // 지도의 중심좌표 (회사)
-            level: 1 // 지도의 확대 레벨
+            level: 1
         };
     // 지도 생성
 let map = new kakao.maps.Map(mapContainer, mapOption);
@@ -18,12 +17,10 @@ const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marke
 const imageSize = new kakao.maps.Size(30, 45); 
 const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 const company_position = new kakao.maps.LatLng(company.latitude, company.longitude);
-points.push(company_position);
 
 let bounds = new kakao.maps.LatLngBounds();  
 
 function mMap(listId, listAddress) {
-    points.length = 1;
 
     const cp_marker = new kakao.maps.Marker({
         title: '회사',
@@ -71,10 +68,7 @@ function setInfo(info) {
 function setMarker(i) {
     var moveLatLon = markers_p[i].position;
     markers[i].setMap(map);
-    points.push(moveLatLon);
-    for (let j = 0; j < points.length; j++){
-        bounds.extend(points[j]);
-    }
+    bounds = new kakao.maps.LatLngBounds(company_position, moveLatLon);
     map.setBounds(bounds);
 }
 

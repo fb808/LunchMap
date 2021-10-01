@@ -56,12 +56,10 @@
 
 #list_item_title_area > span:nth-child(1) {
   font-size: 1rem;
-  /* color: firebrick; */
 }
 
 #list_item_title_area > span:nth-child(2) {
   float: right;
-  /* color: firebrick; */
 }
 
 /* #list_item_body_area {
