@@ -42,7 +42,7 @@ let list = [];
 function setInfo(info) {
     list.length = 0;
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 3.8 & info[i].distance <= 600) {
+        if (info[i].rate >= 3.7 & info[i].distance <= 500) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
@@ -110,13 +110,13 @@ function createListItem(root, item) {
     listArea.setAttribute('id', `${item.title}`);
     listArea.setAttribute('class', 'recommend');
     listArea.onclick = function () {
-        mMap(item.title);
+        mMap(item.title, item.address);
     };
     listItem.appendChild(listArea);
     
     makingList(listArea, item, 'recommend');
     
-    mMap(item.title);
+    mMap(item.title, item.address);
 }
 
 export { recommendList };

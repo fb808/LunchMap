@@ -76,7 +76,7 @@ function createListItem(item) {
         const listArea = document.createElement('span');
         listArea.setAttribute('id', `${item[i].title}`);
         listArea.setAttribute('class', 'list');
-        listArea.onclick = function () { mMap(item[i].title) };
+        listArea.onclick = function () { mMap(item[i].title, item[i].address) };
         listItem.appendChild(listArea);
 
         makingList(listArea, item[i], 'list');

@@ -1,32 +1,39 @@
 let markers_p = [];
 let markers = [];
-let id = ''
+let points = [];
+let id = '';
+let address = '';
 
 // 회사 위치
 const company = { latitude: 37.50764693316519, longitude: 127.05776158879458 };
 let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(company.latitude, company.longitude), // 지도의 중심좌표 (회사)
-            level: 2 // 지도의 확대 레벨
+            level: 1 // 지도의 확대 레벨
         };
     // 지도 생성
 let map = new kakao.maps.Map(mapContainer, mapOption);
 
-function mMap(listId) {
+const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+const imageSize = new kakao.maps.Size(30, 45); 
+const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+const company_position = new kakao.maps.LatLng(company.latitude, company.longitude);
+points.push(company_position);
 
-    const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-    const imageSize = new kakao.maps.Size(30, 45); 
-    const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-    const markerPosition = new kakao.maps.LatLng(company.latitude, company.longitude);
+let bounds = new kakao.maps.LatLngBounds();  
 
-    const c_p = {
+function mMap(listId, listAddress) {
+    points.length = 1;
+
+    const cp_marker = new kakao.maps.Marker({
         title: '회사',
-        position: markerPosition,
+        position: company_position,
         image: markerImage
-    };
-    markers_p.push(c_p);
-    
+    });
+    cp_marker.setMap(map);
+
     id = listId;
+    address = listAddress;
     
     handleRefresh();
 }
@@ -42,7 +49,8 @@ function setInfo(info) {
     for (var i = 0; i < info.length; i++){
         var obj = {
             title: info[i].name,
-            position: new kakao.maps.LatLng(info[i].lon, info[i].lat),
+            address: info[i].address,
+            position: new kakao.maps.LatLng(info[i].lon, info[i].lat)
         };
     
         markers_p.push(obj);
@@ -52,7 +60,7 @@ function setInfo(info) {
     }
 
     for (let i = 0; i < markers_p.length; i++){
-        if (markers_p[i].title == id) {
+        if (markers_p[i].title == id && markers_p[i].address == address) {
             setMarker(i);
         } else {
             hideMarker(i);
@@ -62,8 +70,12 @@ function setInfo(info) {
 
 function setMarker(i) {
     var moveLatLon = markers_p[i].position;
-    map.setCenter(moveLatLon);
-    (markers[i]).setMap(map);
+    markers[i].setMap(map);
+    points.push(moveLatLon);
+    for (let j = 0; j < points.length; j++){
+        bounds.extend(points[j]);
+    }
+    map.setBounds(bounds);
 }
 
 function hideMarker(i) {
