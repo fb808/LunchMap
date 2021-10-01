@@ -72,7 +72,7 @@ export function makingList(root, item, className) {
         shortcut.onclick = function () {
             let searchName = item.area + ' ' +item.title;
             console.log(searchName);
-            let win = window.open(`https://map.kakao.com/?q=${searchName}`);
+            let win = window.open(item.link);
             win.focus();
         }
     root.appendChild(shortcut);

@@ -40,7 +40,8 @@ function setInfo(info) {
             lating: new kakao.maps.LatLng(info[i].lon, info[i].lat),
             rate: info[i].rate,
             distance: info[i].distance,
-            tag: info[i].tag
+            tag: info[i].tag,
+            link: info[i].link
         };
     
         list.push(obj);

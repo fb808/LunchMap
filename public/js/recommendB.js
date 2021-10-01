@@ -50,7 +50,8 @@ function setInfo(info) {
                 address: info[i].address,
                 rate: info[i].rate,
                 distance: info[i].distance,
-                tag: info[i].tag
+                tag: info[i].tag,
+                link: info[i].link
             };
         
             list.push(obj);
