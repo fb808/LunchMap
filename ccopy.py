@@ -8,17 +8,24 @@ df = df.replace('"', '')
 
 df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'lat', 'rate', 'distance', 'tag', 'cate_4', 'link']
 
-# driver = webdriver.Chrome("chromedriver")
-
-# link_d = []
+# rank_d = []
 # i = 0
+
+# driver = webdriver.Chrome("chromedriver")
 
 # for idx, obj in df.iterrows():
 
 #     name = obj['name']
+#     cate_1 = obj['cate_1']
+#     cate_2 = obj['cate_2']
+#     cate_3 = obj['cate_3']
 #     area = obj['area']
+#     address = obj['address']
+#     latitude = obj['lon']
+#     longitude = obj['lat']
 
 #     print(name)
+#     place = (latitude, longitude)
 
 #     try:
 #         searchName = name
@@ -31,22 +38,21 @@ df.columns = ['name', 'cate_1', 'cate_2', 'cate_3', 'area', 'address', 'lon', 'l
 #         driver.get(kakao_map_search_url)
 #         time.sleep(1)
 
+#         rate = driver.find_element_by_xpath("/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[4]/span[1]/em").text
+#         tag = driver.find_element_by_css_selector("#info\.search\.place\.list > li:nth-child(1) > div.head_item.clickArea > span").text
 #         link = driver.find_element_by_css_selector("#info\.search\.place\.list > li:nth-child(1) > div.info_item > div.contact.clickArea > a.moreview").get_attribute('href')
-#         # link = driver.find_element_by_xpath('/html/body/div[5]/div[2]/div[1]/div[7]/div[5]/ul/li[1]/div[5]/div[4]/a[1]').get_attribute('href')
 
-#         print(link)
-#         link_d.append(link)
-
+#         rank_d.append(rate)
+        
 #     except Exception as e1:
 #         df = df.drop(df.index[i])
-#         print(e1)
 #         i = i-1
 #         pass
 
 #     i = i+1
 #     print(i)
 
-# df['link'] = link_d
+# df['rate'] = rank_d
 
 df.to_json(r'/home/ryujimin/develop/LunchMap/public/data.json', orient = 'records', double_precision=15, force_ascii=False)
 # df.to_csv(r'/home/ryujimin/develop/LunchMap/public/data2.csv', sep=',', na_rep='NaN', index = False, encoding="utf-8-sig")
