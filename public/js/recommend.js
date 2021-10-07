@@ -10,12 +10,13 @@ function handleRefresh() {
 }
 
 let list = [];
+let randomNum = [];
 
 // JSON 파일에서 필요한 부분만 골라내기
 function setInfo(info) {
     list.length = 0;
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 3.7 & info[i].distance <= 500) {
+        if (info[i].rate >= 3.6 & info[i].distance <= 500) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
@@ -30,22 +31,34 @@ function setInfo(info) {
             list.push(obj);
         }
     }
+
+    randomNum.length = 0;
+
+    for (let i = 0; i < 3; i++){
+        const max = Math.floor(list.length);
+        const min = Math.ceil(0);
+        let randomIndex = Math.floor(Math.random() * (max - min)) + min;
+        if (randomNum.indexOf(randomIndex) == -1) {
+            randomNum.push(randomIndex);
+        } else {
+            i--;
+        }
+    }
+
     recommend();
 }
 
 let indexList = [];
 
 function recommend() {
-    const max = Math.floor(list.length);
-    const min = Math.ceil(0);
     const root = document.getElementById('list');
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
-    for (let i = 0; i < 2; i++){
-        let randomIndex = Math.floor(Math.random() * (max - min)) + min;
-        indexList.push(randomIndex)
-        createListItem(root, list[randomIndex], randomIndex);
+    for (let i = 0; i < randomNum.length; i++){
+        let index = randomNum[i];
+        indexList.push(index)
+        createListItem(root, list[index], index);
     }
 }
 

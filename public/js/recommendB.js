@@ -42,7 +42,7 @@ let list = [];
 function setInfo(info) {
     list.length = 0;
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 3.7 & info[i].distance <= 500) {
+        if (info[i].rate >= 3.6 & info[i].distance <= 500) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
