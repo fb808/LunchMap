@@ -27,6 +27,7 @@ function handleRefresh() {
 
 let list = [];
 let list_match = [];
+let sort_type = 1;
 
 // JSON 파일에서 필요한 부분만 골라내기
 function setInfo(info) {
@@ -45,12 +46,35 @@ function setInfo(info) {
         };
     
         list.push(obj);
+    }
+    
+    sortList();
+}
 
+function sortList() {
+    if (sort_button.value == 'distance' || sort_type == 1) {
+        sort_type = 0;
+        console.log('거리');
         list = list.sort(function (a, b) {
             return a.distance - b.distance;
         });
+        while (root.firstChild) {
+            root.removeChild(root.firstChild);
+        }
+        listMatch();
+    } else if (sort_button.value == 'rate') {
+        console.log('별점');
+        list = list.sort(function (a, b) {
+            return b.rate - a.rate;
+        });
+        while (root.firstChild) {
+            root.removeChild(root.firstChild);
+        }
+        listMatch();
     }
-    
+}
+
+function listMatch() {
     if (keyword.length == 0) {
         createListItem(list);
     } else {
@@ -84,5 +108,8 @@ function createListItem(item) {
         
     }
 }
+
+let sort_button = document.getElementById('sort_button');
+sort_button.onclick = function(){ sortList() };
 
 export { mainList };

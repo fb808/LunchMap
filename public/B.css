@@ -57,8 +57,9 @@
   margin-bottom: 2%;
 }
 
-#refresh_button {
-  margin-left: 1%;
+#refresh_button,
+#sort_button {
+  float: right;
   float: bottom;
 }
 
