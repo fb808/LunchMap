@@ -59,8 +59,14 @@ function setInfo(info) {
     
         markers_p.push(obj);
         
+        let overlay = new kakao.maps.CustomOverlay({
+            position: markers_p[i].position,
+            content: markers_p[i].content
+        });
+        
         let make_markers = new kakao.maps.Marker(obj);
         markers.push(make_markers);
+        infos.push(overlay);
     }
 
     for (let i = 0; i < markers_p.length; i++){
@@ -77,16 +83,12 @@ function setMarker(i) {
     markers[i].setMap(map);
     bounds = new kakao.maps.LatLngBounds(company_position, moveLatLon);
     map.setBounds(bounds);
-    let CustomOverlay = new kakao.maps.CustomOverlay({
-        map: map,
-        position: markers_p[i].position,
-        content: markers_p[i].content,
-        yAnchor: 1
-    });
+    infos[i].setMap(map);
 }
 
 function hideMarker(i) {
     markers[i].setMap(null);
+    infos[i].setMap(null);
 }
 
 export { mMap };
