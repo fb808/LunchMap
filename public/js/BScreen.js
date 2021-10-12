@@ -21,5 +21,3 @@ recommendList();
 
 const listDiv = document.getElementsByClassName('list')[4];
 mainList(listDiv);
-
-const sort = document.getElementById('sort_button');

@@ -50,7 +50,7 @@ function bKeyword() {
         for (let i = 0; i < keyword.length; i++){
             const keywordButton = document.createElement('button');
             keywordButton.setAttribute('id', keyword[i]);
-            keywordButton.setAttribute('class', 'keyword');
+            keywordButton.setAttribute('class', 'keyword_button');
             keywordButton.onclick = function () {
                 let index = keyword.indexOf(this.id);
                 keyword.splice(index, 1);

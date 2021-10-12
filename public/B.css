@@ -30,13 +30,13 @@
   background-color: white;
 }
 
+#keyword_word_area > .keyword_button:hover {
+  background-color: lightcoral;
+}
+
 #plus_button:hover,
 #plus_button:focus {
   background-color: lightgreen;
-}
-
-#keyword_word_area > button:hover {
-  background-color: lightcoral;
 }
 
 #left_screen {
@@ -88,13 +88,11 @@
 #list_item_title_area.recommend > span:nth-child(1),
 #list_item_title_area.list > span:nth-child(1) {
   font-size: 1rem;
-  /* color: firebrick; */
 }
 
 #list_item_title_area.recommend > span:nth-child(2),
 #list_item_title_area.list > span:nth-child(2) {
   float: right;
-  /* color: firebrick; */
 }
 
 #list_item_body_area.recommend > div:nth-child(1),
