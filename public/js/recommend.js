@@ -66,14 +66,12 @@ function createListItem(root, item, index) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', 'list_item');
     listItem.setAttribute('class', 'recommend');
+    listItem.onclick = function () { location.href = `B.html?list=''&recommend=${index}` };
     root.appendChild(listItem);
 
-    const listArea = document.createElement('span');
+    const listArea = document.createElement('div');
     listArea.setAttribute('id', 'list_area');
     listArea.setAttribute('class', 'recommend');
-    listArea.onclick = function () {
-        location.href = `B.html?list=''&recommend=${index}`
-    };
     listItem.appendChild(listArea);
 
     makingList(listArea, item, 'recommend');

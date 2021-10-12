@@ -96,12 +96,12 @@ function createListItem(item) {
         const listItem = document.createElement('div');
         listItem.setAttribute('id', 'list_item');
         listItem.setAttribute('class', 'list');
+        listItem.onclick = function () { mMap(item[i].title, item[i].address) };
         root.appendChild(listItem);
         
-        const listArea = document.createElement('span');
+        const listArea = document.createElement('div');
         listArea.setAttribute('id', `${item[i].title}`);
         listArea.setAttribute('class', 'list');
-        listArea.onclick = function () { mMap(item[i].title, item[i].address) };
         listItem.appendChild(listArea);
 
         makingList(listArea, item[i], 'list');

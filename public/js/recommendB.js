@@ -105,14 +105,12 @@ function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', `list_item`);
     listItem.setAttribute('class', 'recommend');
+    listItem.onclick = function () { mMap(item.title, item.address); };
     root.appendChild(listItem);
 
-    const listArea = document.createElement('span');
+    const listArea = document.createElement('div');
     listArea.setAttribute('id', `${item.title}`);
     listArea.setAttribute('class', 'recommend');
-    listArea.onclick = function () {
-        mMap(item.title, item.address);
-    };
     listItem.appendChild(listArea);
     
     makingList(listArea, item, 'recommend');

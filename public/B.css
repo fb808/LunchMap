@@ -72,7 +72,6 @@
 #list_area.list > div {
   padding: 2%;
   background-color: white;
-  margin: 2px;
 }
 
 #list.recommend > div:hover,

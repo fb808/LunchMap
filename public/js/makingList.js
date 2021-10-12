@@ -69,7 +69,8 @@ export function makingList(root, item, className) {
         shortcut.setAttribute('id', 'shortcut_button');
         shortcut.setAttribute('class', 'shortcut');
         shortcut.innerHTML = '&#10145';
-        shortcut.onclick = function () {
+    shortcut.onclick = function (e) {
+            e.stopPropagation();
             let searchName = item.area + ' ' +item.title;
             console.log(searchName);
             let win = window.open(item.link);
