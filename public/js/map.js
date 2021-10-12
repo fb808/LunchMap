@@ -1,5 +1,6 @@
 let markers_p = [];
 let markers = [];
+let infos = [];
 let id = '';
 let address = '';
 
@@ -47,13 +48,19 @@ function setInfo(info) {
         var obj = {
             title: info[i].name,
             address: info[i].address,
-            position: new kakao.maps.LatLng(info[i].lon, info[i].lat)
+            position: new kakao.maps.LatLng(info[i].lon, info[i].lat),
+            clickable: true,
+            content: `<div class="customoverlay">
+                        <a href="${info[i].link}" target="_blank">
+                            <span class="title">${info[i].name}</span>
+                        </a>
+                    </div>`
         };
     
         markers_p.push(obj);
         
-        let make = new kakao.maps.Marker(obj);
-        markers.push(make);
+        let make_markers = new kakao.maps.Marker(obj);
+        markers.push(make_markers);
     }
 
     for (let i = 0; i < markers_p.length; i++){
@@ -70,6 +77,12 @@ function setMarker(i) {
     markers[i].setMap(map);
     bounds = new kakao.maps.LatLngBounds(company_position, moveLatLon);
     map.setBounds(bounds);
+    let CustomOverlay = new kakao.maps.CustomOverlay({
+        map: map,
+        position: markers_p[i].position,
+        content: markers_p[i].content,
+        yAnchor: 1
+    });
 }
 
 function hideMarker(i) {
