@@ -11,16 +11,20 @@ function aKeyword() {
 
     for (let i = 0; i < keyword_list.length; i++){
         const tagButton = document.createElement('button');
-        tagButton.setAttribute('class', 'tagButton');
+        tagButton.setAttribute('type', 'button');
+        tagButton.setAttribute('class', 'btn btn-outline-success tag-button');
         tagButton.setAttribute('id', keyword_list[i]);
         tagButton.onclick = function () {
             let index = list.indexOf(this.id);
                 if (index < 0) {
                     list.push(this.id)
-                    document.getElementById(keyword_list[i]).style.backgroundColor = 'lightgreen';
+                    document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
+                    console.log(this.id);
+                    return false;
                 } else {
                     list.splice(index, 1);
-                    document.getElementById(keyword_list[i]).style.backgroundColor = 'white';
+                    document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
+                    console.log(this.id);
                 }
             console.log(list);
         };

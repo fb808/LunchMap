@@ -23,7 +23,12 @@
 #refresh_button,
 #search_button {
   float: right;
-  float: bottom;
+  font-size: 1rem;
+}
+
+#search_button {
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
 #title_area {
@@ -31,64 +36,51 @@
   margin-bottom: 10%;
 }
 
-#title {
-  font-size: 1.2rem;
-}
+/* ------------------------------------------- */
 
 #recommend_area > #list {
   width: 100%;
-  background-color: #f0f0f0;
 }
 
 #list_item {
   padding: 3%;
   background-color: white;
+  transition: background-color 0.1s ease-out 1ms;
 }
 
 #list_item:hover {
-  background-color: lightgreen;
+  background-color: #19875423;
 }
 
 #list_item_title_area {
   margin-bottom: 2%;
+  font-size: 1.1rem;
 }
 
-#list_item_title_area > span:nth-child(1) {
-  font-size: 1rem;
-}
-
-#list_item_title_area > span:nth-child(2) {
-  float: right;
-}
-
-/* #list_item_body_area {
-  display: grid;
-} */
-
-#list_item_body_area > div:nth-child(1) {
-  color: rgb(255, 88, 88);
-  margin-bottom: 1%;
-}
-
-#list_item_body_area > div:nth-child(2) {
-  color: rgb(88, 141, 255);
-}
-
-#list_item_body_area > div:nth-child(4) {
-  margin-top: 1%;
-  color: gray;
+#list_item_body_area {
+  font-size: 00.9rem;
 }
 
 #list_item_body_area > div:nth-child(1),
-#list_item_body_area > div:nth-child(2),
-#list_item_body_area > div:nth-child(3),
-#list_item_body_area > span:nth-child(4) {
-  font-size: 0.9rem;
+#cate_area {
+  margin-bottom: 1%;
+}
+
+#list_item_title_area > span:nth-child(2),
+#cate_area > span:nth-child(2) {
+  float: right;
+}
+
+#list_item_body_area > span:last-child {
+  display: inline-block;
+  margin-top: 1%;
 }
 
 #shortcut_button {
   float: right;
 }
+
+/* ------------------------------------------- */
 
 #keyword {
   position: relative;
@@ -97,18 +89,34 @@
   height: 50vh;
   padding: 4px;
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: white;
 }
 
-.tagButton {
+.tag-button {
   width: 30%;
   height: 8vh;
   min-height: 40px;
   padding: 5px;
   margin: 1%;
-  background-color: white;
+  transition: background-color 0.1s ease-out 1ms;
 }
 
-.tagButton:hover {
-  background-color: lightgreen;
+.tag-button:hover {
+  background-color: #19875423;
+  color: #198754;
+}
+
+.tag-button-on {
+  width: 30%;
+  height: 8vh;
+  min-height: 40px;
+  padding: 5px;
+  margin: 1%;
+  background-color: #198754;
+  color: white;
+  transition: background-color 0.1s ease-out 1ms;
+}
+
+.tag-button-on:hover {
+  background-color: #156e44;
 }

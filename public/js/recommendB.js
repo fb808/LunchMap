@@ -65,7 +65,7 @@ let list_match = [];
 function recommend() {
     const max = Math.floor(list.length-1);
     const min = Math.ceil(0);
-    const root = document.getElementsByClassName('recommend')[5];
+    const root = document.getElementById('recommend_list');
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
