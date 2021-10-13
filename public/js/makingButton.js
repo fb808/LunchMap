@@ -49,12 +49,15 @@ function bKeyword() {
     const root = document.getElementById('keyword_word_area');
 
     if (keyword.length === 0) {
-        root.innerHTML = '키워드가 없습니다. ';
+        const noKeyword = document.createElement('span');
+        noKeyword.setAttribute('id', 'no_keyword');
+        noKeyword.innerHTML = '키워드가 없습니다. ';
+        root.appendChild(noKeyword);
     } else {
         for (let i = 0; i < keyword.length; i++){
             const keywordButton = document.createElement('button');
             keywordButton.setAttribute('id', keyword[i]);
-            keywordButton.setAttribute('class', 'keyword_button');
+            keywordButton.setAttribute('class', 'btn btn-outline-dark');
             keywordButton.onclick = function () {
                 let index = keyword.indexOf(this.id);
                 keyword.splice(index, 1);
@@ -70,10 +73,9 @@ function bKeyword() {
 
     const plusButton = document.createElement('button');
     plusButton.setAttribute('id', 'plus_button');
-    plusButton.setAttribute('class', 'keyword');
-    plusButton.onclick = function () {
-        modal.style.display = "block";
-    };
+    plusButton.setAttribute('class', 'btn btn-outline-success');
+    plusButton.setAttribute('data-bs-toggle', 'modal');
+    plusButton.setAttribute('data-bs-target', '#plusModal');
     plusButton.innerHTML = '+';
     root.appendChild(plusButton);
 
@@ -90,28 +92,23 @@ function popupWindow() {
         }
     }
 
-    const close = document.getElementById('close_button');
-    close.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    const bodyDiv = document.getElementById('body_area');
+    const bodyDiv = document.getElementById('button_area');
 
     let list = kw;
 
     for (let i = 0; i < keyword_list.length; i++){
         if (!kw.includes(keyword_list[i])) {
             const keywordButton = document.createElement('button');
+            keywordButton.setAttribute('class', 'btn btn-outline-success tag-button');
             keywordButton.setAttribute('id', keyword_list[i]);
-            keywordButton.setAttribute('class', 'keyword');
             keywordButton.onclick = function () {
                 let index = list.indexOf(this.id);
                     if (index < 0) {
                         list.push(this.id);
-                        document.getElementById(keyword_list[i]).style.backgroundColor = 'lightgreen';
+                        document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
                     } else {
                         list.splice(index, 1);
-                        document.getElementById(keyword_list[i]).style.backgroundColor = 'white';
+                        document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
                     }
                 console.log(list);
             };
@@ -120,17 +117,11 @@ function popupWindow() {
         }
     }
 
-    const ok = document.createElement('button');
-    ok.setAttribute('id', 'ok_button');
-    ok.setAttribute('class', 'modal-content');
+    const ok = document.getElementById('ok_button');
     ok.onclick = function () {
-        modal.style.display = "none";
-        const stateObj = list;
-        history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
+        history.replaceState(list, '', `B.html?list=${list}&recommend=`);
         location.reload();
     };
-    ok.innerHTML = '확인'
-    bodyDiv.appendChild(ok);
 }
 
 export { aKeyword, bKeyword, popupWindow };

@@ -7,36 +7,15 @@
   transform: translate(-50%, -50%);
 }
 
-#back_area {
+#back_area,
+#title_area,
+#keyword_area,
+#recommend_area,
+#recommend_list,
+#list_area,
+#list_list {
   margin-bottom: 1%;
-}
-
-#keyword_area {
   width: 100%;
-  margin-bottom: 1%;
-}
-
-#keyword_area > #title_area {
-  margin-bottom: 1%;
-}
-
-.keyword > button {
-  margin-right: 0.6%;
-  margin-bottom: 0.6%;
-  padding-left: 1%;
-  padding-right: 1%;
-  width: max-content;
-  height: 4vh;
-  background-color: white;
-}
-
-#keyword_word_area > .keyword_button:hover {
-  background-color: lightcoral;
-}
-
-#plus_button:hover,
-#plus_button:focus {
-  background-color: lightgreen;
 }
 
 #left_screen {
@@ -46,181 +25,121 @@
   width: 49%;
 }
 
-#recommend_area,
-#list.list {
-  width: 100%;
-  margin-bottom: 2%;
-}
-
-#title_area.recommend,
-#title_area.list {
-  margin-bottom: 2%;
-}
-
-#refresh_button,
-#sort_button {
-  float: right;
-  float: bottom;
-}
-
-#recommend_area > #list {
-  width: 100%;
-  background-color: #f0f0f0;
-}
-
-#list.recommend > div,
-#list_area.list > div {
-  padding: 2%;
-  background-color: white;
-}
-
-#list.recommend > div:hover,
-#list.recommend > div:focus,
-#list_area.list > div:hover,
-#list_area.list > div:focus {
-  background-color: lightgreen;
-}
-
-#list_item_title_area.recommend {
-  margin-bottom: 1%;
-}
-
-#list_item_title_area.recommend > span:nth-child(1),
-#list_item_title_area.list > span:nth-child(1) {
-  font-size: 1rem;
-}
-
-#list_item_title_area.recommend > span:nth-child(2),
-#list_item_title_area.list > span:nth-child(2) {
-  float: right;
-}
-
-#list_item_body_area.recommend > div:nth-child(1),
-#list_item_body_area.list > div:nth-child(1) {
-  color: rgb(255, 88, 88);
-  margin-bottom: 1%;
-}
-
-#list_item_body_area.recommend > div:nth-child(2),
-#cate_area.list > span:nth-child(1) {
-  color: rgb(88, 141, 255);
-}
-
-#list_item_body_area.recommend > div:nth-child(3) {
-  margin-bottom: 1%;
-}
-
-#cate_area.list > span:nth-child(2) {
-  float: right;
-}
-
-#cate_area.list {
-  margin-bottom: 1%;
-}
-
-#list_item_body_area.recommend > span:nth-child(4),
-#list_item_body_area.list > span:nth-child(4) {
-  margin-top: 1%;
-  color: gray;
-}
-
-#list_item_body_area.recommend > *,
-#list_item_body_area.list > * {
-  font-size: 0.9rem;
-}
-
-#shortcut_button {
-  float: right;
-}
-
-#list_area.list {
-  position: relative;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 55vh;
-  background-color: #f0f0f0;
-}
-
 #map {
   display: flex;
   flex-wrap: wrap;
   float: right;
   width: 49%;
-  height: 85%;
+  height: 84%;
 }
 
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+/* ------------------------------------------- */
+
+#no_keyword {
+  margin-right: 2%;
 }
 
-/* Modal Content/Box */
-#popup_area.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 1%;
-  width: 50%;
-  height: auto;
+#keyword_word_area > button {
+  margin-right: 0.6%;
+  margin-bottom: 0.6%;
+  padding-left: 1%;
+  padding-right: 1%;
+  width: max-content;
+  height: 4vh;
 }
 
-#title_area.modal-content {
-  margin-bottom: 2%;
-  padding: 1%;
+#keyword_word_area > .btn-outline-dark:hover {
+  background-color: #db4352ce;
+  border-color: #db4352ce;
 }
 
-.modal-content > #body_area {
-  background-color: #fefefe;
-}
+/* ------------------------------------------- */
 
-.modal-content > #body_area > .keyword {
-  margin: 1%;
-  padding: 1%;
-  width: 20%;
-  height: 6vh;
-  font-size: 1rem;
-  background-color: white;
-}
-
-/* The Close Button */
-#close_button {
-  color: #aaa;
+#refresh_button,
+#select_box {
   float: right;
-  font-size: 1.5rem;
-  font-weight: bold;
+  float: top;
+  margin-bottom: 1%;
 }
 
-#close_button:hover,
-#close_button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+#list_list {
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 55vh;
 }
 
-.modal-content > #body_area > #ok_button {
-  width: 20%;
+#list_item {
+  padding: 3%;
+  background-color: white;
+  transition: background-color 0.1s ease-out 1ms;
+}
+
+#list_item:hover {
+  background-color: #19875423;
+}
+
+#list_item_title_area {
+  margin-bottom: 1%;
+  font-size: 1.1rem;
+}
+
+#list_item_body_area {
+  font-size: 00.9rem;
+}
+
+#list_item_body_area > div:nth-child(1),
+#cate_area {
+  margin-bottom: 0.5%;
+}
+
+#list_item_title_area > span:nth-child(2),
+#cate_area > span:nth-child(2),
+#shortcut_button {
+  float: right;
+}
+
+#list_item_body_area > span:last-child {
+  display: inline-block;
+  margin-top: 0.5%;
+}
+
+/* ------------------------------------------- */
+
+.tag-button {
+  width: 30%;
+  height: 8vh;
+  min-height: 40px;
+  padding: 5px;
   margin: 1%;
-  padding: 1%;
-  height: 6vh;
-  font-size: 1rem;
-  background-color: lightgreen;
+  transition: background-color 0.1s ease-out 1ms;
 }
 
-select,
-option {
-  padding: 1%;
+.tag-button:hover {
+  background-color: #19875423;
+  color: #198754;
 }
+
+.tag-button-on {
+  width: 30%;
+  height: 8vh;
+  min-height: 40px;
+  padding: 5px;
+  margin: 1%;
+  background-color: #198754;
+  color: white;
+  transition: background-color 0.1s ease-out 1ms;
+}
+
+.tag-button-on:hover {
+  background-color: #156e44;
+}
+
+/* ------------------------------------------- */
 
 .customoverlay {
   position: relative;
-  bottom: 60px;
+  bottom: 75px;
   border-radius: 6px;
   border: 1px solid #ccc;
   border-bottom: 2px solid #ddd;
@@ -241,8 +160,8 @@ option {
   font-size: 14px;
   font-weight: bold;
   overflow: hidden;
-  background: lightgreen;
-  background: lightgreen
+  background: #198754;
+  background: #198754
     url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png")
     no-repeat right 14px center;
 }

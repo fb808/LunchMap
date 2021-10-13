@@ -4,6 +4,11 @@ import { mMap } from './map.js';
 
 let keyword = [];
 let root = '';
+const select = document.querySelector(`#select_box`);
+const option = select.querySelector('ul');
+const opts = option.querySelectorAll('li');
+opts[0].addEventListener('click', function () { sortList(0) });
+opts[1].addEventListener('click', function () { sortList(1) });
 
 function mainList(listRoot) {
     const url_keyword = get_query();
@@ -27,7 +32,6 @@ function handleRefresh() {
 
 let list = [];
 let list_match = [];
-let sort_type = 1;
 
 // JSON 파일에서 필요한 부분만 골라내기
 function setInfo(info) {
@@ -51,21 +55,23 @@ function setInfo(info) {
     sortList();
 }
 
-function sortList() {
-    if (sort_button.value == 'distance' || sort_type == 1) {
-        sort_type = 0;
-        console.log('거리');
+function sortList(index) {
+    let ele = opts[index];
+    let text = '';
+    if(ele != null){
+        text = ele.innerText;
+    }
+    if (text == '별점') {
         list = list.sort(function (a, b) {
-            return a.distance - b.distance;
+            return b.rate - a.rate;
         });
         while (root.firstChild) {
             root.removeChild(root.firstChild);
         }
         listMatch();
-    } else if (sort_button.value == 'rate') {
-        console.log('별점');
+    } else {
         list = list.sort(function (a, b) {
-            return b.rate - a.rate;
+            return a.distance - b.distance;
         });
         while (root.firstChild) {
             root.removeChild(root.firstChild);
@@ -108,8 +114,5 @@ function createListItem(item) {
         
     }
 }
-
-let sort_button = document.getElementById('sort_button');
-sort_button.onclick = function(){ sortList() };
 
 export { mainList };
