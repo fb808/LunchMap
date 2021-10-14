@@ -44,6 +44,7 @@
   margin-bottom: 0.6%;
   padding-left: 1%;
   padding-right: 1%;
+  min-height: 30px;
   width: max-content;
   height: 4vh;
 }
@@ -106,7 +107,11 @@
 
 /* ------------------------------------------- */
 
-.tag-button {
+#button_area {
+  background-color: white;
+}
+
+#button_area > .tag-button {
   width: 30%;
   height: 8vh;
   min-height: 40px;
@@ -115,12 +120,12 @@
   transition: background-color 0.1s ease-out 1ms;
 }
 
-.tag-button:hover {
+#button_area > .tag-button:hover {
   background-color: #19875423;
   color: #198754;
 }
 
-.tag-button-on {
+#button_area > .tag-button-on {
   width: 30%;
   height: 8vh;
   min-height: 40px;
@@ -131,8 +136,12 @@
   transition: background-color 0.1s ease-out 1ms;
 }
 
-.tag-button-on:hover {
+#button_area > .tag-button-on:hover {
   background-color: #156e44;
+}
+
+#ok_button {
+  width: 100%;
 }
 
 /* ------------------------------------------- */

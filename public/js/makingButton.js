@@ -16,16 +16,15 @@ function aKeyword() {
         tagButton.setAttribute('id', keyword_list[i]);
         tagButton.onclick = function () {
             let index = list.indexOf(this.id);
-                if (index < 0) {
-                    list.push(this.id)
-                    document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
-                    console.log(this.id);
-                    return false;
-                } else {
-                    list.splice(index, 1);
-                    document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
-                    console.log(this.id);
-                }
+            if (index < 0) {
+                list.push(this.id)
+                document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
+                console.log(list);
+                return false;
+            } else {
+                list.splice(index, 1);
+                document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
+            }
             console.log(list);
         };
         tagButton.innerHTML = keyword_list[i];
@@ -103,13 +102,15 @@ function popupWindow() {
             keywordButton.setAttribute('id', keyword_list[i]);
             keywordButton.onclick = function () {
                 let index = list.indexOf(this.id);
-                    if (index < 0) {
-                        list.push(this.id);
-                        document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
-                    } else {
-                        list.splice(index, 1);
-                        document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
-                    }
+                if (index < 0) {
+                    list.push(this.id);
+                    document.getElementById(keyword_list[i]).classList.replace('tag-button', 'tag-button-on');
+                    console.log(list);
+                    return false;
+                } else {
+                    list.splice(index, 1);
+                    document.getElementById(keyword_list[i]).classList.replace('tag-button-on', 'tag-button');
+                }
                 console.log(list);
             };
             keywordButton.innerHTML = keyword_list[i];
