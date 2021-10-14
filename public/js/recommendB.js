@@ -17,7 +17,7 @@ function recommendList(set) {
     const url_keyword = get_query();
     const urlkw = url_keyword['list'].split(',');
     const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
-        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아', '기타'];
+        '치킨', '해물/생선', '분식', '패스트푸드', '일식/돈까스', '중식', '양식', '아시아음식', '기타'];
     for (let i = 0; i < urlkw.length; i++){
         if (keyword_list.includes(urlkw[i])) {
             keyword.push(urlkw[i]);
@@ -42,7 +42,7 @@ let list = [];
 function setInfo(info) {
     list.length = 0;
     for (var i = 0; i < info.length; i++){
-        if (info[i].rate >= 3.6 & info[i].distance <= 500) {
+        if (info[i].rate >= 3.7 & info[i].distance <= 500) {
             var obj = {
                 title: info[i].name,
                 cate_4: info[i].cate_4,
@@ -71,14 +71,14 @@ function recommend() {
     }
     if (keyword.length > 0) {
         recommendKeyword();
-        let remax = Math.floor(list_match.length-1);
-        let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
-        createListItem(root, list_match[randomIndex]);
-    } else if (keyword.length == 0 && index.length == 0 ) {
-        let randomIndex = Math.floor(Math.random() * (max - min)) + min;
-        createListItem(root, list[randomIndex]);
-    } else if (refresh_set == 1){
-        createListItem(root, list[index[0]]);
+        if (keyword.length == 0) {
+            createMessage(root);
+            console.log('dss');
+        } else {
+            let remax = Math.floor(list_match.length-1);
+            let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
+            createListItem(root, list_match[randomIndex]);
+        }
     } else {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
         createListItem(root, list[randomIndex]);
@@ -97,25 +97,32 @@ function recommendKeyword() {
     }
     if (list_match.length == 0) {
         keyword.length = 0;
-        recommend();
     }
 }
 
 function createListItem(root, item) {
     const listItem = document.createElement('div');
     listItem.setAttribute('id', `list_item`);
-    listItem.setAttribute('class', 'recommend');
     listItem.onclick = function () { mMap(item.title, item.address); };
     root.appendChild(listItem);
 
     const listArea = document.createElement('div');
     listArea.setAttribute('id', `${item.title}`);
-    listArea.setAttribute('class', 'recommend');
     listItem.appendChild(listArea);
     
-    makingList(listArea, item, 'recommend');
+    makingList(listArea, item);
     
     mMap(item.title, item.address);
+}
+
+function createMessage(root) {
+    
+    document.getElementById('list_list').setAttribute('class', 'no_recommend');
+
+    const listItem = document.createElement('div');
+    listItem.setAttribute('id', `no_recommend_message`);
+    listItem.innerHTML = '추천이 없습니다.';
+    root.appendChild(listItem);
 }
 
 export { recommendList };

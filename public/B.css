@@ -63,6 +63,18 @@
   margin-bottom: 1%;
 }
 
+#no_recommend_message {
+  padding: 3%;
+  font-size: 1.1rem;
+}
+
+#list_list.no_recommend {
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 63.5vh;
+}
+
 #list_list {
   position: relative;
   overflow: scroll;
