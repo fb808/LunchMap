@@ -94,9 +94,12 @@ function popupWindow() {
     const bodyDiv = document.getElementById('button_area');
 
     let list = kw;
+    let count = 0;
 
     for (let i = 0; i < keyword_list.length; i++){
         if (!kw.includes(keyword_list[i])) {
+            count++;
+            console.log(count);
             const keywordButton = document.createElement('button');
             keywordButton.setAttribute('class', 'btn btn-outline-success tag-button');
             keywordButton.setAttribute('id', keyword_list[i]);
@@ -116,6 +119,13 @@ function popupWindow() {
             keywordButton.innerHTML = keyword_list[i];
             bodyDiv.appendChild(keywordButton);
         }
+    }
+
+    if (count == 0) {
+        const noKeyword = document.createElement('span');
+        noKeyword.setAttribute('id', 'no_keyword_message');
+        noKeyword.innerHTML = '추가 가능한 키워드가 없습니다. ';
+        bodyDiv.appendChild(noKeyword);
     }
 
     const ok = document.getElementById('ok_button');

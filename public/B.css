@@ -123,6 +123,12 @@
   background-color: white;
 }
 
+#no_keyword_message {
+  padding: 3%;
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
 #button_area > .tag-button {
   width: 30%;
   height: 8vh;
