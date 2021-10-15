@@ -75,10 +75,12 @@ function recommend() {
             createMessage(root);
             console.log('dss');
         } else {
-            let remax = Math.floor(list_match.length-1);
+            let remax = Math.floor(list_match.length - 1);
             let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
             createListItem(root, list_match[randomIndex]);
         }
+    } else if (index.length != 0) {
+        createListItem(root, list[index[0]]);
     } else {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;
         createListItem(root, list[randomIndex]);

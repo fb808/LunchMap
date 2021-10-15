@@ -99,7 +99,6 @@ function popupWindow() {
     for (let i = 0; i < keyword_list.length; i++){
         if (!kw.includes(keyword_list[i])) {
             count++;
-            console.log(count);
             const keywordButton = document.createElement('button');
             keywordButton.setAttribute('class', 'btn btn-outline-success tag-button');
             keywordButton.setAttribute('id', keyword_list[i]);
