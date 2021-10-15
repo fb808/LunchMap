@@ -79,7 +79,7 @@ function recommend() {
             let randomIndex = Math.floor(Math.random() * (remax - min)) + min;
             createListItem(root, list_match[randomIndex]);
         }
-    } else if (index.length != 0) {
+    } else if (index.length != 0 && refresh_set != 0) {
         createListItem(root, list[index[0]]);
     } else {
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;

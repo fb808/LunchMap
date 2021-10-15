@@ -54,23 +54,35 @@ function bKeyword() {
         root.appendChild(noKeyword);
     } else {
         for (let i = 0; i < keyword.length; i++){
-            const keywordButton = document.createElement('button');
-            keywordButton.setAttribute('id', keyword[i]);
-            keywordButton.setAttribute('class', 'btn btn-outline-dark');
-            keywordButton.onclick = function () {
+            const keywordButton = document.createElement('span');
+            keywordButton.setAttribute('id', `${keyword[i]}_area`);
+            keywordButton.setAttribute('class', 'btn btn-outline-dark area');
+            root.appendChild(keywordButton);
+
+            const keywordText = document.createElement('span');
+            keywordText.setAttribute('id', `${keyword[i]}_text`);
+            keywordText.setAttribute('class', 'keyword-text');
+            keywordText.innerHTML = keyword[i];
+            keywordButton.appendChild(keywordText);
+            
+            const keywordDelete = document.createElement('span');
+            keywordDelete.setAttribute('id', keyword[i]);
+            keywordDelete.setAttribute('class', 'keyword-button');
+            keywordDelete.onclick = function () {
                 let index = keyword.indexOf(this.id);
                 keyword.splice(index, 1);
-                document.getElementById(this.id).remove();
+                document.getElementById(`${this.id}_area`).remove();
                 const stateObj = keyword;
                 history.replaceState(stateObj, '', `B.html?list=${stateObj}&recommend=`);
                 location.reload();
             };
-            keywordButton.innerHTML = keyword[i];
-            root.appendChild(keywordButton);
+            keywordDelete.innerHTML = '&#10005';
+            keywordButton.appendChild(keywordDelete);
+
         }
     }
 
-    const plusButton = document.createElement('button');
+    const plusButton = document.createElement('span');
     plusButton.setAttribute('id', 'plus_button');
     plusButton.setAttribute('class', 'btn btn-outline-success');
     plusButton.setAttribute('data-bs-toggle', 'modal');

@@ -39,19 +39,39 @@
   margin-right: 2%;
 }
 
-#keyword_word_area > button {
+#keyword_word_area {
+  display: flex;
+}
+
+#keyword_word_area > .area {
+  display: inline-block;
   margin-right: 0.6%;
-  margin-bottom: 0.6%;
-  padding-left: 1%;
-  padding-right: 1%;
+  margin-bottom: 0.6;
   min-height: 30px;
-  width: max-content;
   height: 4vh;
 }
 
-#keyword_word_area > .btn-outline-dark:hover {
-  background-color: #db4352ce;
-  border-color: #db4352ce;
+#keyword_word_area > .area:hover {
+  background-color: white;
+  color: black;
+}
+
+.keyword-text {
+  display: block;
+  float: left;
+  margin: 0.3%;
+  margin-right: 2%;
+}
+
+.keyword-button {
+  display: block;
+  margin: 1%;
+  float: right;
+  color: #888;
+}
+
+.keyword-button:hover {
+  color: #000;
 }
 
 /* ------------------------------------------- */
