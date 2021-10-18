@@ -18,8 +18,8 @@
   width: 100%;
 }
 
-#recommend_area {
-  margin-top: 3%;
+#title_area {
+  margin-top: 2%;
 }
 
 #left_screen {
@@ -34,7 +34,7 @@
   flex-wrap: wrap;
   float: right;
   width: 49%;
-  height: 84%;
+  height: 85%;
 }
 
 /* ------------------------------------------- */
@@ -100,14 +100,14 @@
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 63.5vh;
+  height: 62vh;
 }
 
 #list_list {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 55vh;
+  height: 53.5vh;
 }
 
 #list_item {
