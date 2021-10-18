@@ -49,7 +49,7 @@ export function makingList(root, item) {
         shortcut.setAttribute('id', 'shortcut_button');
         shortcut.setAttribute('class', 'btn btn-outline-dark btn-sm');
         shortcut.innerHTML = '&#10145';
-    shortcut.onclick = function (e) {
+        shortcut.onclick = function (e) {
             e.stopPropagation();
             let searchName = item.area + ' ' +item.title;
             console.log(searchName);

@@ -103,7 +103,10 @@ function popupWindow() {
         }
     }
 
-    const bodyDiv = document.getElementById('button_area');
+    const root = document.getElementsByClassName('modal-body')[0];
+    const bodyDiv = document.createElement('div');
+    bodyDiv.setAttribute('id', 'button_area');
+    root.appendChild(bodyDiv);
 
     let list = kw;
     let count = 0;
@@ -138,6 +141,27 @@ function popupWindow() {
         noKeyword.innerHTML = '추가 가능한 키워드가 없습니다. ';
         bodyDiv.appendChild(noKeyword);
     }
+
+    const close = document.getElementsByClassName('btn-close')[0];
+    close.addEventListener('click', function () {
+        while (root.firstChild) {
+            root.removeChild(root.firstChild);
+        }
+        popupWindow();
+    });
+
+    const backdrop = document.getElementById('plusModal');
+    backdrop.addEventListener('click', function () {
+        while (root.firstChild) {
+            root.removeChild(root.firstChild);
+        }
+        popupWindow();
+    });
+
+    const content = document.getElementsByClassName('modal-content')[0];
+    content.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
 
     const ok = document.getElementById('ok_button');
     ok.onclick = function () {
