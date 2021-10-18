@@ -18,6 +18,10 @@
   width: 100%;
 }
 
+#recommend_area {
+  margin-top: 3%;
+}
+
 #left_screen {
   display: flex;
   flex-wrap: wrap;
@@ -37,13 +41,18 @@
 
 #no_keyword {
   margin-right: 2%;
+  float: bottom;
 }
 
 #keyword_word_area {
   display: flex;
 }
 
-#keyword_word_area > .area {
+.keyword_span {
+  display: inline-flex;
+}
+
+#keyword_word_area > .btn-outline-dark {
   display: inline-block;
   margin-right: 0.6%;
   margin-bottom: 0.6;
@@ -51,23 +60,22 @@
   height: 4vh;
 }
 
-#keyword_word_area > .area:hover {
+#keyword_word_area > .btn-outline-dark:hover {
   background-color: white;
   color: black;
 }
 
 .keyword-text {
-  display: block;
-  float: left;
   margin: 0.3%;
   margin-right: 2%;
 }
 
 .keyword-button {
-  display: block;
+  width: 2%;
   margin: 1%;
-  float: right;
   color: #888;
+  background-color: white;
+  border: none;
 }
 
 .keyword-button:hover {

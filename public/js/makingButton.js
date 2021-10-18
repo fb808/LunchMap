@@ -56,16 +56,16 @@ function bKeyword() {
         for (let i = 0; i < keyword.length; i++){
             const keywordButton = document.createElement('span');
             keywordButton.setAttribute('id', `${keyword[i]}_area`);
-            keywordButton.setAttribute('class', 'btn btn-outline-dark area');
+            keywordButton.setAttribute('class', 'keyword_span')
             root.appendChild(keywordButton);
 
             const keywordText = document.createElement('span');
             keywordText.setAttribute('id', `${keyword[i]}_text`);
-            keywordText.setAttribute('class', 'keyword-text');
+            keywordButton.setAttribute('class', 'btn btn-outline-dark');
             keywordText.innerHTML = keyword[i];
             keywordButton.appendChild(keywordText);
             
-            const keywordDelete = document.createElement('span');
+            const keywordDelete = document.createElement('button');
             keywordDelete.setAttribute('id', keyword[i]);
             keywordDelete.setAttribute('class', 'keyword-button');
             keywordDelete.onclick = function () {
