@@ -11,20 +11,24 @@
 </head>
 <body>
     <div id="root">
+        <h2><b>맛집 지도</b></h2>
+        <div id="subtitle"></div>
         <div id="A">
             <div id="recommend_area">
                 <div id="title_area">
-                    <span class="h4" id="title">식당 추천</span>
+                    <span class="h4" id="title"><b>식당 추천</b></span>
                     <button type="button" class="btn btn-outline-success btn-sm" id="refresh_button">&#8635</button>
+                    <div class="text-secondary" id="ex">별점 3.7점 이상 500m 이내의 식당을 랜덤으로 추천해드려요</div>
+                    <hr class="text-dark">
                 </div>
                 <div id="list"></div>
             </div>
             <div id="search_area">
                 <div id="title_area">
                     <span class="h4" id="title">키워드 검색</span>
-                    <button type="button" class="btn btn-success btn-sm" id="search_button">검색</button>
                 </div>
                 <div id="keyword"></div>
+                <button type="button" class="btn btn-success btn-sm" id="search_button">검색</button>
             </div>
         </div>
     </div>

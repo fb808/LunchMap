@@ -100,14 +100,14 @@
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 62vh;
+  height: 61.5vh;
 }
 
 #list_list {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 53.5vh;
+  height: 53vh;
 }
 
 #list_item {
