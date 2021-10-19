@@ -1,5 +1,5 @@
 body {
-  background-color: #eee;
+  background-color: #49b48218;
 }
 
 h2 {
@@ -19,6 +19,8 @@ h2 {
   height: 75vh;
   padding: 3%;
   background-color: white;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 #recommend_area {
@@ -63,24 +65,23 @@ h2 {
 
 #list_item {
   padding: 3%;
-  background-color: white;
   transition: background-color 0.1s ease-out 1ms;
 }
 
 #list_item:hover {
-  background-color: #19875423;
+  background-color: #1987541c;
 }
 
 #list > hr {
   border-bottom: 0%;
   width: 100%;
-  margin-top: 0.5%;
-  margin-bottom: 0.5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
-
+/* 
 #list > hr:last-child {
   display: none;
-}
+} */
 
 #list > button {
   margin-top: 2%;
@@ -88,6 +89,7 @@ h2 {
 
 #list_item_area {
   font-size: 1.1rem;
+  margin-bottom: 2%;
 }
 
 .item-title {
@@ -96,13 +98,26 @@ h2 {
 }
 
 .item-distance {
-  position: absolute;
-  left: 20%;
-  margin-right: 2%;
+  float: right;
+  margin-right: 5%;
 }
 
 .item-rate {
   float: right;
+}
+
+#cate_area {
+  float: right;
+  width: 38%;
+  text-align: right;
+  margin-right: 5%;
+}
+
+#cate_area > span {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  background-color: #19875423;
+  margin-left: 2%;
 }
 
 #list_item_body_area > * {
@@ -114,23 +129,20 @@ h2 {
   float: right;
 }
 
+.btn-outline-secondary {
+  color: black;
+}
+
 /* ------------------------------------------- */
 
 #keyword {
-  position: relative;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 50vh;
-  padding: 4px;
-  text-align: center;
-  background-color: white;
+  margin-bottom: 8%;
 }
 
 .tag-button {
-  width: 30%;
+  width: calc(100% / 4 - 2%);
   height: 8vh;
   min-height: 40px;
-  padding: 5px;
   margin: 1%;
   transition: background-color 0.1s ease-out 1ms;
 }
@@ -141,10 +153,9 @@ h2 {
 }
 
 .tag-button-on {
-  width: 30%;
+  width: calc(100% / 4 - 2%);
   height: 8vh;
   min-height: 40px;
-  padding: 5px;
   margin: 1%;
   background-color: #198754;
   color: white;
@@ -153,4 +164,12 @@ h2 {
 
 .tag-button-on:hover {
   background-color: #156e44;
+}
+
+#search_button {
+  width: 100%;
+  height: 6vh;
+  min-height: 40px;
+  margin: 1%;
+  float: right;
 }

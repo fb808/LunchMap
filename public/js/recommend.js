@@ -34,7 +34,7 @@ function setInfo(info) {
 
     randomNum.length = 0;
 
-    for (let i = 0; i < 3; i++){
+    for (let i = 0; i < 4; i++){
         const max = Math.floor(list.length);
         const min = Math.ceil(0);
         let randomIndex = Math.floor(Math.random() * (max - min)) + min;

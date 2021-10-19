@@ -1,53 +1,52 @@
 export function makingList(root, item) {
-    const title_area = document.createElement('div');
-    title_area.setAttribute('id', 'list_item_title_area');
-    root.appendChild(title_area);
+    const item_area = document.createElement('div');
+    item_area.setAttribute('id', 'list_item_area');
+    root.appendChild(item_area);
 
     const title = document.createElement('span');
     title.setAttribute('id', `${item.title}_title`);
-    title.innerHTML = `${item.title}`;
-    title_area.appendChild(title);
+    title.setAttribute('class', 'item-title');
+    title.innerHTML = `<b>${item.title}<b>`;
+    item_area.appendChild(title);
 
     const rate = document.createElement('span');
     rate.setAttribute('id', `${item.title}_rate`);
-    rate.setAttribute('class', 'text-warning');
+    rate.setAttribute('class', 'text-warning item-rate');
     rate.innerHTML = `&#11088 ${item.rate.toFixed(1)}`;
-    title_area.appendChild(rate);
+    item_area.appendChild(rate);
 
-    const body_area = document.createElement('span');
-    body_area.setAttribute('id', 'list_item_body_area');
-    root.appendChild(body_area);
-
-    const distance = document.createElement('div');
+    const distance = document.createElement('span');
     distance.setAttribute('id', `${item.title}_distance`);
-    distance.setAttribute('class', 'text-danger');
+    distance.setAttribute('class', 'text-secondary item-distance');
     distance.innerHTML = `${item.distance}m`;
-    body_area.appendChild(distance);
+    item_area.appendChild(distance);
 
-    const cateArea = document.createElement('div');
+    const cateArea = document.createElement('span');
     cateArea.setAttribute('id', 'cate_area');
-    body_area.appendChild(cateArea);
+    item_area.appendChild(cateArea);
 
     const cate = document.createElement('span');
     cate.setAttribute('id', `${item.title}_cate`);
-    cate.setAttribute('class', 'text-primary');
-    cate.innerHTML = `#${item.cate_4}`;
+    cate.setAttribute('class', 'item-cate');
+    cate.innerHTML = `${item.cate_4}`;
     cateArea.appendChild(cate);
 
-    const tag = document.createElement('span');
-    tag.setAttribute('id', `${item.title}_tag`);
-    tag.innerHTML = `${item.tag}  `;
-    cateArea.appendChild(tag);
+    if (item.tag !== item.cate_4) {
+        const tag = document.createElement('span');
+        tag.setAttribute('id', `${item.title}_tag`);
+        tag.innerHTML = `${item.tag}`;
+        cateArea.appendChild(tag);
+    }
 
     const address = document.createElement('span');
     address.setAttribute('id', `${item.title}_address`);
-    address.setAttribute('class', 'text-secondary');
+    address.setAttribute('class', 'text-secondary item-address');
     address.innerHTML = `${item.address}  `;
-    body_area.appendChild(address);
+    root.appendChild(address);
 
     const shortcut = document.createElement('button');
         shortcut.setAttribute('id', 'shortcut_button');
-        shortcut.setAttribute('class', 'btn btn-outline-dark btn-sm');
+        shortcut.setAttribute('class', 'btn btn-outline-secondary btn-sm');
         shortcut.innerHTML = '&#10145';
         shortcut.onclick = function (e) {
             e.stopPropagation();
@@ -57,4 +56,8 @@ export function makingList(root, item) {
             win.focus();
         }
     root.appendChild(shortcut);
+
+    const root_up = document.getElementById('list');
+    const line = document.createElement('hr');
+    root_up.appendChild(line);
 }
