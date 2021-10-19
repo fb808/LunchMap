@@ -74,5 +74,5 @@ function createListItem(root, item, index) {
     listArea.setAttribute('class', 'recommend');
     listItem.appendChild(listArea);
 
-    makingList(listArea, item, 'recommend');
+    makingList(listArea, item, root);
 }

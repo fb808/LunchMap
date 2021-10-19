@@ -65,7 +65,7 @@ let list_match = [];
 function recommend() {
     const max = Math.floor(list.length-1);
     const min = Math.ceil(0);
-    const root = document.getElementById('recommend_list');
+    const root = document.getElementsByClassName('recommend')[0];
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
@@ -112,7 +112,7 @@ function createListItem(root, item) {
     listArea.setAttribute('id', `${item.title}`);
     listItem.appendChild(listArea);
     
-    makingList(listArea, item);
+    makingList(listItem, item, root);
     
     mMap(item.title, item.address);
 }

@@ -1,4 +1,4 @@
-export function makingList(root, item) {
+export function makingList(root, item, lineroot) {
     const item_area = document.createElement('div');
     item_area.setAttribute('id', 'list_item_area');
     root.appendChild(item_area);
@@ -41,7 +41,7 @@ export function makingList(root, item) {
     const address = document.createElement('span');
     address.setAttribute('id', `${item.title}_address`);
     address.setAttribute('class', 'text-secondary item-address');
-    address.innerHTML = `${item.address}  `;
+    address.innerHTML = `${item.address}`;
     root.appendChild(address);
 
     const shortcut = document.createElement('button');
@@ -57,7 +57,6 @@ export function makingList(root, item) {
         }
     root.appendChild(shortcut);
 
-    const root_up = document.getElementById('list');
     const line = document.createElement('hr');
-    root_up.appendChild(line);
+    lineroot.appendChild(line);
 }

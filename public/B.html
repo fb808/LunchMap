@@ -12,37 +12,39 @@
 </head>
 <body>
     <div id="root">
+        <!-- <div id="back_area">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="back_button">&#11013</button>
+        </div> -->
         <div id="B">
-            <div id="back_area">
-                <button type="button" class="btn btn-outline-secondary btn-sm" id="back_button">&#11013</button>
-            </div>
             <div id="keyword_area">
                 <div id="title_area">
-                    <span class='h5' id="keyword_title">키워드</span>
+                    <span class='h5' id="keyword_title"><b>키워드</b></span>
                 </div>
                 <span id="keyword_word_area"></span>
             </div>
             <div id="left_screen">
                 <div open id="recommend_area">
                     <div id="title_area">
-                        <span class="h5" id="recommend_title">추천</span>
+                        <span class="h5" id="recommend_title"><b>추천</b></span>
                         <button type="button" class="btn btn-outline-success btn-sm" id="refresh_button">&#8635</button>
+                        <hr class="text-dark">
                     </div>
-                    <div id="recommend_list"></div>
+                    <div class="recommend" id="list"></div>
                 </div>
                 <div id="list_area">
                     <div id="title_area">
-                        <span class="h5" id="list_title">리스트</span>
+                        <span class="h5" id="list_title"><b>리스트</b></span>
                         <div class="dropdown" id="select_box">
                             <button type="button" class='btn btn-outline-success btn-sm dropdown-toggle' 
-                                    data-bs-toggle="dropdown" id="label">정렬 방법 선택</button>
+                                    data-bs-toggle="dropdown" id="label">정렬</button>
                             <ul class="dropdown-menu dropdown-menu-end" id="optionList">
                                 <li class="dropdown-item" id="optionItem" value="distance">거리</li>
                                 <li class="dropdown-item" id="optionItem" value="rate">별점</li>
                             </ul>
                         </div>
+                        <hr class="text-dark">
                     </div>
-                    <div id="list_list"></div>
+                    <div class="list" id="list"></div>
                 </div>
             </div>
             <div id="map"></div>
@@ -51,13 +53,13 @@
         <div id="plusModal" class="modal fade">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header" id="title_area">
-                        <h5 class="modal-title">키워드 추가</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <div class="modal-header border-0" id="title_area">
+                        <h5 class="modal-title h5"><b>키워드 추가</b></h5>
+                        <button type="button" class="btn-close" id="modal_close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="ok_button">확인</button>
                     </div>
                 </div>

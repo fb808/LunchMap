@@ -64,6 +64,11 @@ function bKeyword() {
             keywordButton.setAttribute('class', 'btn btn-outline-dark');
             keywordText.innerHTML = keyword[i];
             keywordButton.appendChild(keywordText);
+
+            const kindText = document.createElement('span');
+            kindText.setAttribute('id', `kind`);
+            kindText.innerHTML = '&nbsp&nbsp&nbsp&nbsp';
+            keywordButton.appendChild(kindText);
             
             const keywordDelete = document.createElement('button');
             keywordDelete.setAttribute('id', keyword[i]);
@@ -87,7 +92,7 @@ function bKeyword() {
     plusButton.setAttribute('class', 'btn btn-outline-success');
     plusButton.setAttribute('data-bs-toggle', 'modal');
     plusButton.setAttribute('data-bs-target', '#plusModal');
-    plusButton.innerHTML = '+';
+    plusButton.innerHTML = '추가';
     root.appendChild(plusButton);
 
 }
@@ -104,6 +109,11 @@ function popupWindow() {
     }
 
     const root = document.getElementsByClassName('modal-body')[0];
+
+    const line = document.createElement('hr');
+    line.setAttribute('class', 'text-dark');
+    root.appendChild(line);
+
     const bodyDiv = document.createElement('div');
     bodyDiv.setAttribute('id', 'button_area');
     root.appendChild(bodyDiv);

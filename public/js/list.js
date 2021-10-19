@@ -3,14 +3,14 @@ import { makingList } from './makingList.js';
 import { mMap } from './map.js';
 
 let keyword = [];
-let root = '';
+let root = document.getElementsByClassName('list')[0];
 const select = document.querySelector(`#select_box`);
 const option = select.querySelector('ul');
 const opts = option.querySelectorAll('li');
 opts[0].addEventListener('click', function () { sortList(0) });
 opts[1].addEventListener('click', function () { sortList(1) });
 
-function mainList(listRoot) {
+function mainList() {
     const url_keyword = get_query();
     const urlkw = url_keyword['list'].split(',');
     const keyword_list = ['한식', '국/탕', '찌개', '국수', '육류/고기', '곱창/막창/순대', 
@@ -20,8 +20,6 @@ function mainList(listRoot) {
             keyword.push(urlkw[i]);
         }
     }
-
-    root = listRoot;
     handleRefresh();
 }
 
@@ -101,16 +99,14 @@ function createListItem(item) {
     for (let i = 0; i < item.length; i++){
         const listItem = document.createElement('div');
         listItem.setAttribute('id', 'list_item');
-        listItem.setAttribute('class', 'list');
         listItem.onclick = function () { mMap(item[i].title, item[i].address) };
         root.appendChild(listItem);
         
         const listArea = document.createElement('div');
         listArea.setAttribute('id', `${item[i].title}`);
-        listArea.setAttribute('class', 'list');
         listItem.appendChild(listArea);
 
-        makingList(listArea, item[i], 'list');
+        makingList(listArea, item[i], root);
         
     }
 }
