@@ -7,17 +7,19 @@
   transform: translate(-50%, -50%);
 }
 
+#hr {
+  width: 100%;
+  opacity: 1;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 #back_area {
   margin-top: 1.5%;
   margin-left: 5%;
 }
 
 #title_area {
-  margin-top: 2%;
-  width: 100%;
-}
-
-#keyword_area > #title_area {
   margin-top: 2%;
   margin-bottom: 2%;
   width: 100%;
@@ -29,20 +31,8 @@
 }
 
 #recommend_area,
-#recommend_list,
-#list_area,
-#list_list {
-  margin-bottom: 3%;
+#list_area {
   width: 100%;
-}
-
-#title_area > hr {
-  width: 100%;
-  height: 2px;
-  border-bottom: 0%;
-  margin-top: 4.5%;
-  margin-bottom: 0%;
-  border-bottom: 0%;
 }
 
 #left_screen {
@@ -151,13 +141,11 @@
 }
 
 #list > hr {
-  border-bottom: 0%;
-  width: 100%;
   margin: 0%;
 }
 
 #list > hr:last-child {
-  height: 2px;
+  display: none;
 }
 
 #list > button {

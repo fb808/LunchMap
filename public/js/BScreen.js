@@ -4,10 +4,10 @@ import { bKeyword as keyword, popupWindow } from "./makingButton.js";
 import { selects, hideSelect } from "./sortBox.js";
 
 // 뒤로가기
-// const back = document.getElementById('back_button');
-// back.onclick = function () {
-//     location.href = 'index.html';
-// };
+const back = document.getElementById('back_button');
+back.onclick = function () {
+    location.href = 'index.html';
+};
 
 popupWindow();
 

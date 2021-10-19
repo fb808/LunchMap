@@ -12,6 +12,11 @@ h2 {
   justify-content: center;
 }
 
+hr {
+  width: 100%;
+  opacity: 1;
+}
+
 #recommend_area,
 #search_area {
   flex-wrap: wrap;
@@ -50,10 +55,7 @@ h2 {
 }
 
 #title_area > hr {
-  width: 100%;
-  height: 3px;
   margin-top: 4%;
-  border-bottom: 0%;
 }
 
 /* ------------------------------------------- */
@@ -79,6 +81,7 @@ h2 {
   border-bottom: 0%;
   width: 100%;
   margin: 0%;
+  opacity: 0.25;
 }
 
 #list > hr:last-child {
@@ -95,17 +98,16 @@ h2 {
 }
 
 .item-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-right: 2%;
 }
 
 .item-distance {
   float: right;
-  margin-right: 5%;
 }
 
 .item-rate {
-  float: right;
+  padding: 2%;
 }
 
 #cate_area {
@@ -173,4 +175,8 @@ h2 {
   height: 6vh;
   min-height: 40px;
   margin: 1%;
+}
+
+.btn {
+  font-size: 1rem;
 }

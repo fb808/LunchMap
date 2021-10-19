@@ -12,28 +12,29 @@
 </head>
 <body>
     <div id="root">
-        <!-- <div id="back_area">
+        <div id="back_area">
             <button type="button" class="btn btn-outline-secondary btn-sm" id="back_button">&#11013</button>
-        </div> -->
+        </div>
         <div id="B">
             <div id="keyword_area">
                 <div id="title_area">
-                    <span class='h5' id="keyword_title"><b>키워드</b></span>
+                    <span class='h4' id="keyword_title"><b>키워드</b></span>
                 </div>
                 <span id="keyword_word_area"></span>
             </div>
+            <hr class="text-dark" id="hr">
             <div id="left_screen">
                 <div open id="recommend_area">
                     <div id="title_area">
-                        <span class="h5" id="recommend_title"><b>추천</b></span>
+                        <span class="h4" id="recommend_title"><b>추천</b></span>
                         <button type="button" class="btn btn-outline-success btn-sm" id="refresh_button">&#8635</button>
-                        <hr class="text-dark">
                     </div>
                     <div class="recommend" id="list"></div>
                 </div>
+                <hr class="text-dark" id="hr">
                 <div id="list_area">
                     <div id="title_area">
-                        <span class="h5" id="list_title"><b>리스트</b></span>
+                        <span class="h4" id="list_title"><b>리스트</b></span>
                         <div class="dropdown" id="select_box">
                             <button type="button" class='btn btn-outline-success btn-sm dropdown-toggle' 
                                     data-bs-toggle="dropdown" id="label">정렬</button>
@@ -42,7 +43,6 @@
                                 <li class="dropdown-item" id="optionItem" value="rate">별점</li>
                             </ul>
                         </div>
-                        <hr class="text-dark">
                     </div>
                     <div class="list" id="list"></div>
                 </div>
@@ -54,7 +54,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header border-0" id="title_area">
-                        <h5 class="modal-title h5"><b>키워드 추가</b></h5>
+                        <h5 class="modal-title h4"><b>키워드 추가</b></h5>
                         <button type="button" class="btn-close" id="modal_close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
