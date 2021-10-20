@@ -10,12 +10,12 @@
 #hr {
   width: 100%;
   opacity: 1;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #back_area {
-  margin-top: 1.5%;
+  margin-top: 1.7%;
   margin-left: 5%;
 }
 
@@ -28,14 +28,18 @@
 }
 
 #title_area {
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
   width: 100%;
 }
 
 #keyword_area {
   margin-bottom: 2%;
   width: 100%;
+}
+
+#keyword_area #title_area {
+  margin-top: 2rem;
 }
 
 #recommend_area,
@@ -55,7 +59,7 @@
   flex-wrap: wrap;
   float: right;
   width: 54%;
-  height: 79%;
+  height: 82%;
 }
 
 /* ------------------------------------------- */
@@ -138,14 +142,14 @@
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 61vh;
+  height: 62vh;
 }
 
 #list.list {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 52.5vh;
+  height: 52vh;
 }
 
 #recommend_area > #list {
@@ -178,7 +182,7 @@
 }
 
 #list_item_area {
-  margin-bottom: 2%;
+  margin-bottom: 1.5%;
 }
 
 .item-title {
@@ -206,6 +210,11 @@
   border-radius: 1rem;
   background-color: #19875423;
   margin-left: 2%;
+}
+
+.item-address {
+  display: inline-block;
+  margin-top: 0.5%;
 }
 
 #list_item_body_area > * {
