@@ -67,7 +67,7 @@ function bKeyword() {
 
             const kindText = document.createElement('span');
             kindText.setAttribute('id', `kind`);
-            kindText.innerHTML = '&nbsp&nbsp&nbsp&nbsp';
+            kindText.innerHTML = '&nbsp&nbsp';
             keywordButton.appendChild(kindText);
             
             const keywordDelete = document.createElement('button');
