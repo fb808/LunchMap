@@ -15,15 +15,34 @@ export function makingList(root, item, lineroot) {
     rate.innerHTML = `&#11088 ${item.rate.toFixed(1)}`;
     item_area.appendChild(rate);
 
+    const shortcut = document.createElement('button');
+        shortcut.setAttribute('id', 'shortcut_button');
+        shortcut.setAttribute('class', 'btn btn-outline-secondary btn-sm');
+        shortcut.innerHTML = '&#10145';
+        shortcut.onclick = function (e) {
+            e.stopPropagation();
+            let searchName = item.area + ' ' +item.title;
+            console.log(searchName);
+            let win = window.open(item.link);
+            win.focus();
+        }
+    item_area.appendChild(shortcut);
+
+    const address = document.createElement('div');
+    address.setAttribute('id', `${item.title}_address`);
+    address.setAttribute('class', 'text-secondary item-address');
+    address.innerHTML = `${item.address}`;
+    root.appendChild(address);
+
     const distance = document.createElement('span');
     distance.setAttribute('id', `${item.title}_distance`);
     distance.setAttribute('class', 'text-secondary item-distance');
     distance.innerHTML = `${item.distance}m`;
-    item_area.appendChild(distance);
+    root.appendChild(distance);
 
     const cateArea = document.createElement('span');
     cateArea.setAttribute('id', 'cate_area');
-    item_area.appendChild(cateArea);
+    root.appendChild(cateArea);
 
     const cate = document.createElement('span');
     cate.setAttribute('id', `${item.title}_cate`);
@@ -37,25 +56,6 @@ export function makingList(root, item, lineroot) {
         tag.innerHTML = `${item.tag}`;
         cateArea.appendChild(tag);
     }
-
-    const address = document.createElement('span');
-    address.setAttribute('id', `${item.title}_address`);
-    address.setAttribute('class', 'text-secondary item-address');
-    address.innerHTML = `${item.address}`;
-    root.appendChild(address);
-
-    const shortcut = document.createElement('button');
-        shortcut.setAttribute('id', 'shortcut_button');
-        shortcut.setAttribute('class', 'btn btn-outline-secondary btn-sm');
-        shortcut.innerHTML = '&#10145';
-        shortcut.onclick = function (e) {
-            e.stopPropagation();
-            let searchName = item.area + ' ' +item.title;
-            console.log(searchName);
-            let win = window.open(item.link);
-            win.focus();
-        }
-    root.appendChild(shortcut);
 
     const line = document.createElement('hr');
     lineroot.appendChild(line);

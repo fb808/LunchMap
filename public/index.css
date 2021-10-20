@@ -24,8 +24,6 @@ hr {
   height: 75vh;
   padding: 3%;
   background-color: white;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 
 #recommend_area {
@@ -39,6 +37,7 @@ hr {
   margin-top: 0.5%;
   width: 8%;
   height: 8%;
+  border: white;
   border-radius: 2rem;
   transform: rotate(90deg);
 }
@@ -91,9 +90,9 @@ hr {
   display: none;
 }
 
-#list > button {
+/* #list > button {
   margin-top: 2%;
-}
+} */
 
 #list_item_area {
   font-size: 1.1rem;
@@ -105,31 +104,8 @@ hr {
   margin-right: 2%;
 }
 
-.item-distance {
-  float: right;
-}
-
 .item-rate {
   padding: 2%;
-}
-
-#cate_area {
-  float: right;
-  width: 38%;
-  text-align: right;
-  margin-right: 5%;
-}
-
-#cate_area > span {
-  padding: 0.4rem 0.8rem;
-  border-radius: 1rem;
-  background-color: #19875423;
-  margin-left: 2%;
-}
-
-.item-address {
-  display: inline-block;
-  margin-top: 0.5%;
 }
 
 #shortcut_button {
@@ -138,6 +114,31 @@ hr {
 
 .btn-outline-secondary {
   color: black;
+}
+
+.item-address {
+  display: inline-block;
+  margin-top: 0.5%;
+  font-size: 1.05rem;
+}
+
+#cate_area {
+  width: 38%;
+  text-align: right;
+  margin-left: 5%;
+}
+
+#cate_area > span {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  background-color: #8a8a8a23;
+  margin-right: 2%;
+}
+
+.item-distance {
+  float: right;
+  margin-top: 0.5%;
+  font-size: 1.1rem;
 }
 
 /* ------------------------------------------- */
