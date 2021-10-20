@@ -34,10 +34,13 @@ hr {
 }
 
 #refresh_button {
-  width: 5%;
-  height: 5%;
   float: right;
-  font-size: 1rem;
+  font-size: 2rem;
+  margin-top: 0.5%;
+  width: 8%;
+  height: 8%;
+  border-radius: 2rem;
+  transform: rotate(90deg);
 }
 
 #search_button {
@@ -94,7 +97,7 @@ hr {
 
 #list_item_area {
   font-size: 1.1rem;
-  margin-bottom: 2%;
+  margin-bottom: 1.5%;
 }
 
 .item-title {
@@ -124,9 +127,9 @@ hr {
   margin-left: 2%;
 }
 
-#list_item_body_area > * {
+.item-address {
   display: inline-block;
-  margin-top: 1%;
+  margin-top: 0.5%;
 }
 
 #shortcut_button {

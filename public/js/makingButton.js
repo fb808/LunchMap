@@ -112,6 +112,7 @@ function popupWindow() {
 
     const line = document.createElement('hr');
     line.setAttribute('class', 'text-dark');
+    line.setAttribute('id', 'hr');
     root.appendChild(line);
 
     const bodyDiv = document.createElement('div');

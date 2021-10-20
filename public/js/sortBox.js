@@ -23,7 +23,7 @@ function selectOpt(){
     opts.forEach(opt=>{
         const innerValue = opt.innerHTML;
         function changeValue(){
-            values.innerHTML = innerValue;
+            values.innerHTML = `&nbsp${innerValue}&nbsp&nbsp`;
         }
         opt.addEventListener('click',changeValue)
     });
@@ -32,7 +32,7 @@ function selectOpt(){
 /* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
 function selectFirst(){
     const firstValue = opts[0].innerHTML;
-    values.innerHTML = `${firstValue}`
+    values.innerHTML = `&nbsp${firstValue}&nbsp&nbsp`
 }
 
 /* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
