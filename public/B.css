@@ -78,10 +78,11 @@ body {
 }
 
 #keyword_word_area {
+  display: block;
   position: relative;
-  overflow: scroll;
-  overflow-x: hidden;
-  height: 5vh;
+  overflow: auto;
+  width: 36vw;
+  height: 5.5vh;
 }
 
 .keyword_span {
