@@ -17,8 +17,8 @@ export function makingList(root, item, lineroot) {
 
     const shortcut = document.createElement('button');
         shortcut.setAttribute('id', 'shortcut_button');
-        shortcut.setAttribute('class', 'btn btn-outline-secondary btn-sm');
-        shortcut.innerHTML = '&#10145';
+        shortcut.setAttribute('class', 'btn btn-light');
+        shortcut.innerHTML = `<img src=https://cdn0.iconfinder.com/data/icons/feather/96/591276-arrow-right-512.png>`;
         shortcut.onclick = function (e) {
             e.stopPropagation();
             let searchName = item.area + ' ' +item.title;

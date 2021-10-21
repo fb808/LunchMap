@@ -4,7 +4,7 @@ body {
 
 #B {
   position: absolute;
-  width: 80%;
+  width: 84%;
   height: 100vh;
   top: 50%;
   left: 50%;
@@ -19,16 +19,18 @@ body {
 }
 
 #back_area {
-  margin-top: 1.7%;
-  margin-left: 5%;
+  margin-top: 2.2%;
+  margin-left: 3%;
 }
 
 #back_button {
-  color: black;
-}
-
-#back_button:hover {
-  color: white;
+  border: none;
+  background-color: white;
+  width: 2.5%;
+  height: 2.5%;
+  margin-top: -1%;
+  margin-right: -1%;
+  transform: rotate(180deg);
 }
 
 #title_area {
@@ -55,15 +57,16 @@ body {
   display: flex;
   flex-wrap: wrap;
   float: left;
-  width: 45%;
+  width: 42%;
 }
 
 #map {
   display: flex;
   flex-wrap: wrap;
   float: right;
+  margin-top: 2rem;
   width: 54%;
-  height: 82%;
+  height: 96%;
 }
 
 /* ------------------------------------------- */
@@ -75,7 +78,10 @@ body {
 }
 
 #keyword_word_area {
-  display: flex;
+  position: relative;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 5vh;
 }
 
 .keyword_span {
@@ -84,8 +90,8 @@ body {
 
 #keyword_word_area > .btn-outline-dark {
   display: inline-block;
-  margin-right: 0.6%;
-  margin-bottom: 0.6;
+  margin-right: 1%;
+  margin-bottom: 1%;
   min-height: 30px;
   height: 4vh;
 }
@@ -93,6 +99,14 @@ body {
 #keyword_word_area > .btn-outline-dark:hover {
   background-color: white;
   color: black;
+}
+
+#keyword_word_area > .btn-outline-success {
+  display: inline-block;
+  margin-right: 1%;
+  margin-bottom: 1%;
+  min-height: 30px;
+  height: 4vh;
 }
 
 .keyword-text {
@@ -115,11 +129,12 @@ body {
 
 #refresh_button {
   float: right;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 1%;
-  width: 6%;
-  margin-top: -1%;
+  width: 7%;
+  margin-top: -1.2%;
   border-radius: 2rem;
+  border: white;
   transform: rotate(90deg);
 }
 
@@ -146,14 +161,14 @@ body {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 62vh;
+  height: 61vh;
 }
 
 #list.list {
   position: relative;
   overflow: scroll;
   overflow-x: hidden;
-  height: 52vh;
+  height: 51vh;
 }
 
 #recommend_area > #list {
@@ -194,45 +209,47 @@ body {
   margin-right: 2%;
 }
 
-.item-distance {
-  float: right;
-}
-
 .item-rate {
   padding: 2%;
 }
 
-#cate_area {
-  float: right;
-  width: 39%;
-  text-align: right;
-  margin-right: 5%;
+img {
+  width: 100%;
+  height: 100%;
+  text-align: left;
 }
 
-#cate_area > span {
-  padding: 0.4rem 0.8rem;
-  border-radius: 1rem;
-  background-color: #19875423;
-  margin-left: 2%;
+#shortcut_button {
+  float: right;
+  border: none;
+  background-color: white;
+  width: 7%;
+  height: 7%;
+  margin-top: -1%;
 }
 
 .item-address {
   display: inline-block;
   margin-top: 0.5%;
+  font-size: 1.05rem;
 }
 
-#list_item_body_area > * {
-  display: inline-block;
-  margin-top: 1%;
+#cate_area {
+  width: 39%;
+  text-align: right;
+  margin-left: 5%;
 }
 
-#shortcut_button {
+#cate_area > span {
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  background-color: #e9e9e9;
+  margin-right: 1%;
+}
+
+.item-distance {
   float: right;
-  color: black;
-}
-
-#shortcut_button:hover {
-  color: white;
+  font-size: 1.1rem;
 }
 
 /* ------------------------------------------- */
