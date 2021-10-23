@@ -48,10 +48,16 @@ function bKeyword() {
     const root = document.getElementById('keyword_word_area');
 
     if (keyword.length === 0) {
+        root.setAttribute('id', 'no_keyword_area');
+
         const noKeyword = document.createElement('span');
         noKeyword.setAttribute('id', 'no_keyword');
         noKeyword.innerHTML = '키워드가 없습니다. ';
         root.appendChild(noKeyword);
+
+        const list = document.getElementById('list_list');
+        list.setAttribute('class', 'no_keyword');
+
     } else {
         for (let i = 0; i < keyword.length; i++){
             const keywordButton = document.createElement('span');
